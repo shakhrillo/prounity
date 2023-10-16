@@ -13,4 +13,12 @@
   border-width: 1px;
 }
 
+.alert {
+  position: relative;
+}
+
+.badge {
+  display: inline-block;
+}
+
 /*# sourceMappingURL=prounity.css.map */
