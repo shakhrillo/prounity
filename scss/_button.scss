@@ -3,6 +3,16 @@
 //
 
 .btn {
-  border: 3px solid #222000;
-  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: inherit;
+  color: $button-text;
+  appearance: none;
+  cursor: pointer;
+  background: $button-bg;
+  border-color: $button-bg;
+  border-style: solid;
+  border-width: $button-stroke-width;
 }
