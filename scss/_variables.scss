@@ -7,6 +7,65 @@ $danger: #f6c28b !default;
 $light: #82ddf0 !default;
 $dark: #5296a5 !default;
 $white: #fff !default;
+$black: #000 !default;
+
+// scss-docs-start colors-map
+$blue:    #0d6efd !default;
+$indigo:  #6610f2 !default;
+$purple:  #6f42c1 !default;
+$pink:    #d63384 !default;
+$red:     #dc3545 !default;
+$orange:  #fd7e14 !default;
+$yellow:  #ffc107 !default;
+$green:   #198754 !default;
+$teal:    #20c997 !default;
+$cyan:    #0dcaf0 !default;
+
+$colors: (
+  "blue":       $blue,
+  "indigo":     $indigo,
+  "purple":     $purple,
+  "pink":       $pink,
+  "red":        $red,
+  "orange":     $orange,
+  "yellow":     $yellow,
+  "green":      $green,
+  "teal":       $teal,
+  "cyan":       $cyan,
+  "black":      $black,
+  "white":      $white,
+  "gray":       $black,
+  "gray-dark":  $black
+) !default;
+
+$theme-colors: (
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark
+) !default;
+
+// Options
+//
+// Quickly modify global styling by enabling or disabling optional features.
+$enable-important-utilities:  true !default;
+
+// Prefix for :root CSS variables
+
+$variable-prefix:             bs- !default; // Deprecated in v5.2.0 for the shorter `$prefix`
+$prefix:                      $variable-prefix !default;
+
+// The contrast ratio to reach against white, to determine if color changes from "light" to "dark". Acceptable values for WCAG 2.0 are 3, 4.5 and 7.
+// See https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast
+$min-contrast-ratio:   4.5 !default;
+
+// Customize the light and dark text colors for use in our color contrast function.
+$color-contrast-dark:      $black !default;
+$color-contrast-light:     $white !default;
 
 $button-text: $white !default;
 $button-bg: $primary !default;

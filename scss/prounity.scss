@@ -1,10 +1,18 @@
-// Variables
+@use "sass:color";
+
+// Configuration
+@import "functions";
 @import "variables";
+
 
 // Colors
 @import "colors";
 
-// Components
+// Layout & components
+@import "root";
 @import "button";
 @import "alert";
 @import "badge";
+
+// Helpers
+@import "helpers";

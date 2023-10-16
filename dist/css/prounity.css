@@ -38,6 +38,26 @@
   background-color: transparent;
 }
 
+:root,
+[data-bs-theme=light] {
+  --bs-blue: #0d6efd;
+  --bs-indigo: #6610f2;
+  --bs-purple: #6f42c1;
+  --bs-pink: #d63384;
+  --bs-red: #dc3545;
+  --bs-orange: #fd7e14;
+  --bs-yellow: #ffc107;
+  --bs-green: #198754;
+  --bs-teal: #20c997;
+  --bs-cyan: #0dcaf0;
+  --bs-black: #000;
+  --bs-white: #fff;
+  --bs-gray: #000;
+  --bs-gray-dark: #000;
+  --bs-warning-rgb: rgba(252, 215, 173, 0.5);
+  --bs-bg-opacity: 1;
+}
+
 .btn {
   display: flex;
   align-items: center;
@@ -59,6 +79,46 @@
 
 .badge {
   display: inline-block;
+}
+
+.text-bg-primary {
+  color: #fff !important;
+  background-color: var(--bs-primary-rgb);
+}
+
+.text-bg-secondary {
+  color: #000 !important;
+  background-color: var(--bs-secondary-rgb);
+}
+
+.text-bg-success {
+  color: #000 !important;
+  background-color: var(--bs-success-rgb);
+}
+
+.text-bg-info {
+  color: #000 !important;
+  background-color: var(--bs-info-rgb);
+}
+
+.text-bg-warning {
+  color: #000 !important;
+  background-color: var(--bs-warning-rgb);
+}
+
+.text-bg-danger {
+  color: #000 !important;
+  background-color: var(--bs-danger-rgb);
+}
+
+.text-bg-light {
+  color: #000 !important;
+  background-color: var(--bs-light-rgb);
+}
+
+.text-bg-dark {
+  color: #000 !important;
+  background-color: var(--bs-dark-rgb);
 }
 
 /*# sourceMappingURL=prounity.css.map */
