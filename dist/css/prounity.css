@@ -1,3 +1,43 @@
+.bg-primary {
+  background-color: #6369d1;
+}
+
+.bg-secondary {
+  background-color: #d8d2e1;
+}
+
+.bg-success {
+  background-color: #60e1e0;
+}
+
+.bg-info {
+  background-color: #b88e8d;
+}
+
+.bg-warning {
+  background-color: #fcd7ad;
+}
+
+.bg-danger {
+  background-color: #f6c28b;
+}
+
+.bg-light {
+  background-color: #82ddf0;
+}
+
+.bg-dark {
+  background-color: #5296a5;
+}
+
+.bg-white {
+  background-color: #fff;
+}
+
+.bg-transparent {
+  background-color: transparent;
+}
+
 .btn {
   display: flex;
   align-items: center;
