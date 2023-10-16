@@ -34,6 +34,12 @@ pip install -r requirements.txt
 python manage.py runserver
 ```
 
+## Testing
+    
+```sh
+python manage.py test
+```
+
 ## Dependencies
 
 - [Django](https://www.djangoproject.com/)
