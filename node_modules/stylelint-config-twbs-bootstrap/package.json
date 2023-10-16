@@ -1,0 +1,59 @@
+{
+  "name": "stylelint-config-twbs-bootstrap",
+  "version": "11.0.1",
+  "description": "An opinionated Stylelint config used by Bootstrap across our projects.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/twbs/stylelint-config-twbs-bootstrap.git"
+  },
+  "keywords": [
+    "bootstrap",
+    "stylelint",
+    "stylelint-config",
+    "config",
+    "lint"
+  ],
+  "author": "The Bootstrap Authors (https://github.com/twbs/stylelint-config-twbs-bootstrap/graphs/contributors)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/twbs/stylelint-config-twbs-bootstrap/issues"
+  },
+  "homepage": "https://github.com/twbs/stylelint-config-twbs-bootstrap#readme",
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/twbs"
+    },
+    {
+      "type": "opencollective",
+      "url": "https://opencollective.com/bootstrap"
+    }
+  ],
+  "files": [
+    "index.js"
+  ],
+  "engines": {
+    "node": "^14.13.1 || >=16.0.0"
+  },
+  "peerDependencies": {
+    "stylelint": "^15.5.0"
+  },
+  "dependencies": {
+    "stylelint-config-recess-order": "^4.2.0",
+    "stylelint-config-standard": "^33.0.0",
+    "stylelint-config-standard-scss": "^10.0.0",
+    "stylelint-scss": "^5.0.1",
+    "stylelint-stylistic": "^0.4.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.44.0",
+    "stylelint": "^15.10.1"
+  },
+  "scripts": {
+    "lint": "eslint --ignore-path .gitignore .",
+    "clone-repo": "git clone https://github.com/twbs/bootstrap.git --branch main --depth 1 bootstrap",
+    "test": "npm run lint",
+    "test-ci": "stylelint \"bootstrap/scss/**/*.scss\" --config index.js --ignore-pattern \"**/vendor/\" --ignore-pattern \"**/tests/\" --formatter verbose"
+  }
+}
