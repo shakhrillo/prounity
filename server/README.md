@@ -4,7 +4,9 @@
 ## Technologies Used
 - [Django Rest Framework](https://www.django-rest-framework.org/)
 - [Django Rest Framework Simple JWT](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/getting_started.html)
+- [Djongo](https://pypi.org/project/Django/)
 - [MongoDB](https://www.mongodb.com/)
+- [MongoDB Atlas](https://www.mongodb.com/)
 ## Development
 > To get a local copy of the code, ```clone``` it using git:
  ```sh
