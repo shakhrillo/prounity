@@ -4,13 +4,15 @@ from django.contrib.auth.hashers import make_password
 import django.contrib.auth.password_validation as validators
 from django.contrib.auth.password_validation import validate_password
 
+from home.models import Product
+
 
 
 ''' User Serializers '''
 class UserInformationSerializers(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id','username','first_name','last_name'] 
+        fields = ['id','username','first_name','last_name']
 
 class UserSiginUpSerializers(serializers.ModelSerializer):
     username = serializers.CharField(max_length=255, min_length=5, required=True)
@@ -27,7 +29,7 @@ class UserSiginUpSerializers(serializers.ModelSerializer):
         if attrs['password'] != attrs['password2']:
             raise serializers.ValidationError({"password": "Password fields didn't match."})
         return attrs
-    
+
     def create(self, validated_data):
         user = User.objects.create(
           username=validated_data['username'],
@@ -45,3 +47,29 @@ class UserSiginInSerializers(serializers.ModelSerializer):
       model = User
       fields = ['username', 'password']
       read_only_fields = ('username',)
+
+
+
+class ProductListSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = Product
+    fields = ['unique_id', 'product_name', 'product_price', 'author', 'created_at',]
+
+  def create(self, validated_data):
+    create = Product.objects.create(**validated_data)
+    create.author = self.context.get('author')
+    create.save()
+    return create
+
+  def update(self, instance, validated_data):
+    for field, value in validated_data.items():
+      setattr(instance, field, value)
+    instance.save()
+    return instance
+
+class ProductDeatilSerializer(serializers.ModelSerializer):
+  author = UserInformationSerializers(read_only=True)
+
+  class Meta:
+    model = Product
+    fields = ['unique_id', 'product_name', 'product_price', 'author', 'created_at', ]
