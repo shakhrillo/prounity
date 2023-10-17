@@ -5,15 +5,9 @@ from rest_framework.permissions import (IsAuthenticated)
 from rest_framework.response import (Response)
 from rest_framework.views import (APIView)
 from rest_framework_simplejwt.tokens import (RefreshToken)
-from home.models import (Product)
-from api.renderers import (UserRenderers)
-from api.serializers import (
-    UserSigInUpSerializers,
-    UserSigInInSerializers,
-    UserInformationSerializers,
-    ProductListSerializer,
-    ProductSerializer
-)
+import home.models as mod
+import api.renderers as ren
+import api.serializers as ser
 
 
 def get_token_for_user(user):
@@ -24,10 +18,10 @@ def get_token_for_user(user):
 
 
 class UserSigInUpViews(APIView):
-    render_classes = [UserRenderers]
+    render_classes = [ren.UserRenderers]
 
     def post(self, request):
-        serializer = UserSigInUpSerializers(data=request.data)
+        serializer = ser.UserSigInUpSerializers(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -35,10 +29,10 @@ class UserSigInUpViews(APIView):
 
 
 class UserSigInViews(APIView):
-    render_classes = [UserRenderers]
+    render_classes = [ren.UserRenderers]
 
     def post(self, request):
-        serializer = UserSigInInSerializers(data=request.data, partial=True)
+        serializer = ser.UserSigInInSerializers(data=request.data, partial=True)
         if serializer.is_valid(raise_exception=True):
             username = request.data["username"]
             password = request.data["password"]
@@ -64,25 +58,25 @@ class UserSigInViews(APIView):
 
 
 class UserProfilesViews(APIView):
-    render_classes = [UserRenderers]
+    render_classes = [ren.UserRenderers]
     permission = [IsAuthenticated]
 
     def get(self, request):
-        serializer = UserInformationSerializers(request.user)
+        serializer = ser.UserInformationSerializers(request.user)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class ProductListview(APIView):
-    render_classes = [UserRenderers]
+    render_classes = [ren.UserRenderers]
     permission = [IsAuthenticated]
 
     def get(self, request):
-        queryset = Product.get_user_product(request.user)
-        serializer = ProductSerializer(queryset, many=True)
+        queryset = mod.Product.get_user_product(request.user)
+        serializer = ser.ProductSerializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
-        serializer = ProductListSerializer(
+        serializer = ser.ProductListSerializer(
             data=request.data,
             context={
                 "author": request.user,
@@ -96,17 +90,17 @@ class ProductListview(APIView):
 
 
 class ProductDetailView(APIView):
-    render_classes = [UserRenderers]
+    render_classes = [ren.UserRenderers]
     permission = [IsAuthenticated]
 
     def get(self, identify):
-        queryset = get_object_or_404(Product, id=identify)
-        serializer = ProductSerializer(queryset)
+        queryset = get_object_or_404(mod.Product, id=identify)
+        serializer = ser.ProductSerializer(queryset)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request, identify):
-        queryset = get_object_or_404(Product, id=identify)
-        serializer = ProductListSerializer(instance=queryset, data=request.data, partial=True, )
+        queryset = get_object_or_404(mod.Product, id=identify)
+        serializer = ser.ProductListSerializer(instance=queryset, data=request.data, partial=True, )
 
         if serializer.is_valid(raise_exception=True):
             serializer.save()
@@ -116,6 +110,6 @@ class ProductDetailView(APIView):
         )
 
     def delete(self, identify):
-        queryset = get_object_or_404(Product, id=identify)
+        queryset = get_object_or_404(mod.Product, id=identify)
         queryset.delete()
         return Response({"msg": "Deleted"}, status=status.HTTP_200_OK)
