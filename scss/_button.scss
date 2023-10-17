@@ -3,6 +3,8 @@
 //
 
 .btn {
+  --#{$prefix}btn-border-radius: #{$btn-border-radius};
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,4 +17,5 @@
   border-color: $button-bg;
   border-style: solid;
   border-width: $button-stroke-width;
+  @include border-radius(var(--#{$prefix}btn-border-radius));
 }

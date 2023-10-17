@@ -67,6 +67,9 @@ $min-contrast-ratio:   4.5 !default;
 $color-contrast-dark:      $black !default;
 $color-contrast-light:     $white !default;
 
+$enable-rounded:            true !default;
+
 $button-text: $white !default;
 $button-bg: $primary !default;
 $button-stroke-width: 1px !default;
+$btn-border-radius: 2px !default;

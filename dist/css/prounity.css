@@ -59,6 +59,7 @@
 }
 
 .btn {
+  --bs-btn-border-radius: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,6 +72,7 @@
   border-color: #6369d1;
   border-style: solid;
   border-width: 1px;
+  border-radius: var(--bs-btn-border-radius);
 }
 
 .alert {
