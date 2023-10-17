@@ -8,5 +8,5 @@ venv/
 
 # cash
 __pycache__/
-
+migrations/
 
