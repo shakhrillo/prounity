@@ -7,5 +7,5 @@ urlpatterns = [
     path('user_profiles_views/', UserProfilesViews.as_view()),
 
     path('product_list/', ProductListview.as_view()),
-    path('product_detail/<uuid:unique_id>/', ProductDetailView.as_view()),
+    path('product_detail/<int:id>/', ProductDetailView.as_view()),
 ]
