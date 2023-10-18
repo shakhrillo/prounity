@@ -2,11 +2,10 @@
 > A simple [Crud](https://github.com/shakhrillo/prounity/tree/main) application built with [Django Rest Framework](https://www.django-rest-framework.org/) and [MongoDB](https://www.mongodb.com/)
 
 ## Technologies Used
+- [Django]()
 - [Django Rest Framework](https://www.django-rest-framework.org/)
 - [Django Rest Framework Simple JWT](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/getting_started.html)
-- [Djongo](https://pypi.org/project/Django/)
-- [MongoDB](https://www.mongodb.com/)
-- [MongoDB Atlas](https://www.mongodb.com/)
+
 ## Development
 > To get a local copy of the code, ```clone``` it using git:
  ```sh
@@ -43,27 +42,6 @@ py -m pip install -r requirements.txt
 py -m pip freeze > requirements.txt
 ```
 _______
-## Integration MongoDB
-
-_Django is a SQL to mongodb query transpiler. Using django we can use ```MongoDB``` as a backend database for our Django project. We don’t even need to change the ```Django ORM```. The best part is that we can setup Django with MongoDB by adding just one line of code. There is no need to change serializers, views, or any other modules._
-
-> Install packages
-
-```sh
-pip install djongo
-```
-> Make changes to settings.py file
-
-_Now, open ```settings.py``` file. Comment out or remove previous SQL Database configuration and add the following code in ```settings.py``` file : ```settings.py_```
-```
-DATABASES = {
-      'default': {
-          'ENGINE': 'djongo',
-          'NAME': 'your-database-name',
-      }
-  }
-```
-_______
 ## Finnaly you can start our project
 > Now, you can start a ```local web server``` by running:
 
@@ -77,6 +55,23 @@ _______
 | python manage.py migrate | migrate is run through the following command for a Django project. |
 | python manage.py createsuperuser | create a super user                                                |
 | python manage.py runserver | to run a emulated server on your local computer                    |
+_______
+## Structure
+
+> Authentification
+
+| Endpoint | HTTP Method | CRUD Method | Result |
+| -------- | -------- | -------- | -------- |
+| api/user_sigin_up_views | POST | CREATE | Sign up |
+| api/user_sigin_in_views | POST | CREATE | Sign in |
+| api/user_profiles_views | GET  | READ   | Profile |
+
+> Api Crud for Product using Django Rest Framework
+
+| Endpoint | HTTP Method | CRUD Method | Result |
+| -------- | -------- | -------- | -------- |
+| api/product_list | POST / GET | CREATE / READ | Create product and get all product |
+| api/product_detail/id/ | GET / PUT / DELETE | READ / UPDATE / DELETE | Read, Update and Delete product |
 
 _______
 ## Credits
@@ -84,5 +79,3 @@ CRUD App is built and maintained by ```ProUnity Team```.
 _______
 ## License
 CRUD App is open-source software licensed under the [MIT License](https://opensource.org/license/mit/).
-
-
