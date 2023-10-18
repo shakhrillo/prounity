@@ -17,7 +17,7 @@
           <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#"></a>
+                <a class="nav-link active" aria-current="page" href=""></a>
               </li>
             </ul>
             <span class="navbar-text">
@@ -26,7 +26,9 @@
                       <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                         {{request.user.get_full_name}}
                       </button>
+                        
                       <ul class="dropdown-menu dropdown-menu-dark">
+                        <li><a class="dropdown-item" href="{% url 'user_profiles' %}">Settings</a></li>
                         <li><a class="dropdown-item" href="{% url 'logout_user' %}">Logout</a></li>
                       </ul>
                     </li>

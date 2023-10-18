@@ -125,6 +125,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+LOGIN_URL = '/'
+LOGOUT_URL = 'sigin_in'
+LOGOUT_REDIRECT_URL = 'sigin_in'
 # Rest fremwork settings
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (

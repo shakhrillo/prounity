@@ -5,23 +5,20 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
-import home.models as mod
-import api.renderers as ren
-import api.serializers as ser
+from home.models import Product
+from api.renderers import UserRenderers
+from api.serializers import *
 
 
 def get_token_for_user(user):
     refresh = RefreshToken.for_user(user)
-    return {
-      "refresh": str(refresh),
-      "access": str(refresh.access_token)}
-
+    return {"refresh": str(refresh), "access": str(refresh.access_token)}
 
 class UserSigInUpViews(APIView):
-    render_classes = [ren.UserRenderers]
+    render_classes = [UserRenderers]
 
     def post(self, request):
-        serializer = ser.UserSigInUpSerializers(data=request.data)
+        serializer = UserSigInUpSerializers(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -29,10 +26,10 @@ class UserSigInUpViews(APIView):
 
 
 class UserSigInViews(APIView):
-    render_classes = [ren.UserRenderers]
+    render_classes = [UserRenderers]
 
     def post(self, request):
-        serializer = ser.UserSigInInSerializers(data=request.data, partial=True)
+        serializer = UserSigInInSerializers(data=request.data, partial=True)
         if serializer.is_valid(raise_exception=True):
             username = request.data["username"]
             password = request.data["password"]
@@ -58,29 +55,29 @@ class UserSigInViews(APIView):
 
 
 class UserProfilesViews(APIView):
-    render_classes = [ren.UserRenderers]
+    render_classes = [UserRenderers]
     permission = [IsAuthenticated]
 
     def get(self, request):
-        serializer = ser.UserInformationSerializers(request.user)
+        serializer = UserInformationSerializers(request.user)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class ProductListview(APIView):
-    render_classes = [ren.UserRenderers]
+    render_classes = [UserRenderers]
     permission = [IsAuthenticated]
 
     def get(self, request):
         queryset = mod.Product.get_user_product(request.user)
-        serializer = ser.ProductSerializer(queryset, many=True)
+        serializer = ProductSerializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
-        serializer = ser.ProductListSerializer(
+        serializer = ProductListSerializer(
             data=request.data,
             context={
                 "author": request.user,
-            }
+            },
         )
 
         if serializer.is_valid(raise_exception=True):
@@ -90,17 +87,21 @@ class ProductListview(APIView):
 
 
 class ProductDetailView(APIView):
-    render_classes = [ren.UserRenderers]
+    render_classes = [UserRenderers]
     permission = [IsAuthenticated]
 
-    def get(self, identify):
-        queryset = get_object_or_404(mod.Product, id=identify)
-        serializer = ser.ProductSerializer(queryset)
+    def get(self, request, pk):
+        queryset = get_object_or_404(Product, id=pk)
+        serializer = ProductSerializer(queryset)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-    def put(self, request, identify):
-        queryset = get_object_or_404(mod.Product, id=identify)
-        serializer = ser.ProductListSerializer(instance=queryset, data=request.data, partial=True, )
+    def put(self, request, pk):
+        queryset = get_object_or_404(Product, id=pk)
+        serializer = ProductListSerializer(
+            instance=queryset,
+            data=request.data,
+            partial=True,
+        )
 
         if serializer.is_valid(raise_exception=True):
             serializer.save()
@@ -109,7 +110,7 @@ class ProductDetailView(APIView):
             {"error": "update error data"}, status=status.HTTP_400_BAD_REQUEST
         )
 
-    def delete(self, identify):
-        queryset = get_object_or_404(mod.Product, id=identify)
+    def delete(self, request, pk):
+        queryset = get_object_or_404(Product, id=pk)
         queryset.delete()
         return Response({"msg": "Deleted"}, status=status.HTTP_200_OK)
