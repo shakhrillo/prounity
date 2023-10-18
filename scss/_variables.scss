@@ -35,8 +35,7 @@ $colors: (
   "black": $black,
   "white": $white,
   "gray": $black,
-  "gray-dark": $black,
-) !default;
+  "gray-dark": $black) !default;
 
 $theme-colors: (
   "primary": $primary,
@@ -46,8 +45,7 @@ $theme-colors: (
   "warning": $warning,
   "danger": $danger,
   "light": $light,
-  "dark": $dark,
-) !default;
+  "dark": $dark) !default;
 
 // Options
 //
