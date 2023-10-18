@@ -7,6 +7,11 @@ from home.views import (
     create_product,
     delete_product,
     update_product,
+    user_profiles,
+    user_update,
+    user_username_update,
+    user_password_update,
+
 )
 
 urlpatterns = [
@@ -17,4 +22,9 @@ urlpatterns = [
     path("create_product/", create_product, name="create_product"),
     path("delete_product/<int:Id>/", delete_product, name="delete_product"),
     path("update_product/<int:pk>/", update_product, name="update_product"),
+    path('user_profiles/',user_profiles,name='user_profiles'),
+    path('user_update/',user_update,name='user_update'),
+    path('user_username_update/',user_username_update,name='user_username_update'),
+    path('user_password_update/',user_password_update,name='user_password_update'),
+
 ]

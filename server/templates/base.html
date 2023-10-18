@@ -27,6 +27,7 @@
                         {{request.user.get_full_name}}
                       </button>
                       <ul class="dropdown-menu dropdown-menu-dark">
+                        <li><a class="dropdown-item" href="{% url 'user_profiles' %}">Settings</a></li>
                         <li><a class="dropdown-item" href="{% url 'logout_user' %}">Logout</a></li>
                       </ul>
                     </li>
