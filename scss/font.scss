@@ -1,0 +1,83 @@
+@import "variables";
+
+@mixin font($styles) {
+  font-family: map-get($styles, font-family);
+  font-size: map-get($styles, font-size);
+  font-weight: map-get($styles, font-weight);
+  letter-spacing: map-get($styles, letter-spacing);
+}
+
+.heading-1 {
+  @include font($heading-1);
+}
+
+.heading-2 {
+  @include font($heading-2);
+}
+
+.heading-3 {
+  @include font($heading-3);
+}
+
+.subtitle-1 {
+  @include font($subtitle-1);
+}
+
+.subtitle-2 {
+  @include font($subtitle-2);
+}
+
+.body {
+  @include font($body);
+}
+
+.button {
+  @include font($button);
+}
+
+.caption {
+  @include font($caption);
+}
+
+.overline {
+  @include font($overline);
+}
+
+.container {
+  max-width: 1445px;
+  margin: 0 auto;
+
+  .text-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 175px;
+    padding: 25px 70px;
+    border-top: 1px solid $secondary;
+    border-bottom: 1px solid;
+
+    .title-div {
+      display: flex;
+      justify-content: space-between;
+      width: 50%;
+      height: 100%;
+
+      p {
+        font-family: $roboto;
+        font-size: 24px;
+        font-weight: 400;
+        color: #818181;
+        word-wrap: break-word;
+      }
+
+      .font-family-p {
+        width: 216px;
+      }
+    }
+
+    .desc-div {
+      width: 40%;
+    }
+  }
+}

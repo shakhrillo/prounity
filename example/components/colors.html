@@ -1,46 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Colors</title>
-    <link rel="stylesheet" href="../../dist/css/prounity.css">
-    <style>
-        section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin: 0 0 1rem 0;
-        }
-        .color-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin: 0 0 1rem 0;
-        }
-        .color-div {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            margin: 0 0 0.5rem 0;
-        }
-    </style>
-</head>
-<body>
-    <section>
-        <h3>Primary Colors</h3>
-        <div class="color-container">
-            <div class="color-div bg-primary"></div>
-            <p>Primary</p>
-            <i>#484848</i>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../dist/css/prounity.css" />
+    <style></style>
+  </head>
+  <body>
+    <section class="container">
+      <div class="head">
+        <h1 class="title">Colors</h1>
+      </div>
+      <div class="color-box">
+        <h3>Prymary Colors</h3>
+        <hr />
+        <div class="color-cards">
+          <div class="color-card">
+            <p>Primary/900</p>
+            <div class="color-div primary-900"></div>
+            <p>#42307D</p>
+          </div>
+          <div class="color-card">
+            <p>Primary/800</p>
+            <div class="color-div primary-800"></div>
+            <p>#53389E</p>
+          </div>
+          <div class="color-card">
+            <p>Primary/700</p>
+            <div class="color-div primary-700"></div>
+            <p>#6941C6</p>
+          </div>
+          <div class="color-card">
+            <p>Primary/600</p>
+            <div class="color-div primary-600"></div>
+            <p>#7F56D9</p>
+          </div>
+          <div class="color-card">
+            <p>Primary/500</p>
+            <div class="color-div primary-500"></div>
+            <p>#9E77ED</p>
+          </div>
+          <div class="color-card">
+            <p>Primary/400</p>
+            <div class="color-div primary-400"></div>
+            <p>#B692F6</p>
+          </div>
         </div>
-    
-        <div class="color-container">
-            <div class="color-div bg-success"></div>
-            <p>Success</p>
-            <i>#484848</i>
+      </div>
+
+      <div class="color-box">
+        <h3>Error Colors</h3>
+        <hr />
+        <div class="color-cards">
+          <div class="color-card">
+            <p>Error/600</p>
+            <div class="color-div error-600"></div>
+            <p>#D92D20</p>
+          </div>
+          <div class="color-card">
+            <p>Error/500</p>
+            <div class="color-div error-500"></div>
+            <p>#F04438</p>
+          </div>
+          <div class="color-card">
+            <p>Error/400</p>
+            <div class="color-div error-400"></div>
+            <p>#F97066</p>
+          </div>
+          <div class="color-card">
+            <p>Error/300</p>
+            <div class="color-div error-300"></div>
+            <p>#FDA29B</p>
+          </div>
         </div>
+      </div>
+      <div class="color-box">
+        <h3>Gray Colors</h3>
+        <hr />
+        <div class="color-cards">
+          <div class="color-card">
+            <p>Gray/700</p>
+            <div class="color-div gray-900"></div>
+            <p>#344054</p>
+          </div>
+          <div class="color-card">
+            <p>Gray/600</p>
+            <div class="color-div gray-800"></div>
+            <p>#475467</p>
+          </div>
+          <div class="color-card">
+            <p>Gray/500</p>
+            <div class="color-div gray-700"></div>
+            <p>#667085</p>
+          </div>
+          <div class="color-card">
+            <p>Gray/400</p>
+            <div class="color-div gray-600"></div>
+            <p>#98A2B3</p>
+          </div>
+          <div class="color-card">
+            <p>Gray/400</p>
+            <div class="color-div gray-500"></div>
+            <p>#D0D5DD</p>
+          </div>
+          <div class="color-card">
+            <p>Gray/400</p>
+            <div class="color-div gray-400"></div>
+            <p>#E4E7EC</p>
+          </div>
+        </div>
+      </div>
+      <div class="color-box">
+        <h3>Warning Colors</h3>
+        <hr />
+        <div class="color-cards">
+          <div class="color-card">
+            <p>Warning/600</p>
+            <div class="color-div warning-600"></div>
+            <p>#D92D20</p>
+          </div>
+          <div class="color-card">
+            <p>Warning/500</p>
+            <div class="color-div warning-500"></div>
+            <p>#F04438</p>
+          </div>
+          <div class="color-card">
+            <p>Warning/400</p>
+            <div class="color-div warning-400"></div>
+            <p>#F97066</p>
+          </div>
+          <div class="color-card">
+            <p>Warning/300</p>
+            <div class="color-div warning-300"></div>
+            <p>#FDA29B</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="color-box">
+        <h3>Success Colors</h3>
+        <hr />
+        <div class="color-cards">
+          <div class="color-card">
+            <p>Success/600</p>
+            <div class="color-div success-600"></div>
+            <p>#039855</p>
+          </div>
+          <div class="color-card">
+            <p>Success/500</p>
+            <div class="color-div success-500"></div>
+            <p>#12B76A</p>
+          </div>
+          <div class="color-card">
+            <p>Success/400</p>
+            <div class="color-div success-400"></div>
+            <p>#32D583</p>
+          </div>
+          <div class="color-card">
+            <p>Success/300</p>
+            <div class="color-div success-300"></div>
+            <p>#6CE9A6</p>
+          </div>
+        </div>
+      </div>
     </section>
-</body>
+  </body>
 </html>
