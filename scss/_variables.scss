@@ -77,3 +77,69 @@ $alert-padding-x: 15px !default;
 $alert-padding-y: 20px !default;
 $alert-link-font-weight: 600 !default;
 $alert-border-radius: 5px !default;
+
+// test-amir
+$roboto: "Roboto" !default;
+
+$heading-1: (
+  font-size: 96px,
+  font-weight: light,
+  font-family: "Roboto",
+  letter-spacing: -1.5%,
+) !default;
+
+$heading-2: (
+  font-size: 60px,
+  font-weight: light,
+  font-family: "Roboto",
+  // letter-spacing: -0.5%,
+) !default;
+
+$heading-3: (
+  font-size: 60px,
+  font-weight: regular,
+  font-family: "Roboto",
+  letter-spacing: 0%,
+) !default;
+
+$subtitle-1: (
+  font-size: 34px,
+  font-weight: light,
+  font-family: "Roboto",
+  // letter-spacing: 0.25%,
+) !default;
+
+$subtitle-2: (
+  font-size: 24px,
+  font-weight: medium,
+  font-family: "Roboto",
+  letter-spacing: 0%,
+) !default;
+
+$body: (
+  font-size: 16px,
+  font-weight: regular,
+  font-family: "Roboto",
+  letter-spacing: 0%,
+) !default;
+
+$button: (
+  font-size: 14px,
+  font-weight: medium,
+  font-family: "Roboto",
+  letter-spacing: 1.25%,
+) !default;
+
+$caption: (
+  font-size: 12px,
+  font-weight: regular,
+  font-family: "Roboto",
+  // letter-spacing: 0.4%,
+) !default;
+
+$overline: (
+  font-size: 12px,
+  font-weight: light,
+  font-family: "Roboto",
+  letter-spacing: 1.5%,
+) !default;
