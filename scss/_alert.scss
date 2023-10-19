@@ -8,10 +8,10 @@
   margin-bottom: 10px;
   background: transparent;
   @include border-radius(var(--#{$prefix}alert-border-radius));
-  &.alert-icons{
+  &.alert-icons {
     display: flex;
     align-items: center;
-    .alert-icon{
+    .alert-icon {
       padding-right: .5rem;
     }
   }
