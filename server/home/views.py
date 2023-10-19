@@ -23,7 +23,6 @@ def sigin_in(request:str):
         return render(request, "login.html", context)
     return render(request, "login.html", context)
 
-
 def sigin_up(request):
     context = {}
     if request.method == "POST":
@@ -46,19 +45,16 @@ def sigin_up(request):
         return redirect("sigin_in")
     return render(request, "register.html", context)
 
-
 @login_required
 def logout_user(request):
     logout(request)
     return redirect("sigin_in")
-
 
 @login_required
 def home(request):
     context = {}
     context["objects_list"] = Product.objects.all().order_by("-pk")
     return render(request, "index.html", context)
-
 
 @login_required
 def create_product(request):
@@ -78,13 +74,11 @@ def create_product(request):
         return redirect("home")
     return render(request, "create_proudct.html", context)
 
-
 @login_required
 def delete_product(request,Id):
     product = Product.objects.get(id=Id)
     product.delete()
     return redirect("home")
-
 
 @login_required
 def update_product(request,pk):
@@ -155,4 +149,5 @@ def user_password_update(request):
         context['user_profiles'].save()
         return redirect('user_profiles')
     return render(request,'password.html',context)
+
 
