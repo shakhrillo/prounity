@@ -8,6 +8,36 @@ $light: #82ddf0 !default;
 $dark: #5296a5 !default;
 $white: #fff !default;
 $black: #000 !default;
+$btn-primary: #53389e !default;
+$primary-hover: #7f56d9 !default;
+$primary-pressed: #42307d !default;
+$primary-disabled: #b692f6 !default;
+$text-color-disabled: #e4e7ec !default;
+$text-color-default: #fff !default;
+
+$roboto: "roboto" !default;
+$opensans: "Open Sans" !default;
+
+$btn-sm: (
+  height: 32px,
+  padding: 8px 16px,
+  font-size: 14px,
+  font-family: $roboto,
+) !default;
+
+$btn-md: (
+  height: 40px,
+  padding: 8px 16px,
+  font-size:14px,
+  font-family: $roboto,
+) !default;
+
+$btn-lg: (
+  height: 48px,
+  padding: 8px 16px,
+  font-size:14px,
+  font-family: $roboto,
+) !default;
 
 // scss-docs-start colors-map
 $blue: #0d6efd !default;
@@ -35,8 +65,7 @@ $colors: (
   "black": $black,
   "white": $white,
   "gray": $black,
-  "gray-dark": $black,
-) !default;
+  "gray-dark": $black) !default;
 
 $theme-colors: (
   "primary": $primary,
@@ -46,8 +75,7 @@ $theme-colors: (
   "warning": $warning,
   "danger": $danger,
   "light": $light,
-  "dark": $dark,
-) !default;
+  "dark": $dark) !default;
 
 // Options
 //
