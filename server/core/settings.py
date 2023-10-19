@@ -37,8 +37,6 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'dj_rest_auth.registration',
-
     #my app
     'home',
     'chat'
@@ -140,6 +138,16 @@ LOGOUT_URL = 'sigin_in'
 LOGOUT_REDIRECT_URL = 'sigin_in'
 # Rest fremwork settings
 REST_FRAMEWORK = {
+ 'DEFAULT_THROTTLE_CLASSES': (
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle'
+    ),
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '500/minute',
+        'user': '1000/minute',
+        'loginAttempts': '3/hr',
+
+    },
     'DEFAULT_PERMISSION_CLASSES': [
       'rest_framework.permissions.AllowAny',
     ],
@@ -204,3 +212,8 @@ CHANNEL_LAYERS = {
         "BACKEND": "channels.layers.InMemoryChannelLayer"
     }
 }
+
+
+
+RE_CAPTCHA_SITE_KEY = "6LeSYrMoAAAAAKtVj7iRyEqH3suUVdk4RDNxjX5j"
+RE_CAPTCHA_SECRET_KEY = "6LeSYrMoAAAAANbqSlJcjvSKr1vClBlWBtoD9joK"

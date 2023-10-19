@@ -11,6 +11,7 @@ from home.views import (
     user_update,
     user_username_update,
     user_password_update,
+    recaptcha_view,
 
 )
 
@@ -27,5 +28,7 @@ urlpatterns = [
     path('user_update/',user_update,name='user_update'),
     path('user_username_update/',user_username_update,name='user_username_update'),
     path('user_password_update/',user_password_update,name='user_password_update'),
+
+    path('recaptcha_view/',recaptcha_view,name='recaptcha_view'),
 
 ]

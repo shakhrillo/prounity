@@ -1,8 +1,30 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
+from drf_recaptcha.fields import ReCaptchaV2Field, ReCaptchaV3Field
 import home.models as mod
 from rest_framework import serializers
 
+from django.contrib.auth import password_validation
+from django.utils.translation import gettext_lazy as _
+
+
+class UserCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = (
+            'id',
+            'username',
+            'password',
+        )
+
+    def validate_password(self, value):
+        user = self.context['request'].user
+        password_validation.validate_password(value, user)
+        return value
+
+    def create(self, validated_data):
+        user = User.objects.create_user(**validated_data)
+        return user
 
 class UserInformationSerializers(serializers.ModelSerializer):
     class Meta:
@@ -43,15 +65,13 @@ class UserSigInUpSerializers(serializers.ModelSerializer):
         return user
 
 
-class UserSigInInSerializers(serializers.ModelSerializer):
+class UserSigInInSerializers(serializers.Serializer):
     username = serializers.CharField(max_length=50, min_length=2)
     password = serializers.CharField(max_length=50, min_length=1)
-
     class Meta:
         model = User
-        fields = ["username", "password"]
+        fields = ["username", "password",]
         read_only_fields = ("username",)
-
 
 class ProductListSerializer(serializers.ModelSerializer):
     class Meta:

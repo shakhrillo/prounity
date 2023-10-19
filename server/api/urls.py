@@ -11,5 +11,8 @@ urlpatterns = [
 
     #sms
     path('user_login/',UserSignInViews.as_view()),
-    path('check_sms_code/',CheckSmsCode.as_view())
+    path('check_sms_code/',CheckSmsCode.as_view()),
+
+     path('register/',
+         views.RegisterUserAPIView.as_view(), name='register'),
 ]

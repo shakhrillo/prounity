@@ -9,10 +9,28 @@ from home.models import Product
 from api.renderers import UserRenderers
 from api.serializers import *
 
+from rest_framework.generics import CreateAPIView
+from rest_framework.permissions import AllowAny
+from rest_framework.exceptions import Throttled
+from api.throttle import UserLoginRateThrottle
 
 def get_token_for_user(user):
     refresh = RefreshToken.for_user(user)
     return {"refresh": str(refresh), "access": str(refresh.access_token)}
+
+class RegisterUserAPIView(CreateAPIView):
+
+    permission_classes = [AllowAny]
+    serializer_class = UserCreateSerializer
+    throttle_classes = (UserLoginRateThrottle,)
+
+    def perform_create(self, serializer):
+        user = serializer.save()
+
+    def throttled(self, request, wait):
+        raise Throttled(detail={
+            "message": "recaptcha_required",
+        })
 
 class UserSigInUpViews(APIView):
     render_classes = [UserRenderers]

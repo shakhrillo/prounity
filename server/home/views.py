@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -149,5 +150,10 @@ def user_password_update(request):
         context['user_profiles'].save()
         return redirect('user_profiles')
     return render(request,'password.html',context)
+
+def recaptcha_view(request):
+    return render(request, 'recaptcha.html', {
+        "key": settings.RE_CAPTCHA_SITE_KEY
+    })
 
 
