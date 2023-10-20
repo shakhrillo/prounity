@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'drf_spectacular',
     #my app
     'home',
     'chat'
@@ -133,6 +134,18 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+SWAGGER_SETTINGS = {
+    "SECURITY_DEFINITIONS": {
+        "JWT [Bearer {JWT}]": {
+            "name": "Authorization",
+            "type": "apiKey",
+            "in": "header",
+        }
+    },
+    "USE_SESSION_AUTH": False,
+}
+
+
 LOGIN_URL = '/'
 LOGOUT_URL = 'sigin_in'
 LOGOUT_REDIRECT_URL = 'sigin_in'
@@ -155,7 +168,7 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ),
-
+     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 
     # 'DEFAULT_RENDERER_CLASSES': (
     #     'rest_framework.renderers.JSONRenderer',
