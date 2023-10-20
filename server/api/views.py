@@ -14,6 +14,7 @@ def get_token_for_user(user):
     refresh = RefreshToken.for_user(user)
     return {"refresh": str(refresh), "access": str(refresh.access_token)}
 
+
 class UserSigInUpViews(APIView):
     render_classes = [UserRenderers]
 
@@ -73,19 +74,17 @@ class ProductListview(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
-        print(request.user)
-        return Response()
-        # serializer = ProductListSerializer(
-        #     data=request.data,
-        #     context={
-        #         "author": request.user,
-        #     },
-        # )
-        #
-        # if serializer.is_valid(raise_exception=True):
-        #     serializer.save()
-        #     return Response(serializer.data, status=status.HTTP_201_CREATED)
-        # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        serializer = ProductListSerializer(
+            data=request.data,
+            context={
+                "author": request.user,
+            },
+        )
+
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class ProductDetailView(APIView):

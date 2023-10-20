@@ -65,12 +65,10 @@ class ProductListSerializer(serializers.ModelSerializer):
         ]
 
     def create(self, validated_data):
-        print()
-        return []
-        # create = Product.objects.create(**validated_data)
-        # create.author = self.context.get("author")
-        # create.save()
-        # return create
+        create = Product.objects.create(**validated_data)
+        create.author = self.context.get("author")
+        create.save()
+        return create
 
     def update(self, instance, validated_data):
         for field, value in validated_data.items():
