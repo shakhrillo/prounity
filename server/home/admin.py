@@ -8,3 +8,6 @@ class PostAdmin(admin.ModelAdmin):
 
 admin.site.register(models.Conversation)
 admin.site.register(models.Message)
+admin.site.register(PaymentHistory)
+admin.site.register(PaymentTariffs)
+admin.site.register(PaymentTariffsGet)

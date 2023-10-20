@@ -5,7 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
-from home.models import Product
+from home.models import *
 from api.renderers import UserRenderers
 from api.serializers import *
 
@@ -68,22 +68,24 @@ class ProductListview(APIView):
     permission = [IsAuthenticated]
 
     def get(self, request):
-        queryset = mod.Product.get_user_product(request.user)
+        queryset = Product.objects.all()
         serializer = ProductSerializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
-        serializer = ProductListSerializer(
-            data=request.data,
-            context={
-                "author": request.user,
-            },
-        )
-
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        print(request.user)
+        return Response()
+        # serializer = ProductListSerializer(
+        #     data=request.data,
+        #     context={
+        #         "author": request.user,
+        #     },
+        # )
+        #
+        # if serializer.is_valid(raise_exception=True):
+        #     serializer.save()
+        #     return Response(serializer.data, status=status.HTTP_201_CREATED)
+        # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class ProductDetailView(APIView):
