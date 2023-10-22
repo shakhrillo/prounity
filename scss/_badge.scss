@@ -130,13 +130,3 @@
 .badge-text-dark {
   color: $black;
 }
-
-.rounded-1{
-  --#{$prefix}btn-border-radius: #{$btn-border-radius};
-  @include border-radius(5px,var(--#{$prefix}btn-border-radius));
-}
-
-.badge-pill{
-  --#{$prefix}btn-border-radius: #{$btn-border-radius};
-  @include border-radius(1.5rem,var(--#{$prefix}btn-border-radius));
-}

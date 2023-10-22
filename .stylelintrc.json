@@ -25,14 +25,8 @@
             "ignore": "local"
           }
         ],
-        "scss/selector-no-union-class-name": true
-      }
-    },
-    {
-      "files": "scss/**/*.{test,spec}.scss",
-      "rules": {
-        "scss/dollar-variable-default": null,
-        "declaration-no-important": null
+        "scss/selector-no-union-class-name": true,
+        "no-missing-end-of-source-newline": null
       }
     }
   ]

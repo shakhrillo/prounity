@@ -1,375 +1,182 @@
-body{
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-.container{
-  padding: 43px 60px;
-}
-
-.header-title{
-  margin: 0 0 20px;
-  font-family: $opensans;
-  font-size: 60px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  color: #475467;
-  letter-spacing: 05px;
-}
-
-.category-header{
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  width: 100%;
-  padding: 5px 0;
-  border-bottom: 1px solid #53389e;
-}
-
-.left{
-  width: 65%;
-
-  .title{
-    margin: 0;
-    font-family: $roboto;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    color: #667085;
-    letter-spacing: 01px;
-  }
-}
-
-.right{
-  width: 35%;
-
-  .title{
-    margin: 0;
-    font-family: $roboto;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    color: #667085;
-    letter-spacing: 01px;
-  }
-}
-
-.category-body{
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  width: 100%;
-  border-bottom: 1px solid #53389e;
-}
-
-.left-body{
-  display: flex;
-  gap: 10px;
-  width: 65%;
-  padding: 20px 0;
-
-  .example-name{
-    margin: 0 0 20px;
-    font-family: $roboto;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    color: #667085;
-    letter-spacing: 01px;
-  }
-
-  .example-default{
-    width: 147px;
-    height: 40px;
-    padding: 8px 16px;
-    background-color: $btn-primary;
-    border-style: none;
-    @include border-radius(10px,var(--#{$prefix}btn-border-radius));
-  }
-
-  .example-hover{
-    width: 147px;
-    height: 40px;
-    padding: 8px 16px;
-    background-color: $primary-hover;
-    border-style: none;
-    @include border-radius(10px,var(--#{$prefix}btn-border-radius));
-  }
-
-  .example-pressed{
-    width: 147px;
-    height: 40px;
-    padding: 8px 16px;
-    background-color: $primary-pressed;
-    border-style: none;
-    @include border-radius(10px,var(--#{$prefix}btn-border-radius));
-  }
-
-  .example-disabled{
-    width: 147px;
-    height: 40px;
-    padding: 8px 16px;
-    color: $text-color-disabled;
-    background-color: $primary-disabled;
-    border-style: none;
-    @include border-radius(10px,var(--#{$prefix}btn-border-radius));
-  }
-
-  .example-text{
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    width: 147px;
-    height: 40px;
-    font-family: $roboto;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    color: #53389e;
-  }
-}
-
-.right-body{
-  width: 35%;
-  font-family: $roboto;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 23px;
-  color: #667085;
-  letter-spacing: 01px;
-}
-
-.category-buttons{
-  padding: 30px 0 10px;
-  border-bottom: 1px solid #53389e;
-
-  .left{
-    width: 100%;
-    font-family: $roboto;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    color: #667085;
-    letter-spacing: 01px;
-
-  }
-}
-
-.btn-items{
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  justify-content: start;
-  width: 100%;
-  padding: 15px 0;
-}
-
-.btn-item{
-  width: 147px;
-}
-
-.size-btn{
-  font-family: $roboto;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  color: #667085;
-  letter-spacing: 01px;
-}
-
-.color-category{
-  width: 100%;
-  padding: 20px 0;
-
-  .title-box{
-    padding: 10px 0;
-    border-bottom: 1px solid #53389e;
-
-    .title{
-      margin: 0;
-      font-family: $roboto;
-      font-size: 24px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: normal;
-      color: #667085;
-      letter-spacing: 01px;
-    }
-  }
-
-  .color{
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    padding: 15px 0 0;
-
-    .round-primary{
-      width: 20px;
-      height: 20px;
-      background-color: $btn-primary;
-      @include border-radius(10px,var(--#{$prefix}btn-border-radius));
-    }
-
-    .color-title-primary{
-      margin: 0;
-      font-family: $roboto;
-      font-size: 24px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: normal;
-      color: $btn-primary;
-    }
-
-    .round-hover{
-      width: 20px;
-      height: 20px;
-      background-color: $primary-hover;
-      @include border-radius(10px,var(--#{$prefix}btn-border-radius));
-    }
-
-    .color-title-hover{
-      margin: 0;
-      font-family: $roboto;
-      font-size: 24px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: normal;
-      color: $primary-hover;
-    }
-
-    .round-pressed{
-      width: 20px;
-      height: 20px;
-      background-color: $primary-pressed;
-      @include border-radius(10px,var(--#{$prefix}btn-border-radius));
-    }
-
-    .color-title-pressed{
-      margin: 0;
-      font-family: $roboto;
-      font-size: 24px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: normal;
-      color: $primary-pressed;
-    }
-
-    .round-disabled{
-      width: 20px;
-      height: 20px;
-      background-color: $primary-disabled;
-      @include border-radius(10px,var(--#{$prefix}btn-border-radius));
-    }
-
-    .color-title-disabled{
-      margin: 0;
-      font-family: $roboto;
-      font-size: 24px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: normal;
-      color: $primary-disabled;
-    }
-
-    .round-disabled-text{
-      width: 20px;
-      height: 20px;
-      background-color: $text-color-disabled;
-      @include border-radius(10px,var(--#{$prefix}btn-border-radius));
-    }
-
-    .color-title-disabled-text{
-      margin: 0;
-      font-family: $roboto;
-      font-size: 24px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: normal;
-      color: $text-color-disabled;
-    }
-
-    .round-default-text{
-      width: 20px;
-      height: 20px;
-      background-color: $text-color-default;
-      border: 1px solid $btn-primary;
-      @include border-radius(10px,var(--#{$prefix}btn-border-radius));
-    }
-
-    .color-title-default-text{
-      margin: 0;
-      font-family: $roboto;
-      font-size: 24px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: normal;
-      color: $btn-primary;
-    }
-  }
-
-}
+//
+// Base styles
+//
 
 .btn {
+  // scss-docs-start btn-css-vars
+  --#{$prefix}btn-padding-x: #{$btn-padding-x};
+  --#{$prefix}btn-padding-y: #{$btn-padding-y};
+  --#{$prefix}btn-font-family: #{$btn-font-family};
+  @include rfs($btn-font-size, --#{$prefix}btn-font-size);
+  --#{$prefix}btn-font-weight: #{$btn-font-weight};
+  --#{$prefix}btn-line-height: #{$btn-line-height};
+  --#{$prefix}btn-color: #{$btn-color};
+  --#{$prefix}btn-bg: transparent;
+  --#{$prefix}btn-border-width: #{$btn-border-width};
+  --#{$prefix}btn-border-color: transparent;
   --#{$prefix}btn-border-radius: #{$btn-border-radius};
+  --#{$prefix}btn-hover-border-color: transparent;
+  --#{$prefix}btn-box-shadow: #{$btn-box-shadow};
+  --#{$prefix}btn-disabled-opacity: #{$btn-disabled-opacity};
+  --#{$prefix}btn-focus-box-shadow: 0 0 0 #{$btn-focus-width} rgba(var(--#{$prefix}btn-focus-shadow-rgb), .5);
+  // scss-docs-end btn-css-vars
 
-  height: 40px;
-  padding: 8px 16px;
-  font-family: $roboto;
-  font-size: 14px;
-  color: $button-text;
-  cursor: pointer;
-  background: $button-bg;
-  border-color: $button-bg;
-  border-style: none;
-  border-width: $button-stroke-width;
-  @include border-radius(10px,var(--#{$prefix}btn-border-radius));
-}
+  display: inline-block;
+  padding: var(--#{$prefix}btn-padding-y) var(--#{$prefix}btn-padding-x);
+  font-family: var(--#{$prefix}btn-font-family);
+  font-weight: var(--#{$prefix}btn-font-weight);
+  line-height: var(--#{$prefix}btn-line-height);
+  color: var(--#{$prefix}btn-color);
+  text-align: center;
+  text-decoration: if($link-decoration == none, null, none);
+  white-space: $btn-white-space;
+  vertical-align: middle;
+  cursor: if($enable-button-pointers, pointer, null);
+  user-select: none;
+  // @include gradient-bg(var(--#{$prefix}btn-bg));
+  background-color: var(--#{$prefix}btn-bg);
+  border: var(--#{$prefix}btn-border-width) solid var(--#{$prefix}btn-border-color);
+  @include font-size(var(--#{$prefix}btn-font-size));
+  @include border-radius(var(--#{$prefix}btn-border-radius));
 
-@mixin background($bg-color,$color) {
-  color: $color;
-  background: $bg-color;
-}
-
-.btn-primary {
-  @include background($btn-primary, $text-color-default);
-
-  &:hover{
-    @include background($primary-hover, $text-color-default);
+  &:hover {
+    color: var(--#{$prefix}btn-hover-color);
+    text-decoration: if($link-hover-decoration == underline, none, null);
+    background-color: var(--#{$prefix}btn-hover-bg);
+    border-color: var(--#{$prefix}btn-hover-border-color);
   }
 
-  &:active{
-    @include background($primary-pressed, $text-color-default);
+  .btn-check + &:hover {
+    // override for the checkbox/radio buttons
+    color: var(--#{$prefix}btn-color);
+    background-color: var(--#{$prefix}btn-bg);
+    border-color: var(--#{$prefix}btn-border-color);
   }
 
-  &:disabled{
-    @include background($primary-disabled, $text-color-disabled);
+  &:focus-visible {
+    color: var(--#{$prefix}btn-hover-color);
+    border-color: var(--#{$prefix}btn-hover-border-color);
+    outline: 0;
+  }
+
+  .btn-check:focus-visible + & {
+    border-color: var(--#{$prefix}btn-hover-border-color);
+    outline: 0;
+  }
+
+  .btn-check:checked + &,
+  :not(.btn-check) + &:active,
+  &:first-child:active,
+  &.active,
+  &.show {
+    color: var(--#{$prefix}btn-active-color);
+    background-color: var(--#{$prefix}btn-active-bg);
+    // Remove CSS gradients if they're enabled
+    background-image: if($enable-gradients, none, null);
+    border-color: var(--#{$prefix}btn-active-border-color);
+  }
+
+  &:disabled,
+  &.disabled,
+  fieldset:disabled & {
+    color: var(--#{$prefix}btn-disabled-color);
+    pointer-events: none;
+    background-color: var(--#{$prefix}btn-disabled-bg);
+    background-image: if($enable-gradients, none, null);
+    border-color: var(--#{$prefix}btn-disabled-border-color);
+    opacity: var(--#{$prefix}btn-disabled-opacity);
   }
 }
 
-@mixin btn-size($btn-size) {
-  height: map-get($btn-size, height);
-  padding: map-get($btn-size, padding);
-  font-family: map-get($btn-size, font-family);
-  font-size: map-get($btn-size, font-size);
+
+//
+// Alternate buttons
+//
+
+// scss-docs-start btn-variant-loops
+@each $color, $value in $theme-colors {
+  .btn-#{$color} {
+    @if $color == "light" {
+      @include button-variant(
+        $value,
+        $value,
+        $hover-background: shade-color($value, $btn-hover-bg-shade-amount),
+        $hover-border: shade-color($value, $btn-hover-border-shade-amount),
+        $active-background: shade-color($value, $btn-active-bg-shade-amount),
+        $active-border: shade-color($value, $btn-active-border-shade-amount)
+      );
+    } @else if $color == "dark" {
+      @include button-variant(
+        $value,
+        $value,
+        $hover-background: tint-color($value, $btn-hover-bg-tint-amount),
+        $hover-border: tint-color($value, $btn-hover-border-tint-amount),
+        $active-background: tint-color($value, $btn-active-bg-tint-amount),
+        $active-border: tint-color($value, $btn-active-border-tint-amount)
+      );
+    } @else {
+      @include button-variant($value, $value);
+    }
+  }
 }
 
-.btn-sm{
-  @include btn-size($btn-sm);
+@each $color, $value in $theme-colors {
+  .btn-outline-#{$color} {
+    @include button-outline-variant($value);
+  }
+}
+// scss-docs-end btn-variant-loops
+
+
+//
+// Link buttons
+//
+
+// Make a button look and behave like a link
+.btn-link {
+  --#{$prefix}btn-font-weight: #{$font-weight-normal};
+  --#{$prefix}btn-color: #{$btn-link-color};
+  --#{$prefix}btn-bg: transparent;
+  --#{$prefix}btn-border-color: transparent;
+  --#{$prefix}btn-hover-color: #{$btn-link-hover-color};
+  --#{$prefix}btn-hover-border-color: transparent;
+  --#{$prefix}btn-active-color: #{$btn-link-hover-color};
+  --#{$prefix}btn-active-border-color: transparent;
+  --#{$prefix}btn-disabled-color: #{$btn-link-disabled-color};
+  --#{$prefix}btn-disabled-border-color: transparent;
+  --#{$prefix}btn-box-shadow: 0 0 0 #000; // Can't use `none` as keyword negates all values when used with multiple shadows
+  --#{$prefix}btn-focus-shadow-rgb: #{$btn-link-focus-shadow-rgb};
+
+  text-decoration: $link-decoration;
+  @if $enable-gradients {
+    background-image: none;
+  }
+
+  &:hover,
+  &:focus-visible {
+    text-decoration: $link-hover-decoration;
+  }
+
+  &:focus-visible {
+    color: var(--#{$prefix}btn-color);
+  }
+
+  &:hover {
+    color: var(--#{$prefix}btn-hover-color);
+  }
+
+  // No need for an active state here
 }
 
-.btn-md{
-  @include btn-size($btn-md);
+
+//
+// Button Sizes
+//
+
+.btn-lg {
+  @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $btn-border-radius-lg);
 }
 
-.btn-lg{
-  @include btn-size($btn-lg);
+.btn-sm {
+  @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, $btn-border-radius-sm);
 }

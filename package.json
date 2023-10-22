@@ -6,8 +6,8 @@
   "scripts": {
     "css-compile": "sass --style expanded --source-map --embed-sources --no-error-css scss/:dist/css/",
     "css-lint": "npm-run-all --aggregate-output --continue-on-error --parallel css-lint-*",
-    "css-lint-stylelint": "stylelint \"**/*.{css,scss}\" --cache --cache-location .cache/.stylelintcache",
-    "css-lint-vars": "fusv scss/",
+    "css-lint-stylelint": "stylelint \"**/*.{css,scss}\" --fix --cache --cache-location .cache/.stylelintcache",
+    "_css-lint-vars": "fusv scss/",
     "js-lint": "eslint --cache --cache-location .cache/.eslintcache --ext .js, .",
     "js-compile-standalone": "rollup --environment BUNDLE:false --config build/rollup.config.mjs --sourcemap",
     "dev-css-main": "nodemon --watch scss/ --ext scss --exec \"npm-run-all css-lint css-compile\"",
@@ -40,5 +40,8 @@
     "sass": "^1.69.3",
     "stylelint": "^15.10.3",
     "stylelint-config-twbs-bootstrap": "^11.0.1"
+  },
+  "dependencies": {
+    "rfs": "^10.0.0"
   }
 }
