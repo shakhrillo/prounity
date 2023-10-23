@@ -21,6 +21,7 @@ class UserLoginCaptchaSerializers(serializers.Serializer):
         fields = ("username", "password")
         read_only_fields = "username"
 
+
 class UserCreateSerializer(serializers.ModelSerializer):
     """Google reCaptcha"""
 
@@ -40,9 +41,6 @@ class UserCreateSerializer(serializers.ModelSerializer):
         """Validate Password"""
         user = User.objects.create_user(**validated_data)
         return user
-
-from home.models import *
-from rest_framework import serializers
 
 
 class UserInformationSerializers(serializers.ModelSerializer):
