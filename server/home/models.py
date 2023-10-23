@@ -35,7 +35,6 @@ class SmsCode(models.Model):
     date = models.DateTimeField(auto_now_add=True)
 
 
-
 class CaptchaStore(models.Model):
     """Captcha models"""
 

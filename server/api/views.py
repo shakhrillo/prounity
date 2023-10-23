@@ -14,7 +14,6 @@ from captcha.helpers import captcha_image_url
 from api.throttle import UserLoginRateThrottle
 from api.servise import send_sms
 from home.models import Product, SmsCode
-from home.models import *
 from api.renderers import UserRenderers
 from api.serializers import (
     UserCreateSerializer,
@@ -35,7 +34,6 @@ def get_token_for_user(user):
     return {"refresh": str(refresh), "access": str(refresh.access_token)}
 
 
-<<<<<<< HEAD
 class CaptchaView(APIView):
     """ Captcha class """
     def get(self, request):
@@ -48,13 +46,17 @@ class CaptchaView(APIView):
         """ Login captcha """
         serializer = UserLoginCaptchaSerializers(data=request.data)
         if serializer.is_valid():
+            username = request.data["username"]
+            password = request.data["password"]
             captcha_key = serializer.validated_data['captcha']
             try:
                 captcha = CaptchaStore.objects.get(hashkey=captcha_key)
-
+                user = authenticate(username=username, password=password)
                 if captcha.hashkey == serializer.validated_data['captcha']:
+                    tokens = get_token_for_user(user)
                     return Response({
-                                    'success': 'CAPTCHA verified successfully'
+                                    'success': 'CAPTCHA verified successfully',
+                                    "token": tokens,
                                     },
                                     status=status.HTTP_200_OK)
                 else:
