@@ -183,7 +183,7 @@ class UserSigInUpViews(APIView):
         )
         my_user.set_password(password)
         my_user.save()
-        token = get_token_for_user(my_user) 
+        token = get_token_for_user(my_user)
         return Response({'msg': token}, status=status.HTTP_200_OK)
 
     def put(self, request):
