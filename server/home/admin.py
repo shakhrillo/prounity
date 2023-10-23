@@ -13,3 +13,9 @@ class PostAdmin(admin.ModelAdmin):
 admin.site.register(Conversation)
 admin.site.register(Message)
 admin.site.register(SmsCode)
+admin.site.register(models.Message)
+admin.site.register(SmsCode)
+admin.site.register(PaymentHistory)
+admin.site.register(PaymentTariffs)
+admin.site.register(PaymentTariffsGet)
+

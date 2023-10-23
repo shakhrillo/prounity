@@ -23,6 +23,7 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     "daphne",
     'django.contrib.admin',
+    'django.contrib.sites',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -42,8 +43,11 @@ INSTALLED_APPS = [
     'captcha',
     # my app
     'home',
-    'chat'
+    'chat',
+    'payment',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -56,6 +60,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+
 
 ROOT_URLCONF = 'core.urls'
 
@@ -236,10 +242,22 @@ CHANNEL_LAYERS = {
     }
 }
 
-
 RE_CAPTCHA_SITE_KEY = "6LeSYrMoAAAAAKtVj7iRyEqH3suUVdk4RDNxjX5j"
 RE_CAPTCHA_SECRET_KEY = "6LeSYrMoAAAAANbqSlJcjvSKr1vClBlWBtoD9joK"
 
 # Captcha settings
 CAPTCHA_FONT_SIZE = 30
 CAPTCHA_LENGTH = 6
+
+# stripe
+STRIPE_PUBLIC_KEY = "pk_test_51NwdoBLsxTwlOAhXDNsSLJLfy1Ayn703btHDQcatslweXvi9RAyzg9B3l8Xc4ugN62djorOpw0QpyXoxPy18q2gw00F4Y6lf1o"
+STRIPE_SECRET_KEY = "sk_test_51NwdoBLsxTwlOAhXwXqBOgzq2DdI2K1LRTchGdONYkKQN9nvqeIrLMT1LJQRIGtD0L9RJR69BWUXEVyTTdxdrpIs000EeIJmI3"
+STRIPE_SECRET_WEBHOOK = "whsec_7a0ae08df32132ac0c62d31940beba99962d24875a4bb77bd0abb67e06deaedb"
+
+SITE_URL='http://localhost:8000/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
+

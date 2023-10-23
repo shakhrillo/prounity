@@ -14,6 +14,7 @@ from captcha.helpers import captcha_image_url
 from api.throttle import UserLoginRateThrottle
 from api.servise import send_sms
 from home.models import Product, SmsCode
+from home.models import *
 from api.renderers import UserRenderers
 from api.serializers import (
     UserCreateSerializer,
@@ -34,6 +35,7 @@ def get_token_for_user(user):
     return {"refresh": str(refresh), "access": str(refresh.access_token)}
 
 
+<<<<<<< HEAD
 class CaptchaView(APIView):
     """ Captcha class """
     def get(self, request):
@@ -67,6 +69,8 @@ class CaptchaView(APIView):
 # login sms
 class UserLoginViews(APIView):
     """ Login SMS """
+
+class UserSigInUpViews(APIView):
     render_classes = [UserRenderers]
 
     def post(self, request):
@@ -195,6 +199,7 @@ class ProductListview(APIView):
     def get(self, request):
         """ Product GET views """
         queryset = Product.get_user_product(request.user)
+        queryset = Product.objects.all()
         serializer = ProductSerializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 

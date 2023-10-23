@@ -41,6 +41,9 @@ class UserCreateSerializer(serializers.ModelSerializer):
         user = User.objects.create_user(**validated_data)
         return user
 
+from home.models import *
+from rest_framework import serializers
+
 
 class UserInformationSerializers(serializers.ModelSerializer):
     """User Profiles Serializers"""
@@ -126,6 +129,7 @@ class ProductListSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         """Create Product"""
+
         create = Product.objects.create(**validated_data)
         create.author = self.context.get("author")
         create.save()
