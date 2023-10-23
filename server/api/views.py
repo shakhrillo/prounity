@@ -21,7 +21,6 @@ from home.models import (
 from api.serializers import (
     UserCreateSerializer,
     UserInformationSerializers,
-    UserSigInUpSerializers,
     UserSigInInSerializers,
     ProductListSerializer,
     ProductSerializer,
@@ -98,7 +97,10 @@ class UserLoginViews(APIView):
 
     def put(self, request):
         """Random sms code"""
-        user_objects = User.objects.filter(id=request.user.id)[0]
+        try:
+            user_objects = User.objects.get(id=request.user.id)
+        except User.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
         sms_random = str(random.randint(10000, 99999))
         send_sms(user_objects.username, sms_random)
         code_save = SmsCode(user_id=request.user, sms_code=sms_random)
@@ -114,6 +116,7 @@ class CheckSmsCode(APIView):
 
     def post(self, request):
         """Chack sms code verification"""
+
         sms_code = request.data["sms_code"]
         if sms_code == "":
             context = {"Code not entered"}
@@ -122,7 +125,12 @@ class CheckSmsCode(APIView):
         if int(sms_code) == int(code_objects.sms_code):
             context = {"Welcome to the system !"}
             return Response(context, status=status.HTTP_200_OK)
-        return Response({"error": "SMS code error"})
+        return Response(
+            {
+                "error": "SMS code error"
+            },
+            status=status.HTTP_203_NON_AUTHORITATIVE_INFORMATION
+            )
 
 
 # Regsiter user Google reCaptcha
@@ -153,11 +161,39 @@ class UserSigInUpViews(APIView):
 
     def post(self, request):
         """POST login views"""
-        serializer = UserSigInUpSerializers(data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        username = request.data['username']
+        password = request.data['password']
+        first_name = request.data['first_name']
+        last_name = request.data['last_name']
+        if username == "":
+            context = {"Tel Raqam Kiritilmadi"}
+            return Response(context, status=status.HTTP_401_UNAUTHORIZED)
+        us = User.objects.filter(username=username)
+        if len(us) != 0:
+            return Response(
+                {
+                    'error': "Bunday foydalanuvchi mavjud"
+                },
+                status=status.HTTP_203_NON_AUTHORITATIVE_INFORMATION
+            )
+        my_user = User.objects.create(
+            username=username,
+            first_name=first_name,
+            last_name=last_name
+        )
+        my_user.set_password(password)
+        my_user.save()
+        token = get_token_for_user(my_user) 
+        return Response({'msg': token}, status=status.HTTP_200_OK)
+
+    def put(self, request):
+        """Random sms code"""
+        user_objects = User.objects.filter(id=request.user.id)[0]
+        sms_random = str(random.randint(10000, 99999))
+        send_sms(user_objects.username, sms_random)
+        code_save = SmsCode(user_id=request.user, sms_code=sms_random)
+        code_save.save()
+        return Response({"message": "SMS code sent"})
 
 
 class UserSigInViews(APIView):
@@ -213,7 +249,6 @@ class ProductListview(APIView):
 
     def get(self, request):
         """Product GET views"""
-        queryset = Product.get_user_product(request.user)
         queryset = Product.objects.all()
         serializer = ProductSerializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -247,6 +282,7 @@ class ProductDetailView(APIView):
     def put(self, request, pro_ic):
         """Product Update deteile views"""
         queryset = get_object_or_404(Product, id=pro_ic)
+        print(queryset)
         serializer = ProductListSerializer(
             instance=queryset,
             data=request.data,

@@ -127,4 +127,4 @@ class PaymentTariffsGet(models.Model):
 
     class PyamentObject(object):
         def __init__(self, tariff):
-            self.name = tariff.tariff_name  
+            self.name = tariff.tariff_name
