@@ -4,10 +4,10 @@ on:
   push:
     branches:
       - main
-
 jobs:
   build:
     runs-on: ubuntu-latest
+    steps:
       - name: Deploy React App
         uses: appleboy/ssh-action@master
         with:
@@ -16,12 +16,30 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
 
           script: |
-            cd ~
+            cd /var/www/html
             git clone https://github.com/shakhrillo/prounity
             cd prounity
             npm install
             npm run build
             echo "Deployed at $(date)"
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Deploy React App
+#         uses: appleboy/ssh-action@master
+#         with:
+#           host: ${{ secrets.SSH_HOST }}
+#           username: ${{ secrets.SSH_USERNAME }}
+#           key: ${{ secrets.SSH_KEY }}
+
+#           script: |
+#             cd ~
+#             git clone https://github.com/shakhrillo/prounity
+#             cd prounity
+#             npm install
+#             npm run build
+#             echo "Deployed at $(date)"
 
     # steps:
     #   - name: Deploy Server
