@@ -32,3 +32,11 @@ class SmsCode(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     sms_code = models.IntegerField()
     date = models.DateTimeField(auto_now_add=True)
+
+
+class CaptchaStore(models.Model):
+    """Captcha models"""
+
+    hashkey = models.CharField(max_length=350)
+    verify = models.CharField(max_length=350, null=True, blank=True)
+    date = models.DateTimeField(auto_now_add=True)

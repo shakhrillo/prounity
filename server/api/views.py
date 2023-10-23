@@ -9,6 +9,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.exceptions import Throttled
+from captcha.models import CaptchaStore
+from captcha.helpers import captcha_image_url
 from api.throttle import UserLoginRateThrottle
 from api.servise import send_sms
 from home.models import Product, SmsCode
@@ -20,6 +22,7 @@ from api.serializers import (
     UserSigInInSerializers,
     ProductListSerializer,
     ProductSerializer,
+    UserLoginCaptchaSerializers,
 
 )
 
@@ -29,6 +32,36 @@ def get_token_for_user(user):
     """ Django Authe token """
     refresh = RefreshToken.for_user(user)
     return {"refresh": str(refresh), "access": str(refresh.access_token)}
+
+
+class CaptchaView(APIView):
+    """ Captcha class """
+    def get(self, request):
+        """ GET token """
+        captcha = CaptchaStore.generate_key()
+        captcha_url = captcha_image_url(captcha)
+        return Response({'captcha_key': captcha, 'captcha_url': captcha_url})
+
+    def post(self, request):
+        """ Login captcha """
+        serializer = UserLoginCaptchaSerializers(data=request.data)
+        if serializer.is_valid():
+            captcha_key = serializer.validated_data['captcha']
+            try:
+                captcha = CaptchaStore.objects.get(hashkey=captcha_key)
+
+                if captcha.hashkey == serializer.validated_data['captcha']:
+                    return Response({
+                                    'success': 'CAPTCHA verified successfully'
+                                    },
+                                    status=status.HTTP_200_OK)
+                else:
+                    return Response({'error': 'CAPTCHA verification failed.'},
+                                    status=status.HTTP_400_BAD_REQUEST)
+            except CaptchaStore.DoesNotExist:
+                return Response({'error': 'CAPTCHA key not found.'},
+                                status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 # login sms

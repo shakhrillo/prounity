@@ -7,6 +7,20 @@ from django.utils.translation import gettext_lazy as _
 from home.models import Product
 
 
+class UserLoginCaptchaSerializers(serializers.Serializer):
+    """User Login Serializers"""
+
+    username = serializers.CharField(max_length=50, min_length=2)
+    password = serializers.CharField(max_length=50, min_length=1)
+    captcha = serializers.CharField()
+
+    class Meta:
+        """User Model Fileds"""
+
+        model = User
+        fields = ("username", "password")
+        read_only_fields = "username"
+
 class UserCreateSerializer(serializers.ModelSerializer):
     """Google reCaptcha"""
 

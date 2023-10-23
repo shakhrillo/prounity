@@ -9,6 +9,7 @@ from api.views import (
     UserLoginViews,
     CheckSmsCode,
     RegisterUserAPIView,
+    CaptchaView,
 )
 
 urlpatterns = [
@@ -21,4 +22,5 @@ urlpatterns = [
     path('user_login/', UserLoginViews.as_view()),
     path('check_sms_code/', CheckSmsCode.as_view()),
     path('register/', RegisterUserAPIView.as_view(), name='register'),
+    path('captcha/', CaptchaView.as_view(), name='captcha'),
 ]

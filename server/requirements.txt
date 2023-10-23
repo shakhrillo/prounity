@@ -4,6 +4,7 @@ astroid==2.15.8
 attrs==23.1.0
 autobahn==23.6.2
 Automat==22.10.0
+captcha-rest-validator==0.1
 certifi==2023.7.22
 cffi==1.16.0
 channels==4.0.0
@@ -20,7 +21,10 @@ django-allauth==0.55.2
 django-appconf==1.0.5
 django-cors-headers==4.3.0
 django-ipware==5.0.1
+django-ranged-response==0.2.0
+django-rest-captcha==0.3.0
 django-setup==0.8.3
+django-simple-captcha==0.5.20
 django-staticfiles==1.2.1
 djangorestframework==3.14.0
 djangorestframework-recaptcha==0.2.0
@@ -59,6 +63,7 @@ pylint-plugin-utils==0.8.2
 pymongo==4.5.0
 pyOpenSSL==23.2.0
 python-dotenv==1.0.0
+python-memcached==1.59
 python3-openid==3.2.0
 pytz==2023.3.post1
 PyYAML==6.0.1
