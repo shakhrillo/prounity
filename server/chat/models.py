@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 
 
 # Create your models here.
-
 class Conversation(models.Model):
   initiator = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='convo_starter')
   receiver = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='convo_participant')

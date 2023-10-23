@@ -1,6 +1,7 @@
 from pathlib import Path
 from datetime import timedelta
 import os
+from django.conf import settings
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,7 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-      # Library
+    # Library
     'rest_framework',
     'corsheaders',
     'rest_framework_simplejwt',
@@ -37,9 +38,9 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'dj_rest_auth.registration',
-
-    #my app
+    'drf_spectacular',
+    'captcha',
+    # my app
     'home',
     'chat'
 ]
@@ -47,7 +48,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-     # Cors Middleware
+    # Cors Middleware
     "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -61,7 +62,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -124,30 +125,58 @@ USE_TZ = True
 
 STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static')]
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR,'static_cdn')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn')
 
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+SWAGGER_SETTINGS = {
+    "SECURITY_DEFINITIONS": {
+        "JWT [Bearer {JWT}]": {
+            "name": "Authorization",
+            "type": "apiKey",
+            "in": "header",
+        }
+    },
+    "USE_SESSION_AUTH": False,
+}
+
+
 LOGIN_URL = '/'
 LOGOUT_URL = 'sigin_in'
 LOGOUT_REDIRECT_URL = 'sigin_in'
 # Rest fremwork settings
 REST_FRAMEWORK = {
+ 'DEFAULT_THROTTLE_CLASSES': (
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle'
+    ),
+
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '500/minute',
+        'user': '1000/minute',
+        'loginAttempts': '3/hr',
+
+    },
+
     'DEFAULT_PERMISSION_CLASSES': [
+
       'rest_framework.permissions.AllowAny',
+
     ],
+
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ),
 
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 
     # 'DEFAULT_RENDERER_CLASSES': (
     #     'rest_framework.renderers.JSONRenderer',
@@ -161,7 +190,9 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.FileUploadParser'
 
     ),
+
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+
     'PAGE_SIZE': 100
 }
 
@@ -204,3 +235,11 @@ CHANNEL_LAYERS = {
         "BACKEND": "channels.layers.InMemoryChannelLayer"
     }
 }
+
+
+RE_CAPTCHA_SITE_KEY = "6LeSYrMoAAAAAKtVj7iRyEqH3suUVdk4RDNxjX5j"
+RE_CAPTCHA_SECRET_KEY = "6LeSYrMoAAAAANbqSlJcjvSKr1vClBlWBtoD9joK"
+
+# Captcha settings
+CAPTCHA_FONT_SIZE = 30
+CAPTCHA_LENGTH = 6
