@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
-import home.models as mod
+from home.models import *
 from rest_framework import serializers
 
 
@@ -55,7 +55,7 @@ class UserSigInInSerializers(serializers.ModelSerializer):
 
 class ProductListSerializer(serializers.ModelSerializer):
     class Meta:
-        model = mod.Product
+        model = Product
         fields = [
             "id",
             "product_name",
@@ -65,7 +65,7 @@ class ProductListSerializer(serializers.ModelSerializer):
         ]
 
     def create(self, validated_data):
-        create = mod.Product.objects.create(**validated_data)
+        create = Product.objects.create(**validated_data)
         create.author = self.context.get("author")
         create.save()
         return create
@@ -81,7 +81,7 @@ class ProductSerializer(serializers.ModelSerializer):
     author = UserInformationSerializers(read_only=True)
 
     class Meta:
-        model = mod.Product
+        model = Product
         fields = [
             "id",
             "product_name",

@@ -5,7 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
-from home.models import Product
+from home.models import *
 from api.renderers import UserRenderers
 from api.serializers import *
 
@@ -13,6 +13,7 @@ from api.serializers import *
 def get_token_for_user(user):
     refresh = RefreshToken.for_user(user)
     return {"refresh": str(refresh), "access": str(refresh.access_token)}
+
 
 class UserSigInUpViews(APIView):
     render_classes = [UserRenderers]
@@ -68,7 +69,7 @@ class ProductListview(APIView):
     permission = [IsAuthenticated]
 
     def get(self, request):
-        queryset = mod.Product.get_user_product(request.user)
+        queryset = Product.objects.all()
         serializer = ProductSerializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 

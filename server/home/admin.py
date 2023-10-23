@@ -6,6 +6,10 @@ from chat import models
 class PostAdmin(admin.ModelAdmin):
     list_display = ['id', 'product_name', 'created_at']
 
-admin.site.register(models.Conversation)
+
 admin.site.register(models.Message)
 admin.site.register(SmsCode)
+admin.site.register(PaymentHistory)
+admin.site.register(PaymentTariffs)
+admin.site.register(PaymentTariffsGet)
+
