@@ -8,9 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    steps:
-      - name: Deploy Server
+      - name: Deploy React App
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -18,32 +16,33 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
 
           script: |
-            cd /var/www/html
+            cd ~
             git clone https://github.com/shakhrillo/prounity
             cd prounity
-            cd server
-            python3 -m venv env
-            source env/bin/activate
-            python3 -m pip install -r requirements.txt
-            python3 manage.py makemigrations home chat payment
-            python3 manage.py migrate
-            python3 manage.py createsuperuser
-            python3 manage.py runserver 0.0.0.0:8000
+            npm install
+            npm run build
             echo "Deployed at $(date)"
 
-      # - name: Deploy React App
-      #   uses: appleboy/ssh-action@master
-      #   with:
-      #     host: ${{ secrets.SSH_HOST }}
-      #     username: ${{ secrets.SSH_USERNAME }}
-      #     key: ${{ secrets.SSH_KEY }}
+    # steps:
+    #   - name: Deploy Server
+    #     uses: appleboy/ssh-action@master
+    #     with:
+    #       host: ${{ secrets.SSH_HOST }}
+    #       username: ${{ secrets.SSH_USERNAME }}
+    #       key: ${{ secrets.SSH_KEY }}
 
-      #     script: |
-      #       cd /var/www/html
-      #       git clone https://github.com/shakhrillo/prounity
-      #       cd prounity
-      #       npm install
-      #       npm run build
-      #       echo "Deployed at $(date)"
-
+    #       script: |
+    #         cd /var/www/html
+    #         git clone https://github.com/shakhrillo/prounity
+    #         cd prounity
+    #         cd server
+    #         python3 -m venv env
+    #         source env/bin/activate
+    #         python3 -m pip install -r requirements.txt
+    #         python3 manage.py makemigrations home chat payment
+    #         python3 manage.py migrate
+    #         python3 manage.py createsuperuser
+    #         deactivate
+            
+    #         echo "Deployed at $(date)"
 
