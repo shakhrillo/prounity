@@ -46,6 +46,9 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/sms-verify" element={<SmsVerify />} />
         </Route>
+        <Route path="/profile-user" element={<Profile />} />
+        <Route path="/edit-profile" element={<EditProfile />} />
+        <Route path="/delete-profile" element={<DeleteProfile />} />
       </Routes>
     </>
   );
