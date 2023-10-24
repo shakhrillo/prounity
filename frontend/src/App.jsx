@@ -13,6 +13,9 @@ import ViewPage from "./views/dashboard/pages-list/view-page";
 import Info from "./views/dashboard/info/info";
 
 import './App.scss'
+import Profile from './views/Profile/Profile'
+import EditProfile from './views/Profile/EditProfile'
+import DeleteProfile from './views/Profile/DeleteProfile'
 
 import Login from './views/login/Login'
 import Register from './views/register/Register'
@@ -22,9 +25,6 @@ import SmsVerify from './views/sms-verify/SmsVerify'
 import Profile from './views/Profile/Profile'
 import EditProfile from './views/Profile/EditProfile'
 import DeleteProfile from './views/Profile/DeleteProfile'
-
-
-
 
 function App() {
 return <>
