@@ -10,7 +10,7 @@ import ForgotPassword from './views/forgot-password/ForgotPassword'
 import SmsVerify from './views/sms-verify/SmsVerify'
 import Profile from './views/Profile/Profile'
 import EditProfile from './views/Profile/EditProfile'
-import DeleteProfile from './views/Profile/De'
+import DeleteProfile from './views/Profile/DeleteProfile'
 
 function App() {
 
