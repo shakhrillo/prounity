@@ -30,7 +30,7 @@ const Login = () => {
         if (matchedUser) {
             setLoggedIn(true);
         } else {
-            alert('Неверное имя пользователя или пароль');
+            alert('Username or password is incorrect');
         }
 
         setUsername('');
