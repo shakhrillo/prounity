@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import { memo } from 'react';
 import { useSelector } from 'react-redux';
 import { selectFooterTheme } from 'app/store/fuse/settingsSlice';
+import DemoLayoutFooterContent from 'app/theme-layouts/shared-components/DemoLayoutFooterContent';
 
 type FooterLayout2Props = {
 	className?: string;
@@ -26,7 +27,7 @@ function FooterLayout2(props: FooterLayout2Props) {
 				sx={{ backgroundColor: footerTheme.palette.background.paper }}
 			>
 				<Toolbar className="container flex min-h-48 items-center overflow-x-auto px-8 py-0 sm:px-12 md:min-h-64">
-					Footer
+					<DemoLayoutFooterContent />
 				</Toolbar>
 			</AppBar>
 		</ThemeProvider>

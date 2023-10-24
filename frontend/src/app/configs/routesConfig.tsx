@@ -7,9 +7,24 @@ import SignInConfig from '../main/sign-in/SignInConfig';
 import SignUpConfig from '../main/sign-up/SignUpConfig';
 import SignOutConfig from '../main/sign-out/SignOutConfig';
 import Error404Page from '../main/404/Error404Page';
-import ExampleConfig from '../main/example/ExampleConfig';
+import PagesConfigs from '../main/pages/pagesConfigs';
+import DashboardsConfigs from '../main/dashboards/dashboardsConfigs';
+import AppsConfigs from '../main/apps/appsConfigs';
+import UserInterfaceConfigs from '../main/user-interface/UserInterfaceConfigs';
+import DocumentationConfig from '../main/documentation/DocumentationConfig';
+import authRoleExamplesConfigs from '../main/auth/authRoleExamplesConfigs';
 
-const routeConfigs: FuseRouteConfigsType = [ExampleConfig, SignOutConfig, SignInConfig, SignUpConfig];
+const routeConfigs: FuseRouteConfigsType = [
+	SignOutConfig,
+	SignInConfig,
+	SignUpConfig,
+	DocumentationConfig,
+	...PagesConfigs,
+	...UserInterfaceConfigs,
+	...DashboardsConfigs,
+	...AppsConfigs,
+	...authRoleExamplesConfigs
+];
 
 /**
  * The routes of the application.
@@ -18,7 +33,7 @@ const routes: FuseRoutesType = [
 	...FuseUtils.generateRoutesFromConfigs(routeConfigs, settingsConfig.defaultAuth),
 	{
 		path: '/',
-		element: <Navigate to="/example" />,
+		element: <Navigate to="/dashboards/project" />,
 		auth: settingsConfig.defaultAuth
 	},
 	{
