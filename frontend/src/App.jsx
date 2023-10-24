@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.scss";
 import UserList from "./views/dashboard/user-list/user-list";
@@ -11,9 +12,20 @@ import ViewUser from "./views/dashboard/user-list/view-user";
 import DeletePage from "./views/dashboard/pages-list/delete-page";
 import ViewPage from "./views/dashboard/pages-list/view-page";
 import Info from "./views/dashboard/info/info";
+=======
+import { useState } from 'react'
+import './App.scss'
+import Profile from './views/Profile/Profile'
+import EditProfile from './views/Profile/EditProfile'
+import DeleteProfile from './views/Profile/DeleteProfile'
+
+import { Route, Routes } from 'react-router-dom'
+
+>>>>>>> e7a069b (user-profile added)
 
 function App() {
   return (
+<<<<<<< HEAD
     <>
       <BrowserRouter>
         <Routes>
@@ -34,6 +46,17 @@ function App() {
       </BrowserRouter>
     </>
   );
+=======
+    <div>
+      <Routes>
+        <Route path='/profile-user' element={<Profile/>}/> 
+        <Route path='/edit-profile' element={<EditProfile/>}/> 
+        <Route path='/delete-profile' element={<DeleteProfile/>}/> 
+      </Routes>
+    </div>
+    
+  )
+>>>>>>> e7a069b (user-profile added)
 }
 
 export default App;
