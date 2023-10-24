@@ -1,0 +1,48 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@fuse/*": ["./src/@fuse/*"],
+      "@history*": ["./src/@history"],
+      "@lodash": ["./src/@lodash"],
+      "@mock-api": ["./src/@mock-api"],
+      "app/store": ["./src/app/store/index"],
+      "app/store/*": ["./src/app/store/*"],
+      "app/shared-components/*": ["./src/app/shared-components/*"],
+      "app/configs/*": ["./src/app/configs/*"],
+      "app/theme-layouts/*": ["./src/app/theme-layouts/*"],
+      "app/AppContext": ["./src/app/AppContext"]
+    },
+    "declaration": true,
+    "target": "es2020",
+    "types": ["node"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "es2020",
+      "scripthost"
+    ],
+    "plugins": [{ "name": "typescript-plugin-css-modules" }],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx"
+  },
+  "exclude": [
+    "src/app/main/documentation/material-ui-components/components",
+    "src/app/main/documentation/material-ui-components/pages",
+    "node_modules"
+  ],
+  "include": [
+    "src"
+  ]
+}
