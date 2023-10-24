@@ -19,9 +19,6 @@ jobs:
             cd /var/www
             rm -rf prounity
             git clone https://github.com/shakhrillo/prounity
-            cd prounity/frontend
-            yarn
-            yarn build
             echo "Deployed at $(date) Success"
 # jobs:
 #   build:
