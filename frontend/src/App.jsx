@@ -14,6 +14,10 @@ import Info from "./views/dashboard/info/info";
 import Profile from "./views/Profile/Profile";
 import EditProfile from "./views/Profile/EditProfile";
 import DeleteProfile from "./views/Profile/DeleteProfile";
+import Register from "./views/register/Register";
+import Navbar from "./views/navbar/Navbar";
+import ForgotPassword from "./views/forgot-password/ForgotPassword";
+import SmsVerify from "./views/sms-verify/SmsVerify";
 
 function App() {
   return (
@@ -36,6 +40,12 @@ function App() {
         <Route path="/profile-user" element={<Profile />} />
         <Route path="/edit-profile" element={<EditProfile />} />
         <Route path="/delete-profile" element={<DeleteProfile />} />
+        <Route path="/" element={<Navbar />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/sms-verify" element={<SmsVerify />} />
+        </Route>
       </Routes>
     </>
   );
