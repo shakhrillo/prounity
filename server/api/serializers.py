@@ -21,6 +21,7 @@ class UserLoginCaptchaSerializers(serializers.Serializer):
         fields = ("username", "password")
         read_only_fields = "username"
 
+
 class UserCreateSerializer(serializers.ModelSerializer):
     """Google reCaptcha"""
 
@@ -40,9 +41,6 @@ class UserCreateSerializer(serializers.ModelSerializer):
         """Validate Password"""
         user = User.objects.create_user(**validated_data)
         return user
-
-from home.models import *
-from rest_framework import serializers
 
 
 class UserInformationSerializers(serializers.ModelSerializer):
@@ -66,25 +64,16 @@ class UserSigInUpSerializers(serializers.ModelSerializer):
     password = serializers.CharField(
         write_only=True, required=True, validators=[validate_password]
     )
-    password2 = serializers.CharField(write_only=True, required=True)
 
     class Meta:
         """User Model Fileds"""
 
         model = User
-        fields = ["id", "username", "first_name", "last_name"]
+        fields = ["id", "username", "first_name", "last_name", 'password']
         extra_kwargs = {
             "first_name": {"required": True},
             "last_name": {"required": True},
         }
-
-    def validate(self, attrs):
-        """Validate Password"""
-        if attrs["password"] != attrs["password2"]:
-            raise serializers.ValidationError(
-                {"password": "Password fields didn't match."}
-            )
-        return attrs
 
     def create(self, validated_data):
         """User Create"""
