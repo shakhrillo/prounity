@@ -1,14 +1,28 @@
 import { useState } from 'react'
 import reactLogo from './assets/icons/react.svg'
 import viteLogo from '/vite.svg'
+import { Routes, Route } from 'react-router-dom'
+import Login from './views/login/Login'
 import './App.scss'
+import Register from './views/register/Register'
+import Navbar from './views/navbar/Navbar'
+import ForgotPassword from './views/forgot-password/ForgotPassword'
+import SmsVerify from './views/sms-verify/SmsVerify'
 
 function App() {
-  const [count, setCount] = useState(0)
+  // const [count, setCount] = useState(0)
 
   return (
     <>
-      <div class="container py-4 px-3 mx-auto">
+      <Routes>
+        <Route path='/' element={<Navbar />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/sms-verify" element={<SmsVerify />} />
+        </Route>
+      </Routes>
+      {/* <div class="container py-4 px-3 mx-auto">
         <header class="d-flex justify-content-between align-items-md-center pb-3 mb-5 border-bottom">
           <h1 class="h4">
             <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
@@ -68,7 +82,7 @@ function App() {
         <hr class="mt-5 mb-4" />
 
         <p class="text-muted">Created and open sourced by the Bootstrap team. Licensed MIT.</p>
-      </div>
+      </div> */}
     </>
   )
 }
