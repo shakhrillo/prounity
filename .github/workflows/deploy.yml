@@ -17,6 +17,7 @@ jobs:
 
           script: |
             cd /var/www
+            rm -rf prounity
             git clone https://github.com/shakhrillo/prounity
             cd prounity/frontend
             npm install
