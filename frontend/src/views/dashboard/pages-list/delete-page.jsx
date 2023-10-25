@@ -2,6 +2,19 @@ import { Link } from "react-router-dom";
 import Layout from "../../../layout/layout";
 
 const DeletePage = () => {
+  const handleDelete = async () => {
+    console.log("Deleted");
+    // try {
+    //   const res = await axios.delete("", {
+    //     headers: {
+    //     },
+    //   });
+    //   console.log(res);
+    // } catch (error) {
+    //   console.log(error);
+    // }
+  };
+
   return (
     <Layout>
       <div className="delete-item h-100 d-flex justify-content-center align-items-center">
@@ -13,7 +26,9 @@ const DeletePage = () => {
               bulk of the card content.
             </p>
             <div className="d-flex justify-content-end gap-2">
-              <button className="btn btn-danger">Delete</button>
+              <button className="btn btn-danger" onClick={handleDelete}>
+                Delete
+              </button>
               <Link to={"/pages-list/"} className="btn btn-secondary  ">
                 Cancel
               </Link>

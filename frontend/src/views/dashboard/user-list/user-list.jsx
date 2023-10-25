@@ -1,15 +1,29 @@
 import { Link } from "react-router-dom";
 import Layout from "../../../layout/layout";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { token } from "../pages-list/add-page";
 
 const UserList = () => {
-  const table_data = [
-    {
-      id: 1,
-      name: "John Doe",
-      gmail: "JohnDoe@gmail.com",
-      phone: "11233",
-    },
-  ];
+  const [users, setUsers] = useState([]);
+  const getData = async () => {
+    console.log("getdata");
+    try {
+      const res = await axios.get("http://192.168.1.174:8000/users", {
+        headers: {
+          "x-access-tokens": token,
+        },
+      });
+      console.log(res.data.users);
+      setUsers(res.data.users);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <Layout>
       <div className="d-flex">
@@ -34,21 +48,21 @@ const UserList = () => {
             <table className="table  table-bordered align-middle">
               <thead className="table-light">
                 <tr>
-                  <th>Name</th>
-                  <th>Gmail</th>
-                  <th>Password</th>
+                  <th>User Name</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
                   <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
-                {table_data.map((item) => (
-                  <tr key={item.id}>
-                    <td>{item.name}</td>
-                    <td>{item.gmail}</td>
-                    <td>{item.phone}</td>
+                {users.map((user) => (
+                  <tr key={user?.msg?.public_id}>
+                    <td>{user?.msg?.username}</td>
+                    <td>{user?.msg?.first_name}</td>
+                    <td>{user?.msg?.last_name}</td>
                     <td>
                       <Link
-                        to={`/user-list/view-user/${item.id}/`}
+                        to={`/user-list/view-user/${user?.msg?.public_id}/`}
                         className="view"
                         title="View"
                       >
@@ -56,14 +70,14 @@ const UserList = () => {
                       </Link>
 
                       <Link
-                        to={`/user-list/edit-user/${item.id}/`}
+                        to={`/user-list/edit-user/${user?.msg?.public_id}/`}
                         className="edit"
                         title="Edit"
                       >
                         <i className="material-icons"></i>
                       </Link>
                       <Link
-                        to={`/user-list/delete-user/${item.id}/`}
+                        to={`/user-list/delete-user/${user?.msg?.public_id}/`}
                         className="delete"
                         title="Delete"
                       >
