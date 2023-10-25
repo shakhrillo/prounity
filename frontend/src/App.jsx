@@ -11,19 +11,20 @@ import ViewUser from "./views/dashboard/user-list/view-user";
 import DeletePage from "./views/dashboard/pages-list/delete-page";
 import ViewPage from "./views/dashboard/pages-list/view-page";
 import Info from "./views/dashboard/info/info";
-import Profile from "./views/Profile/Profile";
-import EditProfile from "./views/Profile/EditProfile";
-import DeleteProfile from "./views/Profile/DeleteProfile";
 import Register from "./views/register/Register";
 import Navbar from "./views/navbar/Navbar";
 import ForgotPassword from "./views/forgot-password/ForgotPassword";
 import SmsVerify from "./views/sms-verify/SmsVerify";
+import Profile from "./views/Profile/Profile";
+import EditProfile from "./views/Profile/EditProfile";
+import DeleteProfile from "./views/Profile/DeleteProfile";
+import Login from "./views/login/Login";
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<UserList />} />
+        <Route path="/user-list" element={<UserList />} />
         <Route path="/user-list/add-user/" element={<AddUser />} />
         <Route path="/user-list/edit-user/:id/" element={<EditUser />} />
         <Route path="/user-list/delete-user/:id/" element={<DeleteUser />} />
