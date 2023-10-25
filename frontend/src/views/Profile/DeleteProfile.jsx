@@ -1,43 +1,68 @@
 import {Link} from "react-router-dom"
+import { useEffect, useState } from "react"
+import { useNavigate ,useParams} from "react-router-dom"
+import axios from "axios"
 
 
 function DeleteProfile(){
 
-    const user = [
-        {username:"Davlatshoh01", first_name: "Davlatshoh", last_name: "Naimov", password:"12345678" }
-    ]
-
+    const {id} = useParams()
+    const [data, setData] = useState([])
+    const navigate = useNavigate()
+    useEffect(()=>{
+        const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwdWJsaWNfaWQiOjEyNDA3LCJleHAiOjE2OTgzOTAwODJ9.AetegqJtXJyMErb2vmo-IruLmL6zyPJXFHo7ADJrjyc'
+        
+        axios.get(`http://192.168.1.174:8000/user/${id}`,{
+            headers:{
+                "x-access-tokens":token
+            }
+        })
+        .then(res=>setData(res.data.msg[0]))
+        
+        .catch(err=> console.log(err))
+    },[])
+    function handleSubmit(event){
+        const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwdWJsaWNfaWQiOjEyNDA3LCJleHAiOjE2OTgzOTAwODJ9.AetegqJtXJyMErb2vmo-IruLmL6zyPJXFHo7ADJrjyc'
+        event.preventDefault()
+        axios.delete(`http://192.168.1.174:8000/user/${id}`, {
+            headers:{
+                "x-access-tokens":token
+            }
+        })
+        .then(res=>{
+            navigate('/profile-user')
+        })
+    }
     return(
         <div>
         <div className="container py-5 w-50">
             <div className="row">
-                <div class="col-lg-12">
-                    <div class="card mb-4">
-                        <div class="card-body"> 
-                        <h3>Edit-Profile</h3>
-                            {user.map(item=>
-                                <form class="row py-3">
-                                <div class="col-sm-12 d-flex justify-content-between align-items-center gap-2 mb-2">
-                                    <p class="mb-0 w-50">Username</p>
-                                    <input value={item.username} className='form-control'  type="text" />
+                <div className="col-lg-12">
+                    <div className="card mb-4">
+                        <div className="card-body"> 
+                        <h3>Do you want really delete your profile </h3>                   
+                                <form className="row py-3">
+                                <div className="col-sm-12 d-flex justify-content-between align-items-center gap-2 mb-2">
+                                    <p className="mb-0 w-50">Username</p>
+                                    <input readOnly value={data.username} className='form-control'  type="text" />
                                 </div>
-                                <div class="col-sm-12 d-flex justify-content-between align-items-center gap-2 mb-2">
-                                    <p class="mb-0 w-50">Firstname</p>
-                                    <input value={item.first_name} className='form-control'  type="text" />
+                                <div className="col-sm-12 d-flex justify-content-between align-items-center gap-2 mb-2">
+                                    <p className="mb-0 w-50">Firstname</p>
+                                    <input readOnly value={data.first_name} className='form-control'  type="text" />
                                 </div>
-                                <div class="col-sm-12 d-flex justify-content-between align-items-center gap-2 mb-2">
-                                    <p class="mb-0 w-50">Lastname</p>
-                                    <input value={item.last_name} className='form-control'  type="text" />
+                                <div className="col-sm-12 d-flex justify-content-between align-items-center gap-2 mb-2">
+                                    <p className="mb-0 w-50">Lastname</p>
+                                    <input readOnly value={data.last_name} className='form-control'  type="text" />
                                 </div>
-                                <div class="col-sm-12 d-flex justify-content-between align-items-center gap-2 mb-2">
-                                    <p class="mb-0 w-50">Password</p>
-                                    <input value={item.password} className='form-control'  />
-                                </div>
-                                    <Link to={'/profile-user'}>
-                                    <button className="btn btn-outline-danger float-end">delete user</button>
-                                    </Link>
-                                </form>
-                            )}                                        
+                                    <div className="d-flex gap-2 justify-content-end">
+                                        <Link to={'/profile-user'}>
+                                            <button className="btn btn-secondary ">cancel</button>
+                                        </Link>
+                                        <Link to={'/profile-user'}>
+                                            <button onClick={handleSubmit} className="btn btn-outline-danger">delete</button>
+                                        </Link>
+                                    </div>
+                                </form>                                        
                         </div>
                     </div>
                 </div>

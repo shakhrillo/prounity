@@ -45,8 +45,8 @@ function App() {
           <Route path="/sms-verify" element={<SmsVerify />} />
         </Route>
         <Route path="/profile-user" element={<Profile />} />
-        <Route path="/edit-profile" element={<EditProfile />} />
-        <Route path="/delete-profile" element={<DeleteProfile />} />
+        <Route path="/edit-profile/:id" element={<EditProfile />} />
+        <Route path="/delete-profile/:id" element={<DeleteProfile />} />
       </Routes>
     </>
   );
