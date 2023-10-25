@@ -33,6 +33,7 @@ const Navbar = () => {
             <div className="d-flex ml-auto gap-2">
                 <Link to={'/register'}><button className="btn btn-primary">Register</button></Link>
                 <Link to={'/login'}><button className="btn btn-success">Login</button></Link>
+                <Link to={'/profile-user'}><button className="btn btn-outline-primary">Profile</button></Link>
             </div>
         </nav>
 

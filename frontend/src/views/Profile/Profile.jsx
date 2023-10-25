@@ -1,64 +1,71 @@
 import UserImg from '../../images/user1.png'
 import {Link} from "react-router-dom"
+import axios from 'axios'
+import { useEffect, useState } from 'react'
 
 function Profile(){
+    const [user, setUser] = useState([])
+    const getData = async () => {
+        
+        try {
+            const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwdWJsaWNfaWQiOjEyNDA3LCJleHAiOjE2OTgzOTAwODJ9.AetegqJtXJyMErb2vmo-IruLmL6zyPJXFHo7ADJrjyc'
+            localStorage.setItem("token", token)
+            const response = await axios.get("http://192.168.1.174:8000/user",{
+                headers:{
+                    "x-access-tokens":token
+                }
+            });
+            setUser(response.data.msg) 
+            
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
-    const user = [
-        {username:"Davlatshoh01", first_name: "Davlatshoh", last_name: "Naimov", password:"12345678" }
-    ]
+    useEffect(()=>{
+        getData()
+    },[])
 
     return(
         <div>
             <div className="container py-5 w-75">
-                <div class="row">
-                    <div class="col">
-                        <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
-                        <ol class="breadcrumb mb-0">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">User</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">User Profile</li>
-                        </ol>
-                        </nav>
-                    </div>
-                </div>
-                <div className="row ">
-                    <div class="col-lg-2 ">
-                        <div class="card mb-4">
-                            <div class="card-body text-center">
+                <div className="row">
+                    <div className="col-lg-2 ">
+                        <div className="card ">
+                            <div className="card-body text-center">
                                 <img src={UserImg} alt=""/>
-                                <h5 class="my-3">Davatshoh</h5>
-                                <div class="d-flex justify-content-center mb-2">
-                                
-                                <Link to={'/edit-profile'}>
-                                    <button className="btn btn-outline-success">Edit</button>
-                                </Link> 
-                                <Link to={'/delete-profile'}>
-                                    <button type="button" class="btn btn-outline-danger ms-1">delete</button>
-                                </Link>
-                                </div>
+                                 {user.map(item=>
+                                     <div key={item.public_id} className="d-flex flex-column justify-content-center mb-2">
+                                        <h5 className="">{item.first_name}</h5>
+                                        <div className="d-flex justify-content-between">
+                                        <Link to={`/edit-profile/${item.public_id}`}>
+                                            <button className="btn btn-outline-success btn-sm"> <i className="material-icons"></i></button>
+                                        </Link> 
+                                        <Link to={`/delete-profile/${item.public_id}`}>
+                                            <button type="button" className="btn btn-outline-danger btn-sm "><i className="material-icons"></i></button>
+                                        </Link>
+                                        </div>
+                                    </div>
+                                )} 
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-10">
-                        <div class="card mb-4">
-                            <div class="card-body">
+                    <div className="col-lg-10">
+                        <div className="card mb-4">
+                            <div className="card-body">
                                 {user.map(item=>
-                                    <div class="row py-3">
-                                    <div class="col-sm-12 d-flex justify-content-between align-items-center gap-2 mb-2">
-                                        <p class="mb-0 w-50">Username</p>
-                                        <input className='form-control' value={item.username} type="text" />
+                                    <div key={item.public_id} className="row py-3">
+                                    <div className="col-sm-12 d-flex justify-content-between align-items-center gap-2 mb-2">
+                                        <p className="mb-0 w-50">Username</p>
+                                        <input readOnly className='form-control' value={item.username} type="text" />
                                     </div>
-                                    <div class="col-sm-12 d-flex justify-content-between align-items-center gap-2 mb-2">
-                                        <p class="mb-0 w-50">Firstname</p>
-                                        <input className='form-control' value={item.first_name} type="text" />
+                                    <div className="col-sm-12 d-flex justify-content-between align-items-center gap-2 mb-2">
+                                        <p className="mb-0 w-50">Firstname</p>
+                                        <input readOnly className='form-control' value={item.first_name} type="text" />
                                     </div>
-                                    <div class="col-sm-12 d-flex justify-content-between align-items-center gap-2 mb-2">
-                                        <p class="mb-0 w-50">Lastname</p>
-                                        <input className='form-control' value={item.last_name} type="text" />
-                                    </div>
-                                    <div class="col-sm-12 d-flex justify-content-between align-items-center gap-2 mb-2">
-                                        <p class="mb-0 w-50">Password</p>
-                                        <input className='form-control' value={item.password} />
+                                    <div className="col-sm-12 d-flex justify-content-between align-items-center gap-2 mb-2">
+                                        <p className="mb-0 w-50">Lastname</p>
+                                        <input readOnly className='form-control' value={item.last_name} type="text" />
                                     </div>
                                     </div>
                                 )}
