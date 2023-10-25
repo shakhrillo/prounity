@@ -14,7 +14,7 @@ const DeleteUser = () => {
             </p>
             <div className="d-flex justify-content-end gap-2">
               <button className="btn btn-danger">Delete</button>
-              <Link to={"/"} className="btn btn-secondary">
+              <Link to={"/user-list/"} className="btn btn-secondary">
                 Cencel
               </Link>
             </div>
