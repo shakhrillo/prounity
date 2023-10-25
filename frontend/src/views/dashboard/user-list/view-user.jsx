@@ -1,7 +1,29 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Layout from "../../../layout/layout";
+import { token } from "../pages-list/add-page";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const ViewUser = () => {
+  const [user, setUser] = useState(null);
+  const { id } = useParams();
+
+  const getUser = async () => {
+    try {
+      const res = await axios.get(`http://192.168.1.174:8000/user/${id}`, {
+        headers: {
+          "x-access-tokens": token,
+        },
+      });
+      console.log(res.data.msg[0]);
+      setUser(res.data.msg[0]);
+    } catch (error) {
+      console.log("Serverga ma'lumot yuborishda xatolik yuz berdi: ", error);
+    }
+  };
+  useEffect(() => {
+    getUser();
+  }, []);
   return (
     <Layout>
       <div className="h-100 d-flex justify-content-center align-items-center">
@@ -17,16 +39,13 @@ const ViewUser = () => {
               />
             </div>
             <p className="card-text">
-              <strong>First Name:</strong> John
+              <strong>First Name:</strong> {user?.first_name}
             </p>
             <p className="card-text">
-              <strong>Last Name:</strong> Doe
+              <strong>Last Name:</strong> {user?.last_name}
             </p>
             <p className="card-text">
-              <strong>Email:</strong> JohnDoe@gmail.com
-            </p>
-            <p className="card-text">
-              <strong>Username:</strong> JohnDoe@gmail.com
+              <strong>Username:</strong> {user?.username}
             </p>
             <div className="d-flex justify-content-end gap-2">
               <Link to={"/user-list/"} className="btn btn-danger">

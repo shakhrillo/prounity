@@ -1,14 +1,29 @@
 import { Link } from "react-router-dom";
 import Layout from "../../../layout/layout";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { token } from "./add-page";
 
 const PagesList = () => {
-  const table_data = [
-    {
-      id: 1,
-      name: "John Doe",
-      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.  ",
-    },
-  ];
+  const [pages, setPages] = useState([]);
+
+  const getData = async () => {
+    try {
+      const res = await axios.get("http://192.168.1.174:8000/file-upload", {
+        headers: {
+          "x-access-tokens": token,
+        },
+      });
+
+      setPages(res.data.users);
+      console.log(res.data.users);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getData();
+  }, []);
   return (
     <Layout>
       <div className="d-flex">
@@ -39,14 +54,13 @@ const PagesList = () => {
                 </tr>
               </thead>
               <tbody>
-                {table_data.map((item) => (
-                  <tr key={item.id}>
-                    <td>{item.name}</td>
-                    <td>{item.desc}</td>
-
+                {pages.map((item) => (
+                  <tr key={item?.msg?.id}>
+                    <td>{item?.msg?.title}</td>
+                    <td>{item.msg?.description}</td>
                     <td>
                       <Link
-                        to={`/pages-list/view-page/${item.id}/`}
+                        to={`/pages-list/view-page/${item.msg.id}/`}
                         className="view"
                         title="View"
                         data-toggle="tooltip"
@@ -55,7 +69,7 @@ const PagesList = () => {
                       </Link>
 
                       <Link
-                        to={`/pages-list/edit-page/${item.id}/`}
+                        to={`/pages-list/edit-page/${item.msg.id}/`}
                         className="edit"
                         title="Edit"
                         data-toggle="tooltip"
@@ -63,7 +77,7 @@ const PagesList = () => {
                         <i className="material-icons"></i>
                       </Link>
                       <Link
-                        to={`/pages-list/delete-page/${item.id}/`}
+                        to={`/pages-list/delete-page/${item.msg.id}/`}
                         className="delete"
                         title="Delete"
                         data-toggle="tooltip"
