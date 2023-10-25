@@ -29,7 +29,7 @@ const ViewUser = () => {
               <strong>Username:</strong> JohnDoe@gmail.com
             </p>
             <div className="d-flex justify-content-end gap-2">
-              <Link to={"/"} className="btn btn-danger">
+              <Link to={"/user-list/"} className="btn btn-danger">
                 Cencel
               </Link>
             </div>
