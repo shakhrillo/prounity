@@ -19,6 +19,7 @@ import Profile from "./views/Profile/Profile";
 import EditProfile from "./views/Profile/EditProfile";
 import DeleteProfile from "./views/Profile/DeleteProfile";
 import Login from "./views/login/Login";
+import ChangePassword from "./views/change-password/ChangePassword";
 
 function App() {
   return (
@@ -43,7 +44,9 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/sms-verify" element={<SmsVerify />} />
+          <Route path="/change-password" element={<ChangePassword />} />
         </Route>
+
         <Route path="/profile-user" element={<Profile />} />
         <Route path="/edit-profile" element={<EditProfile />} />
         <Route path="/delete-profile" element={<DeleteProfile />} />

@@ -10,9 +10,14 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
+    "axios": "^1.5.1",
+    "base-64": "^1.0.0",
     "bootstrap": "^5.3.2",
+    "jsonwebtoken": "^9.0.2",
+    "jwt-decode": "^3.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-jwt": "^1.2.0",
     "react-router-dom": "^6.17.0"
   },
   "devDependencies": {

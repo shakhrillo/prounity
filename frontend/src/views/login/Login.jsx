@@ -1,16 +1,13 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { encode } from 'base-64';
+import jwtDecode from 'jwt-decode';
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [isLoggedIn, setLoggedIn] = useState(false);
-    const [users, setUsers] = useState([
-        { username: 'admin', password: '123' },
-        { username: 'user', password: 'user' },
-        { username: 'user3', password: 'password3' },
-    ]);
-
+    const navigate = useNavigate()
 
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
@@ -20,26 +17,46 @@ const Login = () => {
         setPassword(event.target.value);
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
+        try {
+            const authHeader = 'Basic ' + encode(username + ':' + password);
 
-        const matchedUser = users.find(
-            (user) => user.username === username && user.password === password
-        );
+            const { data } = await axios.post(
+                "http://192.168.1.174:8000/login",
+                { username: username, password: password },
+                { headers: { Authorization: authHeader } }
+            );
+            // const token = data.token
+            const jwtToken = data.token;
+            // const decodedToken = jwtDecode(jwtToken);
+            saveToken('token', JSON.stringify(jwtToken))
 
-        if (matchedUser) {
-            setLoggedIn(true);
-        } else {
-            alert('Username or password is incorrect');
+            if (jwtToken) {
+                navigate('/sms-verify')
+            }
+        } catch (error) {
+            console.error(error);
         }
-
-        setUsername('');
-        setPassword('');
     };
 
-    if (isLoggedIn) {
-        return <div>Вы успешно вошли!</div>;
+    function saveToken(key, value) {
+        try {
+            sessionStorage.setItem(key, value);
+            console.log(`Data saved to Session Storage: ${key} - ${value}`);
+        } catch (error) {
+            console.error(error);
+        }
     }
+
+    // function saveToken(key, value) {
+    //     try {
+    //         sessionStorage.setItem(key, value);
+    //         console.log(`Data saved to Session Storage: ${key} - ${value}`);
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // }
 
     return <div className="container">
         <div className="card w-50 m-auto">

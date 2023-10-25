@@ -1,26 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ForgotPassword = () => {
+    const navigate = useNavigate();
+
+    const navigateToChangePassword = (e) => {
+        e.preventDefault()
+        navigate('/change-password')
+    }
+
     return <div>
         <div className="card w-50 m-auto">
             <div className="card-header">
                 <h3>Forgot Password</h3>
             </div>
             <div className="card-body">
-                <form className="m-auto">
+                <form className="m-auto" onSubmit={(e) => navigateToChangePassword(e)}>
                     <div className="form-group">
                         <label htmlFor="exampleInputEmail1">Username</label>
-                        <input required type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+                        <input
+                            required type="text"
+                            className="form-control"
+                            id="exampleInputEmail1"
+                            aria-describedby="emailHelp"
+                            placeholder="Enter username(phone number) for send sms code" />
                     </div>
-                    <div className="form-group mt-2">
-                        <label htmlFor="exampleInputPassword1">New password</label>
-                        <input required type="password" className="form-control" id="exampleInputPassword1" placeholder="New password" />
-                    </div>
-                    <div className="form-group mt-2">
-                        <label htmlFor="exampleInputPassword1">Confirm new password</label>
-                        <input required type="password" className="form-control" id="exampleInputPassword1" placeholder="Confirm new password" />
-                    </div>
-                    <button type="submit" className="btn btn-primary mt-3">Send SMS For Submit</button>
+                    <button type="submit" className="btn btn-primary mt-3">Send SMS code</button>
                 </form>
             </div>
         </div>
