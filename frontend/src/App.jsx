@@ -37,15 +37,15 @@ function App() {
         {/* Info */}
         <Route path="/info" element={<Info />} />
         {/*  */}
-        <Route path="/profile-user" element={<Profile />} />
-        <Route path="/edit-profile" element={<EditProfile />} />
-        <Route path="/delete-profile" element={<DeleteProfile />} />
         <Route path="/" element={<Navbar />}>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/sms-verify" element={<SmsVerify />} />
         </Route>
+        <Route path="/profile-user" element={<Profile />} />
+        <Route path="/edit-profile/:id" element={<EditProfile />} />
+        <Route path="/delete-profile/:id" element={<DeleteProfile />} />
       </Routes>
     </>
   );
