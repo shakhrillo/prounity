@@ -10,7 +10,7 @@ const Sidebar = () => {
     {
       id: 1,
       name: "User List",
-      path: "/",
+      path: "/user-list",
     },
     {
       id: 2,
