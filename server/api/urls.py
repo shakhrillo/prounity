@@ -10,6 +10,8 @@ from api.views import (
     CheckSmsCode,
     RegisterUserAPIView,
     CaptchaView,
+    JobsListview,
+    JobsDetailView,
 )
 
 urlpatterns = [
@@ -23,4 +25,8 @@ urlpatterns = [
     path('check_sms_code/', CheckSmsCode.as_view()),
     path('register/', RegisterUserAPIView.as_view(), name='register'),
     path('captcha/', CaptchaView.as_view(), name='captcha'),
+    # Jobs Urls
+    path('jobs_list_view/', JobsListview.as_view()),
+    path('jobs_detail_view/<int:job_id>/', JobsDetailView.as_view()),
+    
 ]

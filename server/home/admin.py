@@ -1,6 +1,6 @@
 ''' Django settings admin '''
 from django.contrib import admin
-from home.models import Product, SmsCode
+from home.models import Product, SmsCode, Jobs
 from chat.models import Conversation, Message
 
 
@@ -13,4 +13,5 @@ class PostAdmin(admin.ModelAdmin):
 admin.site.register(Conversation)
 admin.site.register(Message)
 admin.site.register(SmsCode)
+admin.site.register(Jobs)
 
