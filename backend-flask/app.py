@@ -1,8 +1,10 @@
-from flask import Flask, request, jsonify, make_response
+from flask import Flask, request, jsonify, make_response, Blueprint
 from flask_sqlalchemy import SQLAlchemy
+from flask_swagger_ui import get_swaggerui_blueprint
+from flasgger import Swagger, LazyString, LazyJSONEncoder
+from flasgger import swag_from
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
-import uuid
 import jwt
 import datetime
 import random
@@ -10,6 +12,9 @@ import os
 from functools import wraps
 from eskiz_sms import EskizSMS
 from flask_cors import CORS
+
+
+
 
 
 path = os.getcwd()
@@ -21,6 +26,52 @@ if not os.path.isdir(UPLOAD_FOLDER):
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'] )
 
 app = Flask(__name__)
+app.json_encoder = LazyJSONEncoder
+
+swagger_template = {
+    "swagger": "2.0",
+    "info": {
+        "title": "Wine Quality Prediction",
+        "description": "API Documentation for Wine Quality Prediction",
+        "contact": {
+            "name": "Admin",
+            "email": "dinithi@axiatadigitallabs.com",
+            "url": "http://www.axiatadigitallabs.com",
+        },
+        "termsOfService": "Terms of services",
+        "version": "1.0",
+        "host": "Wine_Quality_Prediction",
+        "basePath": "http://localhost:5000",
+        "license": {
+            "name": "License of API",
+            "url": "API license URL"
+        }
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+}
+
+swagger_config = {
+    "headers": [
+        ('Access-Control-Allow-Origin', '*'),
+        ('Access-Control-Allow-Methods', "GET, POST"),
+    ],
+    "specs": [
+        {
+            "endpoint": 'Wine_Quality_Prediction',
+            "route": '/Wine_Quality_Prediction.json',
+            "rule_filter": lambda rule: True,
+            "model_filter": lambda tag: True,
+        }
+    ],
+    "static_url_path": "/flasgger_static",
+    "swagger_ui": True,
+    "specs_route": "/apidocs/",
+
+}
+swagger = Swagger(app, template=swagger_template, config=swagger_config)
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config["UPLOAD_EXTENSIONS"] = ALLOWED_EXTENSIONS
@@ -29,7 +80,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
-CORS(app, origins=['http://localhost:8000','http://192.168.1.163:8000/','https://localhost:8000','http://192.168.1.174:8000'])
+CORS(app, origins=['http://localhost:5000','http://192.168.1.163:8000/','https://localhost:8000','http://192.168.1.174:8000'])
 
 db = SQLAlchemy(app)
 app.app_context().push()
@@ -115,6 +166,7 @@ def token_required(f):
    return decorator
 
 
+@swag_from("static/predict.yaml" )
 @app.route('/register', methods=['POST'])
 def register():
     data = request.get_json()
@@ -138,6 +190,7 @@ def register():
     return jsonify({'message': 'registered successfully'})
 
 
+@swag_from("static/predict.yaml" )
 @app.route('/login', methods=['POST'])
 def login_user():
 
@@ -171,6 +224,7 @@ def login_user():
                             {'WWW.Authentication': 'Basic realm: "login required"'})
 
 
+@swag_from("static/predict.yaml" )
 @app.route('/check-sms', methods=['POST'])
 @token_required
 def check_sms_code(current_user):
@@ -191,6 +245,7 @@ def check_sms_code(current_user):
     return jsonify({'msg': "Sms code error"}),404
 
 
+@swag_from("static/predict.yaml" )
 @app.route('/user', methods=['GET'])
 @token_required
 def get_object(current_user):
@@ -210,6 +265,7 @@ def get_object(current_user):
     return jsonify({'msg': "User Not Found"})
 
 
+@swag_from("static/predict.yaml" )
 @app.route('/users', methods=['GET'])
 @token_required
 def find_all_objects(current_user):
@@ -229,6 +285,7 @@ def find_all_objects(current_user):
     return jsonify({'users': result})
 
 
+@swag_from("static/predict.yaml" )
 @app.route('/user/<public_id>', methods=['PUT'])
 @token_required
 def update_object(current_user,public_id):
@@ -248,6 +305,7 @@ def update_object(current_user,public_id):
     return jsonify({'msg': 'user not found'})
 
 
+@swag_from("static/predict.yaml" )
 @app.route('/user-password-change/<public_id>', methods=['PUT'])
 @token_required
 def update_password_object(current_user,public_id):
@@ -267,6 +325,7 @@ def update_password_object(current_user,public_id):
 
 
 
+@swag_from("static/predict.yaml" )
 @app.route('/user/<public_id>', methods=['GET'])
 @token_required
 def find_first_object(current_user,public_id):
@@ -288,6 +347,7 @@ def find_first_object(current_user,public_id):
     return jsonify({'msg': "User Not Found"})
 
 
+@swag_from("static/predict.yaml" )
 @app.route('/user/<public_id>', methods=['DELETE'])
 @token_required
 def delete_object(current_user, public_id):
@@ -302,6 +362,7 @@ def delete_object(current_user, public_id):
     return  jsonify({'msg': 'Not Found'})
 
 
+@swag_from("static/predict.yaml" )
 @app.route('/file-upload', methods=['POST'])
 @token_required
 def page_list(current_user):
@@ -333,6 +394,7 @@ def page_list(current_user):
         return jsonify({'message': 'Allowed file types are txt, pdf, png, jpg, jpeg, gif'})
 
 
+@swag_from("static/predict.yaml" )
 @app.route('/file-upload', methods=['GET'])
 @token_required
 def pages(current_user):
@@ -354,6 +416,7 @@ def pages(current_user):
     return jsonify({'users': result})
 
 
+@swag_from("static/predict.yaml" )
 @app.route('/file-upload/<identify>', methods=['GET'])
 @token_required
 def pages_get(current_user, identify):
@@ -373,6 +436,7 @@ def pages_get(current_user, identify):
     return jsonify({'msg': 'Not Found'})
 
 
+@swag_from("static/predict.yaml" )
 @app.route('/file-upload/<identify>', methods=['PUT'])
 @token_required
 def pages_update(current_user, identify):
@@ -411,6 +475,7 @@ def pages_update(current_user, identify):
         return jsonify({'message': 'Allowed file types are txt, pdf, png, jpg, jpeg, gif'})
 
 
+@swag_from("static/predict.yaml" )
 @app.route('/file-upload/<identify>', methods=['DELETE'])
 @token_required
 def pages_delete(current_user, identify):
@@ -425,6 +490,7 @@ def pages_delete(current_user, identify):
     return jsonify({'msg': 'Not Found'})
 
 
+@swag_from("static/predict.yaml" )
 @app.route('/roles', methods=['POST'])
 def role_create():
     data = request.get_json()
@@ -439,5 +505,6 @@ def role_create():
 if  __name__ == '__main__':
      app.run(
          debug=True,
+         threaded=True,
          host='192.168.1.174',
          port=8000)
