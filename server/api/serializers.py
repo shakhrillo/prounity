@@ -1,10 +1,20 @@
 """ DJango DRF Serializers """
 from rest_framework import serializers
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth import password_validation
 from django.utils.translation import gettext_lazy as _
-from home.models import Product
+from home.models import Product, Jobs
+
+
+class UserGroupsSerializers(serializers.ModelSerializer):
+    """Groups User Serializers"""
+
+    class Meta:
+        """Groups User Fields"""
+
+        model = Group
+        fields = ("id", "name")
 
 
 class UserLoginCaptchaSerializers(serializers.Serializer):
@@ -46,11 +56,13 @@ class UserCreateSerializer(serializers.ModelSerializer):
 class UserInformationSerializers(serializers.ModelSerializer):
     """User Profiles Serializers"""
 
+    groups = UserGroupsSerializers(read_only=True, many=True)
+
     class Meta:
         """User Model Fileds"""
 
         model = User
-        fields = ["id", "username", "first_name", "last_name"]
+        fields = ["id", "username", "first_name", "last_name", "groups"]
 
 
 class UserSigInUpSerializers(serializers.ModelSerializer):
@@ -69,7 +81,7 @@ class UserSigInUpSerializers(serializers.ModelSerializer):
         """User Model Fileds"""
 
         model = User
-        fields = ["id", "username", "first_name", "last_name", 'password']
+        fields = ["id", "username", "first_name", "last_name", "password"]
         extra_kwargs = {
             "first_name": {"required": True},
             "last_name": {"required": True},
@@ -148,3 +160,60 @@ class ProductSerializer(serializers.ModelSerializer):
             "author",
             "created_at",
         )
+
+
+# Jobs Serializer
+class JobsSerializer(serializers.ModelSerializer):
+    """Jobs Serializers"""
+
+    class Meta:
+        """Jobs Model Fields"""
+
+        model = Jobs
+        fields = (
+            "id",
+            "name",
+            "company",
+            "address",
+            "phone",
+            "content",
+            "author_id",
+            "date",
+        )
+
+
+class JobsCreateSerializer(serializers.ModelSerializer):
+    """Jobs Serializers"""
+
+    class Meta:
+        """Jobs Model Fields"""
+
+        model = Jobs
+        fields = (
+            "id",
+            "name",
+            "company",
+            "address",
+            "phone",
+            "content",
+            "author_id",
+            "date",
+        )
+
+    def create(self, validated_data):
+        """Create Jobs"""
+
+        create = Jobs.objects.create(**validated_data)
+        create.author_id = self.context.get("author_id")
+        create.save()
+        return create
+
+    def update(self, instance, validated_data):
+        """Update Jobs"""
+        instance.name = validated_data.get("name", instance.name)
+        instance.company = validated_data.get("company", instance.company)
+        instance.address = validated_data.get("address", instance.address)
+        instance.phone = validated_data.get("phone", instance.phone)
+        instance.content = validated_data.get("content", instance.content)
+        instance.save()
+        return instance

@@ -128,3 +128,19 @@ class PaymentTariffsGet(models.Model):
     class PyamentObject(object):
         def __init__(self, tariff):
             self.name = tariff.tariff_name
+
+
+class Jobs(models.Model):
+    name = models.CharField(max_length=250)
+    company = models.CharField(max_length=250)
+    address = models.CharField(max_length=250)
+    phone = models.CharField(max_length=100)
+    content = models.TextField()
+    author_id = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+        )
+    date = models.DateTimeField(auto_now_add=True)
+    
