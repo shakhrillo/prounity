@@ -13,11 +13,48 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from authen.renderers import UserRenderers
 from authen.servise import send_sms
 from home.models import SmsCode, CustumUsers
+from authen.models import (
+    Currency,
+    Frequency,
+    ExpeectedSalary,
+    EmployemntType,
+    JobLevel,
+    JobFuncation,
+    WorkExperience,
+    EduAttinment,
+    Education,
+    Accocitaed,
+    Projects,
+    SertificationLicenses,
+
+)
 from authen.serializers import (
     UserInformationSerializers,
     UserSigInSerializers,
     ChangePasswordSerializer,
     UserUpdateSerializers,
+    # User information
+    CurrencySerializers,
+    FrequencySerializers,
+    ExpeectedSalarySerializers,
+    ExpeectedSalaryCrudSerializers,
+    JobLevelSerializers,
+    JobFuncationSerializers,
+    EmployemntTypeSerializers,
+    WorkExperienceSerializers,
+    WorkExperienceCrudSerializers,
+    # education
+    EduAttinmentSerializers,
+    EducationSerializers,
+    EducationCrudSerializers,
+    # project
+    AccocitaedSerializers,
+    ProjectsSerializers,
+    ProjectsCrudSerializers,
+    # Sertification Licenses
+    SertificationLicensesSerializers,
+    SertificationLicensesCrudSerializers,
+
 )
 
 
@@ -28,6 +65,13 @@ def get_token_for_user(user):
     return {
         "refresh": str(refresh),
         "access": str(refresh.access_token)}
+
+
+'''
+=========
+User CRUD Views
+==========
+'''
 
 
 class UserSigInViews(APIView):
@@ -188,4 +232,440 @@ class UserProfilesViews(APIView):
         """User information views"""
         serializer = UserInformationSerializers(request.user)
         return Response(serializer.data, status=status.HTTP_200_OK)
-        
+
+
+'''
+=========
+User Information Views
+==========
+'''
+
+
+class CurrencyListViews(APIView):
+    """Currency List Class"""
+
+    render_classes = [UserRenderers]
+    permission = [IsAuthenticated]
+
+    def get(self, request):
+        """Currency views"""
+        objects_list = Currency.objects.all().order_by('pk')
+        serializer = CurrencySerializers(objects_list, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class FrequencyListViews(APIView):
+    """Frequency List Class"""
+
+    render_classes = [UserRenderers]
+    permission = [IsAuthenticated]
+
+    def get(self, request):
+        """Frequency views"""
+        objects_list = Frequency.objects.all().order_by('pk')
+        serializer = FrequencySerializers(objects_list, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class EmployemntTypeListViews(APIView):
+    """Employemnt Type List Class"""
+
+    render_classes = [UserRenderers]
+    permission = [IsAuthenticated]
+
+    def get(self, request):
+        """Employemnt Type views"""
+        objects_list = EmployemntType.objects.all().order_by('pk')
+        serializer = EmployemntTypeSerializers(objects_list, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class JobLevelListViews(APIView):
+    """Job Level List Class"""
+
+    render_classes = [UserRenderers]
+    permission = [IsAuthenticated]
+
+    def get(self, request):
+        """Job Level views"""
+        objects_list = JobLevel.objects.all().order_by('pk')
+        serializer = JobLevelSerializers(objects_list, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class JobFuncationListViews(APIView):
+    """Job Funcation List Class"""
+
+    render_classes = [UserRenderers]
+    permission = [IsAuthenticated]
+
+    def get(self, request):
+        """Job Funcation views"""
+        objects_list = JobFuncation.objects.all().order_by('pk')
+        serializer = JobFuncationSerializers(objects_list, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class EduAttinmentListViews(APIView):
+    """Education Attinmentn List Class"""
+
+    render_classes = [UserRenderers]
+    permission = [IsAuthenticated]
+
+    def get(self, request):
+        """Education Attinmentn views"""
+        objects_list = EduAttinment.objects.all().order_by('pk')
+        serializer = EduAttinmentSerializers(objects_list, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class AccocitaedListViews(APIView):
+    """Accocitaed List Class"""
+
+    render_classes = [UserRenderers]
+    permission = [IsAuthenticated]
+
+    def get(self, request):
+        """Accocitaed views"""
+        objects_list = Accocitaed.objects.all().order_by('pk')
+        serializer = AccocitaedSerializers(objects_list, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class ExpeectedSalaryListViews(APIView):
+    """Expected Salary List Class"""
+
+    render_classes = [UserRenderers]
+    permission = [IsAuthenticated]
+
+    def get(self, request):
+        """Expected Salary views"""
+        objects_list = ExpeectedSalary.objects.filter(user_id=request.user.id)
+        serializer = ExpeectedSalarySerializers(objects_list, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        """Expected POST views"""
+        serializer = ExpeectedSalaryCrudSerializers(
+            data=request.data,
+            context={
+                "user_id": request.user,
+            },
+        )
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ExpeectedSalaryCRUDViews(APIView):
+    """Expected Salary CRUD Class"""
+
+    render_classes = [UserRenderers]
+    permission = [IsAuthenticated]
+
+    def get(self, request, exs_id):
+        """Expected Salary GET views"""
+        objects_list = ExpeectedSalary.objects.filter(
+            id=exs_id,
+            user_id=request.user.id
+        )
+        serializer = ExpeectedSalarySerializers(objects_list, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def put(self, request, exs_id):
+        """Expected Salary Update views"""
+        queryset = get_object_or_404(ExpeectedSalary, id=exs_id)
+        serializer = ExpeectedSalaryCrudSerializers(
+            instance=queryset,
+            data=request.data,
+            partial=True,
+        )
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(
+            {"error": "update error data"}, status=status.HTTP_400_BAD_REQUEST
+        )
+
+    def delete(self, request, exs_id):
+        """Expeected Salary Delete views"""
+        objects_get = ExpeectedSalary.objects.get(id=exs_id)
+        objects_get.delete()
+        return Response(
+            {"message": "Delete success"},
+            status=status.HTTP_200_OK
+        )
+
+
+class WorkExperienceListViews(APIView):
+    """Work Experience List Class"""
+
+    render_classes = [UserRenderers]
+    permission = [IsAuthenticated]
+
+    def get(self, request):
+        """Work Experience views"""
+        objects_list = WorkExperience.objects.filter(user_id=request.user.id)
+        serializer = WorkExperienceSerializers(objects_list, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        """Work Experience POST views"""
+        serializer = WorkExperienceCrudSerializers(
+            data=request.data,
+            context={
+                "user_id": request.user,
+            },
+        )
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class WorkExperienceCrudViews(APIView):
+    """Work Experience CRUD Classs"""
+
+    render_classes = [UserRenderers]
+    permission = [IsAuthenticated]
+
+    def get(self, request, ex_id):
+        """Work Experience GET views"""
+        objects_list = WorkExperience.objects.filter(
+            id=ex_id,
+            user_id=request.user.id
+        )
+        serializer = WorkExperienceSerializers(objects_list, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def put(self, request, ex_id):
+        """Work Experience Update views"""
+        queryset = get_object_or_404(WorkExperience, id=ex_id)
+        serializer = WorkExperienceCrudSerializers(
+            instance=queryset,
+            data=request.data,
+            partial=True,
+        )
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(
+            {"error": "update error data"}, status=status.HTTP_400_BAD_REQUEST
+        )
+
+    def delete(self, request, ex_id):
+        """Work Experience Delete Views"""
+        objects_get = WorkExperience.objects.get(id=ex_id)
+        objects_get.delete()
+        return Response(
+            {"message": "Delete success"},
+            status=status.HTTP_200_OK
+        )
+
+
+# Education
+class EducationListViews(APIView):
+    """Education List Class"""
+
+    render_classes = [UserRenderers]
+    permission = [IsAuthenticated]
+
+    def get(self, request):
+        """Education views"""
+        objects_list = Education.objects.filter(user_id=request.user.id)
+        serializer = EducationSerializers(objects_list, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        """Education POST Views"""
+        serializer = EducationCrudSerializers(
+            data=request.data,
+            context={
+                "user_id": request.user,
+            },
+        )
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class EducationCrudViews(APIView):
+    """Education CRUD Classs"""
+
+    render_classes = [UserRenderers]
+    permission = [IsAuthenticated]
+
+    def get(self, request, edu_id):
+        """Education GET views"""
+        objects_list = Education.objects.filter(
+            id=edu_id,
+            user_id=request.user.id
+        )
+        serializer = EducationSerializers(objects_list, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def put(self, request, edu_id):
+        """Work Experience Update views"""
+        queryset = get_object_or_404(Education, id=edu_id)
+        serializer = EducationCrudSerializers(
+            instance=queryset,
+            data=request.data,
+            partial=True,
+        )
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(
+            {"error": "update error data"}, status=status.HTTP_400_BAD_REQUEST
+        )
+
+    def delete(self, request, edu_id):
+        """Education Delete Views"""
+        objects_get = Education.objects.get(id=edu_id)
+        objects_get.delete()
+        return Response(
+            {"message": "Delete success"},
+            status=status.HTTP_200_OK
+        )
+
+
+# Projects
+class ProjectsListViews(APIView):
+    """Projects List Class"""
+
+    render_classes = [UserRenderers]
+    permission = [IsAuthenticated]
+
+    def get(self, request):
+        """Projects views"""
+        objects_list = Projects.objects.filter(user_id=request.user.id)
+        serializer = ProjectsSerializers(objects_list, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        """Project POST Views"""
+        serializer = ProjectsCrudSerializers(
+            data=request.data,
+            context={
+                "user_id": request.user,
+            },
+        )
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ProjectCrudViews(APIView):
+    """Project CRUD Class"""
+
+    render_classes = [UserRenderers]
+    permission = [IsAuthenticated]
+
+    def get(self, request, porject_id):
+        """Project GET views"""
+        objects_list = Projects.objects.filter(
+            id=porject_id,
+            user_id=request.user.id
+        )
+        serializer = ProjectsSerializers(objects_list, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def put(self, request, porject_id):
+        """Project Update views"""
+        queryset = get_object_or_404(Projects, id=porject_id)
+        serializer = ProjectsCrudSerializers(
+            instance=queryset,
+            data=request.data,
+            partial=True,
+        )
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(
+            {"error": "update error data"}, status=status.HTTP_400_BAD_REQUEST
+        )
+
+    def delete(self, request, porject_id):
+        """Projects Delete Views"""
+        objects_get = Projects.objects.get(id=porject_id)
+        objects_get.delete()
+        return Response(
+            {
+                "message": "Delete success"
+            },
+            status=status.HTTP_200_OK
+        )
+
+
+# Sertification Licenses
+class SertificationLicensesViews(APIView):
+    """Sertification Licenses List Class"""
+
+    render_classes = [UserRenderers]
+    permission = [IsAuthenticated]
+
+    def get(self, request):
+        """Sertification Licenses views"""
+        objects_list = SertificationLicenses.objects.filter(
+            user_id=request.user.id
+        )
+        serializer = SertificationLicensesSerializers(objects_list, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        """Sertification Licenses POST Views"""
+        serializer = SertificationLicensesCrudSerializers(
+            data=request.data,
+            context={
+                "user_id": request.user,
+            },
+        )
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class SertificationLicensesCrudViews(APIView):
+    """Sertification Licenses CRUD Class"""
+
+    render_classes = [UserRenderers]
+    permission = [IsAuthenticated]
+
+    def get(self, request, ser_id):
+        """Sertification Licenses GET views"""
+        objects_list = SertificationLicenses.objects.filter(
+            id=ser_id,
+            user_id=request.user.id
+        )
+        serializer = SertificationLicensesSerializers(objects_list, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def put(self, request, ser_id):
+        """Sertification Licenses Update views"""
+        queryset = get_object_or_404(Projects, id=ser_id)
+        serializer = SertificationLicensesCrudSerializers(
+            instance=queryset,
+            data=request.data,
+            partial=True,
+        )
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(
+            {"error": "update error data"}, status=status.HTTP_400_BAD_REQUEST
+        )
+
+    def delete(self, request, ser_id):
+        """Sertification Licenses Delete Views"""
+        objects_get = SertificationLicenses.objects.get(id=ser_id)
+        objects_get.delete()
+        return Response(
+            {
+                "message": "Delete success"
+            },
+            status=status.HTTP_200_OK
+        )

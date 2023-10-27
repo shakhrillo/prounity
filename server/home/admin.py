@@ -12,11 +12,13 @@ class NewMyUser(UserAdmin):
     model = CustumUsers
     list_display = ['id', 'username', 'first_name', 'last_name']
     fieldsets = UserAdmin.fieldsets + (
-        (None, {'fields': ('img', )}),
+        (None, {'fields': ('img', 'summary',)}),
     )
     add_fieldsets = (
         (None, {'fields': ('username', 'password1', 'password2', )}),
     ) 
+
+    
 admin.site.register(CustumUsers, NewMyUser)
 
 

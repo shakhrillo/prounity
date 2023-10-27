@@ -1,5 +1,5 @@
 """ Google reaCaptcha Create """
-from django.contrib.auth.models import User
+from home.models import CustumUsers
 from rest_framework.throttling import SimpleRateThrottle
 from api.helpers import verify_recaptcha
 
@@ -11,7 +11,7 @@ class UserLoginRateThrottle(SimpleRateThrottle):
 
     def get_cache_key(self, request, view):
         """Captcha GET Key"""
-        user = User.objects.filter(email=request.data.get("email"))
+        user = CustumUsers.objects.filter(email=request.data.get("email"))
         ident = user[0].pk if user else self.get_ident(request)
         return self.cache_format % {"scope": self.scope, "ident": ident}
 

@@ -23,6 +23,7 @@ class ChangeUser(UserChangeForm):
             'last_name',
             'email',
             'img',
+            'summary',
             'password'
         )
         

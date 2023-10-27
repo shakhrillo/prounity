@@ -1,10 +1,10 @@
 """ DJango DRF Serializers """
 from rest_framework import serializers
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import Group
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth import password_validation
 from django.utils.translation import gettext_lazy as _
-from home.models import Product, Jobs, JobsResum
+from home.models import Product, Jobs, JobsResum, CustumUsers
 
 
 class UserGroupsSerializers(serializers.ModelSerializer):
@@ -27,7 +27,7 @@ class UserLoginCaptchaSerializers(serializers.Serializer):
     class Meta:
         """User Model Fileds"""
 
-        model = User
+        model = CustumUsers
         fields = ("username", "password")
         read_only_fields = "username"
 
@@ -38,7 +38,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
     class Meta:
         """User Model Fileds"""
 
-        model = User
+        model = CustumUsers
         fields = ("id", "username", "password")
 
     def validate_password(self, value):
@@ -49,7 +49,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         """Validate Password"""
-        user = User.objects.create_user(**validated_data)
+        user = CustumUsers.objects.create_user(**validated_data)
         return user
 
 
@@ -61,7 +61,7 @@ class UserInformationSerializers(serializers.ModelSerializer):
     class Meta:
         """User Model Fileds"""
 
-        model = User
+        model = CustumUsers
         fields = ["id", "username", "first_name", "last_name", "email", "groups"]
 
 
@@ -80,7 +80,7 @@ class UserSigInUpSerializers(serializers.ModelSerializer):
     class Meta:
         """User Model Fileds"""
 
-        model = User
+        model = CustumUsers
         fields = ["id", "username", "first_name", "last_name", "password"]
         extra_kwargs = {
             "first_name": {"required": True},
@@ -89,7 +89,7 @@ class UserSigInUpSerializers(serializers.ModelSerializer):
 
     def create(self, validated_data):
         """User Create"""
-        user = User.objects.create(
+        user = CustumUsers.objects.create(
             username=validated_data["username"],
             first_name=validated_data["first_name"],
             last_name=validated_data["last_name"],
@@ -108,7 +108,7 @@ class UserSigInInSerializers(serializers.Serializer):
     class Meta:
         """User Model Fileds"""
 
-        model = User
+        model = CustumUsers
         fields = ("username", "password")
         read_only_fields = "username"
 
@@ -124,7 +124,7 @@ class UserUpdateSerializers(serializers.ModelSerializer):
     class Meta:
         """User Model Fileds"""
 
-        model = User
+        model = CustumUsers
         fields = ["id", "username", "first_name", "last_name"]
 
     def update(self, instance, validated_data):

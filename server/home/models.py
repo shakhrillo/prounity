@@ -5,6 +5,7 @@ from django.contrib.auth.models import AbstractUser
 
 class CustumUsers(AbstractUser):
     img = models.ImageField(upload_to='user_img/', null=True, blank=True)
+    summary = models.TextField(null=True, blank=True)
 
 
 class Product(models.Model):
