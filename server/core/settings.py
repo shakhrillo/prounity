@@ -41,10 +41,12 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'drf_spectacular',
     'captcha',
+    'django_rest_passwordreset',
     # my app
     'home',
     'chat',
     'payment',
+    'authen',
 ]
 
 SITE_ID = 1
@@ -90,8 +92,12 @@ ASGI_APPLICATION = "core.asgi.application"
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'prounity',
+        'USER': 'postgres',
+        'PASSWORD': '1',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
@@ -201,6 +207,7 @@ REST_FRAMEWORK = {
 
     'PAGE_SIZE': 100
 }
+AUTH_USER_MODEL = 'home.CustumUsers'
 
 
 # JWT setings
@@ -258,8 +265,14 @@ STRIPE_SECRET_WEBHOOK = "whsec_7a0ae08df32132ac0c62d31940beba99962d24875a4bb77bd
 
 SITE_URL='http://localhost:8000/'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_VERIFICATION = 'optional'
+# Email Backend Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # Replace with your preferred backend
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'istamovibrohim8@gmail.com'
+EMAIL_HOST_PASSWORD ='xuaokkmfmsaxbdyu'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_TIMEOUT = 300 # in seconds
+DEFAULT_FROM_EMAIL = 'unipointsoftwaredevelopment@gmail.com'
 

@@ -1,8 +1,6 @@
 """ Django DRF Packaging """
 from django.contrib.auth import authenticate
-import random
 from django.shortcuts import get_object_or_404
-from django.contrib.auth.models import User, Group
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -14,17 +12,16 @@ from api.renderers import UserRenderers
 from captcha.models import CaptchaStore
 from captcha.helpers import captcha_image_url
 from api.throttle import UserLoginRateThrottle
-from api.servise import send_sms
-from home.models import Product, SmsCode, Jobs
+from home.models import Product, Jobs, JobsResum
 from api.serializers import (
     UserCreateSerializer,
-    UserInformationSerializers,
-    UserSigInInSerializers,
     ProductListSerializer,
     ProductSerializer,
     UserLoginCaptchaSerializers,
     JobsSerializer,
     JobsCreateSerializer,
+    JobsResumeSerializer,
+
 )
 
 
@@ -76,61 +73,6 @@ class CaptchaView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-# SMS Sign In
-class UserLoginViews(APIView):
-    render_classes = [UserRenderers]
-
-    def post(self, request):
-        """Sign In views"""
-        serializers = UserSigInInSerializers(data=request.data, partial=True)
-        if serializers.is_valid(raise_exception=True):
-            username = request.data["username"]
-            password = request.data["password"]
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                tokens = get_token_for_user(user)
-                return Response(
-                    {"token": tokens, "message": "Welcome to the system !"},
-                    status=status.HTTP_200_OK,
-                )
-        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def put(self, request):
-        """Random sms code"""
-        try:
-            user_objects = User.objects.get(id=request.user.id)
-        except User.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
-        sms_random = str(random.randint(10000, 99999))
-        send_sms(user_objects.username, sms_random)
-        code_save = SmsCode(user_id=request.user, sms_code=sms_random)
-        code_save.save()
-        return Response({"message": "SMS code sent"})
-
-
-class CheckSmsCode(APIView):
-    """Chack SMS class"""
-
-    render_classes = [UserRenderers]
-    perrmisson_class = [IsAuthenticated]
-
-    def post(self, request):
-        """Chack sms code verification"""
-
-        sms_code = request.data["sms_code"]
-        if sms_code == "":
-            context = {"Code not entered"}
-            return Response(context, status=status.HTTP_401_UNAUTHORIZED)
-        code_objects = SmsCode.objects.latest("id")
-        if int(sms_code) == int(code_objects.sms_code):
-            context = {"Welcome to the system !"}
-            return Response(context, status=status.HTTP_200_OK)
-        return Response(
-            {"error": "SMS code error"},
-            status=status.HTTP_203_NON_AUTHORITATIVE_INFORMATION,
-        )
-
-
 # Regsiter user Google reCaptcha
 class RegisterUserAPIView(APIView):
     """reaCaptcha class views"""
@@ -149,88 +91,6 @@ class RegisterUserAPIView(APIView):
                 "message": "recaptcha_required",
             }
         )
-
-
-# via JWT token autentification
-class UserSigInUpViews(APIView):
-    """Login User class"""
-
-    render_classes = [UserRenderers]
-
-    def post(self, request):
-        """POST login views"""
-        username = request.data["username"]
-        password = request.data["password"]
-        first_name = request.data["first_name"]
-        last_name = request.data["last_name"]
-        if username == "":
-            context = {"Tel Raqam Kiritilmadi"}
-            return Response(context, status=status.HTTP_401_UNAUTHORIZED)
-        us = User.objects.filter(username=username)
-        if len(us) != 0:
-            return Response(
-                {"error": "Bunday foydalanuvchi mavjud"},
-                status=status.HTTP_203_NON_AUTHORITATIVE_INFORMATION,
-            )
-        my_user = User.objects.create(
-            username=username, first_name=first_name, last_name=last_name
-        )
-        my_user.set_password(password)
-        my_user.save()
-        gr = Group.objects.get(name='users')
-        my_user.groups.add(gr)
-        token = get_token_for_user(my_user)
-        return Response({"msg": token}, status=status.HTTP_200_OK)
-
-    def put(self, request):
-        """Random sms code"""
-        user_objects = User.objects.filter(id=request.user.id)[0]
-        sms_random = str(random.randint(10000, 99999))
-        send_sms(user_objects.username, sms_random)
-        code_save = SmsCode(user_id=request.user, sms_code=sms_random)
-        code_save.save()
-        return Response({"message": "SMS code sent"})
-
-
-class UserSigInViews(APIView):
-    """Register User class"""
-
-    render_classes = [UserRenderers]
-
-    def post(self, request):
-        """POST regsiter views"""
-        serializer = UserSigInInSerializers(data=request.data, partial=True)
-        if serializer.is_valid(raise_exception=True):
-            username = request.data["username"]
-            password = request.data["password"]
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                tokens = get_token_for_user(user)
-                return Response(
-                    {"token": tokens, "message": "Welcome to the system"},
-                    status=status.HTTP_200_OK,
-                )
-            return Response(
-                {
-                    "error": {
-                        "none_filed_error": ["This user is not available to the system"]
-                    }
-                },
-                status=status.HTTP_404_NOT_FOUND,
-            )
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-class UserProfilesViews(APIView):
-    """User Pofiles classs"""
-
-    render_classes = [UserRenderers]
-    permission = [IsAuthenticated]
-
-    def get(self, request):
-        """User information views"""
-        serializer = UserInformationSerializers(request.user)
-        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 # Product CRUD
@@ -361,7 +221,11 @@ class JobsDetailView(APIView):
         """Jobs GET deteile views"""
         queryset = get_object_or_404(Jobs, id=job_id)
         serializer = JobsSerializer(queryset)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        objects = Jobs.objects.filter(id=job_id)[0]
+        r = JobsResum.objects.filter(job_id=objects).count()
+        objects.eye = int(objects.eye) + int(1)
+        objects.save(update_fields=['eye',])
+        return Response({"data": serializer.data, 'resume': r}, status=status.HTTP_200_OK)
 
     def put(self, request, job_id):
         """Product Update views"""
@@ -382,3 +246,24 @@ class JobsDetailView(APIView):
         objects_get = Jobs.objects.get(id=job_id)
         objects_get.delete()
         return Response({"message": "Delete success"}, status=status.HTTP_200_OK)
+
+
+# Jobs CRUD
+class JobsSendResumeview(APIView):
+    """Product GET and POST class"""
+
+    render_classes = [UserRenderers]
+    permission = [IsAuthenticated]
+
+    def post(self, request):
+        """Jobs Resume POST views"""
+        serializer = JobsResumeSerializer(
+            data=request.data,
+            context={
+                "user_id": request.user,
+            },
+        )
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

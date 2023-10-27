@@ -4,7 +4,7 @@ from django.contrib.auth.models import User, Group
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth import password_validation
 from django.utils.translation import gettext_lazy as _
-from home.models import Product, Jobs
+from home.models import Product, Jobs, JobsResum
 
 
 class UserGroupsSerializers(serializers.ModelSerializer):
@@ -62,7 +62,7 @@ class UserInformationSerializers(serializers.ModelSerializer):
         """User Model Fileds"""
 
         model = User
-        fields = ["id", "username", "first_name", "last_name", "groups"]
+        fields = ["id", "username", "first_name", "last_name", "email", "groups"]
 
 
 class UserSigInUpSerializers(serializers.ModelSerializer):
@@ -111,6 +111,29 @@ class UserSigInInSerializers(serializers.Serializer):
         model = User
         fields = ("username", "password")
         read_only_fields = "username"
+
+
+class ChangePasswordSerializer(serializers.Serializer):
+    old_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)
+
+
+class UserUpdateSerializers(serializers.ModelSerializer):
+    """User Profiles Serializers"""
+
+    class Meta:
+        """User Model Fileds"""
+
+        model = User
+        fields = ["id", "username", "first_name", "last_name"]
+
+    def update(self, instance, validated_data):
+        """Update Jobs"""
+        instance.username = validated_data.get("username", instance.username)
+        instance.first_name = validated_data.get("first_name", instance.first_name)
+        instance.last_name = validated_data.get("last_name", instance.last_name)
+        instance.save()
+        return instance
 
 
 class ProductListSerializer(serializers.ModelSerializer):
@@ -177,6 +200,7 @@ class JobsSerializer(serializers.ModelSerializer):
             "address",
             "phone",
             "content",
+            "eye",
             "author_id",
             "date",
         )
@@ -215,5 +239,35 @@ class JobsCreateSerializer(serializers.ModelSerializer):
         instance.address = validated_data.get("address", instance.address)
         instance.phone = validated_data.get("phone", instance.phone)
         instance.content = validated_data.get("content", instance.content)
+        instance.save()
+        return instance
+
+
+class JobsResumeSerializer(serializers.ModelSerializer):
+    """Jobs Serializers"""
+
+    class Meta:
+        """Jobs Model Fields"""
+
+        model = JobsResum
+        fields = (
+            "id",
+            "user_id",
+            "job_id",
+            "resume",
+            "date",
+        )
+
+    def create(self, validated_data):
+        """Create Jobs"""
+
+        create = JobsResum.objects.create(**validated_data)
+        create.user_id = self.context.get("user_id")
+        create.save()
+        return create
+
+    def update(self, instance, validated_data):
+        """Update Jobs"""
+        instance.resume = validated_data.get("resume", instance.resume)
         instance.save()
         return instance

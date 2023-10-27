@@ -1,6 +1,10 @@
 """ Django modles settings """
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
+
+
+class CustumUsers(AbstractUser):
+    img = models.ImageField(upload_to='user_img/', null=True, blank=True)
 
 
 class Product(models.Model):
@@ -13,7 +17,7 @@ class Product(models.Model):
         default=0, null=True, blank=True, verbose_name="Product Price"
     )
     author = models.ForeignKey(
-        User,
+        CustumUsers,
         on_delete=models.CASCADE,
         null=True,
         blank=True,
@@ -29,7 +33,7 @@ class Product(models.Model):
 class SmsCode(models.Model):
     """Sms check code models"""
 
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(CustumUsers, on_delete=models.CASCADE)
     sms_code = models.IntegerField()
     date = models.DateTimeField(auto_now_add=True)
 
@@ -44,7 +48,7 @@ class CaptchaStore(models.Model):
 
 class PaymentHistory(models.Model):
     user = models.ForeignKey(
-        User,
+        CustumUsers,
         on_delete=models.CASCADE,
         blank=True,
         null=True
@@ -97,7 +101,7 @@ class PaymentTariffsGet(models.Model):
         related_name='tariff'
     )
     author = models.ForeignKey(
-        User,
+        CustumUsers,
         on_delete=models.CASCADE,
         blank=True,
         null=True,
@@ -136,11 +140,26 @@ class Jobs(models.Model):
     address = models.CharField(max_length=250)
     phone = models.CharField(max_length=100)
     content = models.TextField()
+    is_active = models.BooleanField(default=True)
+    eye = models.IntegerField(default=0, null=True, blank=True)
     author_id = models.ForeignKey(
-        User,
+        CustumUsers,
         on_delete=models.CASCADE,
         null=True,
         blank=True
         )
+    date = models.DateTimeField(auto_now_add=True)
+
+
+class JobsResum(models.Model):
+    user_id = models.ForeignKey(
+        CustumUsers,
+        on_delete=models.CASCADE,
+    )
+    job_id = models.ForeignKey(
+        Jobs,
+        on_delete=models.CASCADE,
+        )
+    resume = models.FileField(upload_to='resume/')
     date = models.DateTimeField(auto_now_add=True)
     
