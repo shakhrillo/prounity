@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'drf_spectacular',
     'captcha',
     'django_rest_passwordreset',
+    'drf_yasg',
     # my app
     'home',
     'chat',
