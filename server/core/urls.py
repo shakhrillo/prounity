@@ -17,15 +17,16 @@ urlpatterns = [
         ), name='swagger-ui'),
     path('api/captcha/', include(captcha_urls)),
     path('admin/', admin.site.urls),
+    path('api/password_reset/', include('django_rest_passwordreset.urls', namespace='password_reset')),
     path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
     path('', include('home.urls')),
-    path('api/', include('api.urls')),
+    path('b_api/', include('api.urls')),
 
-    path('',include('home.urls')),
-    path('api/',include('api.urls')),
+    path('', include('home.urls')),
     path('chat/', include('chat.urls')),
     path('payment/', include('payment.urls')),
+    path('api/authen/', include('authen.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += [re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT, }), ]
