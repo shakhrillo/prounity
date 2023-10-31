@@ -12,7 +12,7 @@ from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 from authen.renderers import UserRenderers
 from authen.servise import send_sms
-from home.models import SmsCode, CustumUsers
+from home.models import SmsCode, CustumUsers, PhoneCode
 from authen.models import (
     Currency,
     Frequency,
@@ -33,6 +33,7 @@ from authen.serializers import (
     UserSigInSerializers,
     ChangePasswordSerializer,
     UserUpdateSerializers,
+    PhoneCodeSerializers,
     # User information
     CurrencySerializers,
     FrequencySerializers,
@@ -54,6 +55,8 @@ from authen.serializers import (
     # Sertification Licenses
     SertificationLicensesSerializers,
     SertificationLicensesCrudSerializers,
+    FacebookSocialAuthSerializer,
+    GoogleSocialAuthSerializer,
 
 )
 
@@ -72,6 +75,44 @@ def get_token_for_user(user):
 User CRUD Views
 ==========
 '''
+
+
+class GoogleSocialAuthView(APIView):
+
+    serializer_class = GoogleSocialAuthSerializer
+
+    def post(self, request):
+        """
+
+        POST with "auth_token"
+
+        Send an idtoken as from google to get user information
+
+        """
+
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        data = ((serializer.validated_data)['auth_token'])
+        return Response(data, status=status.HTTP_200_OK)
+
+
+class FacebookSocialAuthView(APIView):
+
+    serializer_class = FacebookSocialAuthSerializer
+
+    def post(self, request):
+        """
+
+        POST with "auth_token"
+
+        Send an access token as from facebook to get user information
+
+        """
+
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        data = ((serializer.validated_data)['auth_token'])
+        return Response(data, status=status.HTTP_200_OK)
 
 
 class UserSigInViews(APIView):
@@ -231,6 +272,19 @@ class UserProfilesViews(APIView):
     def get(self, request):
         """User information views"""
         serializer = UserInformationSerializers(request.user)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class PhoneCodeViews(APIView):
+    """User Pofiles classs"""
+
+    render_classes = [UserRenderers]
+    permission = [IsAuthenticated]
+
+    def get(self, request):
+        """User information views"""
+        objects_list = PhoneCode.objects.all().order_by('pk')
+        serializer = PhoneCodeSerializers(objects_list, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 

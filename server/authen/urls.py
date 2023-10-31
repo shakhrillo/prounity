@@ -28,18 +28,24 @@ from authen.views import (
     # Sertification Licenses
     SertificationLicensesViews,
     SertificationLicensesCrudViews,
+    FacebookSocialAuthView,
+    GoogleSocialAuthView,
+    PhoneCodeViews,
 
 )
 
 
 urlpatterns = [
     # User CRUD Urls
+    path('google/', GoogleSocialAuthView.as_view()),
+    path('facebook/', FacebookSocialAuthView.as_view()),
     path('user_sigin_views/', UserSigInViews.as_view()),
     path('user_signup_views/', UserSignUpViews.as_view()),
     path('check_sms_code/', CheckSmsCode.as_view()),
     path('user_update_view/', UserUpdateView.as_view()),
     path('change_password/', change_password, name='change_password'),
     path('user_profiles_views/', UserProfilesViews.as_view()),
+    path('phone_code_views/', PhoneCodeViews.as_view()),
     # User Information Urls
     path('currency_list_views/', CurrencyListViews.as_view()),
     path('rrequency_list_views/', FrequencyListViews.as_view()),

@@ -157,9 +157,6 @@ class ProductDetailView(APIView):
 # Jobs CRUD
 class JobsListview(APIView):
     """Product GET and POST class"""
-
-    render_classes = [UserRenderers]
-    permission = [IsAuthenticated]
     pagination_class = StandardResultsSetPagination
     serializer_class = JobsSerializer
 

@@ -8,3 +8,6 @@ def recaptcha_view(request):
     context = {}
     context['key'] = settings.RE_CAPTCHA_SITE_KEY
     return render(request, 'recaptcha.html', context)
+
+def home(request):
+    return render(request, 'index.html')

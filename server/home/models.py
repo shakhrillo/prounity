@@ -3,6 +3,13 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 
+class PhoneCode(models.Model):
+    name = models.CharField(max_length=100)
+    dial_code = models.CharField(max_length=50)
+    emoji = models.CharField(max_length=50)
+    code = models.CharField(max_length=50)
+
+
 class CustumUsers(AbstractUser):
     img = models.ImageField(upload_to='user_img/', null=True, blank=True)
     summary = models.TextField(null=True, blank=True)

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Sign-In</title>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="159877696259-aq8vi7am7leg0m4h1364v9tkd71ajiin.apps.googleusercontent.com">
+</head>
+<body>
+    <div class="g-signin2" data-onsuccess="handleCredentialResponse"></div>
+
+    <script>
+        function handleCredentialResponse(googleUser) {
+            // Здесь можно обрабатывать успешный вход через Google.
+            // Например, можно получить информацию о пользователе.
+            var profile = googleUser.getBasicProfile();
+            console.log("ID: " + profile.getId());
+            console.log("Name: " + profile.getName());
+            console.log("Email: " + profile.getEmail());
+            // Дополнительные действия, которые нужно выполнить после входа.
+        }
+    </script>
+</body>
+</html>

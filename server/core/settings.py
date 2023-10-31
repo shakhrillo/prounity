@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'captcha',
     'django_rest_passwordreset',
     'drf_yasg',
+    'social_django',
     # my app
     'home',
     'chat',
@@ -64,7 +65,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 ROOT_URLCONF = 'core.urls'
 
@@ -277,3 +282,14 @@ EMAIL_USE_TLS = True
 EMAIL_TIMEOUT = 300 # in seconds
 DEFAULT_FROM_EMAIL = 'unipointsoftwaredevelopment@gmail.com'
 
+# Facebook configuration
+SOCIAL_AUTH_FACEBOOK_KEY = "245650821830082"
+SOCIAL_AUTH_FACEBOOK_SECRET = "6551fecaf8ec5020b143326bc58f89c9"
+# Define SOCIAL_AUTH_FACEBOOK_SCOPE to get extra permissions from Facebook.
+# Email is not sent by default, to get it, you must request the email permission.
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+'fields': 'id, name, email'
+}
+GOOGLE_CLIENT_ID = "159877696259-aq8vi7am7leg0m4h1364v9tkd71ajiin.apps.googleusercontent.com"
+GOOGLE_CLIENT_SECRET = "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"
