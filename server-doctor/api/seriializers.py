@@ -2,7 +2,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import Group, User
 from django.contrib.auth.password_validation import validate_password
-from .models import SmsCode
+from .models import SmsCode, DoctorCategories
 
 class UserInformationSerializers(serializers.ModelSerializer):
     class Meta:
@@ -19,7 +19,7 @@ class UserSigInUpSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ["id", "username", "first_name", "last_name"]
+        fields = ["id", "username", "first_name", "last_name", "password", "password2"]
         extra_kwargs = {
             "first_name": {"required": True},
             "last_name": {"required": True},
@@ -50,3 +50,32 @@ class UserSigInInSerializers(serializers.ModelSerializer):
         model = User
         fields = ["username", "password"]
         read_only_fields = ("username",)
+
+
+class DoctorCategoriesListSerializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = DoctorCategories
+        fields = ['id', 'name', 'user']
+
+    def create(self, validated_data):
+        create = DoctorCategories.objects.create(**validated_data)
+        for i in self.context['get_list']:
+            create.user.add(i)
+        create.save()
+        return create
+
+    def update(self, instance, validated_data):
+        instance.name = validated_data.get('name', instance.name)
+        for i in self.context.get('get_list'):
+            instance.user.add(i)
+        instance.save()
+        return instance
+
+
+class DoctorCategoriesDetailSerializers(serializers.ModelSerializer):
+    user = UserInformationSerializers(read_only=True, many=True)
+
+    class Meta:
+        model = DoctorCategories
+        fields = ['id', 'name', 'user']
