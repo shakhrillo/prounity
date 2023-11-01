@@ -8,22 +8,18 @@ import Doctors from "./pages/Doctors/Doctors";
 import Clients from "./pages/Clients/Clients";
 import Blogs from "./pages/Blogs/Blogs";
 
-
 function App() {
   return (
-    <div className="App d-flex">
+    <div className="App">
       <Routes>
-        <Route path="/" element={<Sidebar />} >
-          <Route path="/dashboard" element={<Table />} />
-          <Route path="/doctors" element={<Doctors />} />
-          <Route path="/clients" element={<Clients />} />
-          <Route path="/blogs" element={<Blogs />} />
-        </Route>
+        <Route path="/" element={<Table />} />
+        <Route path="/dashboard" element={<Table />} />
+        <Route path="/doctors" element={<Doctors />} />
+        <Route path="/clients" element={<Clients />} />
+        <Route path="/blogs" element={<Blogs />} />
+
+        <Route path="/login" element={<Login />} />
       </Routes>
-      {/* <div className="w-100">
-        <Navbar />
-        <Table />
-      </div> */}
     </div>
   );
 }
