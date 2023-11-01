@@ -2,7 +2,7 @@
 
 const Navbar = () => {
     return(
-        <div className="container mb-3">
+        <div className="w-100 py-2 pe-2">
             <nav className="navbar navbar-light bg-light rounded">
             <div className="container-fluid ">
                 <form className="d-flex ">
