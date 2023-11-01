@@ -6,23 +6,22 @@ import Table from "./pages/Table/Table";
 import { Routes, Route } from "react-router-dom";
 import Doctors from "./pages/Doctors/Doctors";
 import Clients from "./pages/Clients/Clients";
-import News from "./pages/News/News";
-import Patients from "./pages/Patients/Patients";
-import PatientDetail from './pages/Patients/PatientDetail'
-
+import Blogs from "./pages/Blogs/Blogs";
+import Category from "./pages/Category/category";
+import EditCategory from "./pages/Category/Edit-category";
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Table />} />
-        <Route path="/dashboard" element={<Table />} />
-        <Route path="/doctors" element={<Doctors />} />
-        <Route path="/clients" element={<Clients />} />
-        <Route path="/blogs" element={<News />} />
-        <Route path="/patients" element={<Patients />} />
-
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Sidebar />}>
+          <Route path="/dashboard" element={<Table />} />
+          <Route path="/doctors" element={<Doctors />} />
+          <Route path="/clients" element={<Clients />} />
+          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/category" element={<Category />} />
+          <Route path="/category/:id" element={<EditCategory />} />
+        </Route>
       </Routes>
     </div>
   );
