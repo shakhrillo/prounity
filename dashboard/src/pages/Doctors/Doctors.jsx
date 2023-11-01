@@ -103,7 +103,7 @@ const Doctors = () => {
                     </tbody>
                 </table>
             </div>
-            <div className={`${modal ? "d-flex justify-content-center align-items-center w-100" : "d-none"}`}>
+            <div className={`${modal ? "d-flex  justify-content-center align-items-center w-100" : "d-none"}`}>
                 <div className="card w-50">
                     <div className="card-header bg-dark text-light">
                         <h3>Add Doctor</h3>

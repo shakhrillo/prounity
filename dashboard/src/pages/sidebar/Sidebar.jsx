@@ -51,7 +51,7 @@ const Sidebar = () => {
                         <li key={item.id} className="nav-item">
                             <Link
                                 to={item.path}
-                                className={`nav-link ${activeItem === item.id ? "active" : ""}`}
+                                className={`nav-link ${activeItem === item.id ? "active" : "text-dark"}`}
                                 onClick={() => handleItemClick(item.id)}
                             >
                                 {item.name}
