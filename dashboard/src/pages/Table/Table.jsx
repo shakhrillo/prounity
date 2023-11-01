@@ -1,7 +1,7 @@
 import { useState } from "react"
 const Table = () => {
     const [modal, setModal] = useState(true)
-    return(
+    return (
         <div className="p-4 bg-light me-2">
             <div className="d-flex justify-content-between align-items-center">
                 <h1>Doctors</h1>
@@ -19,8 +19,8 @@ const Table = () => {
                     <td>Braham</td>
                 </tr>
             </table>
-            
-            <div className={`${modal?"d-flex justify-content-center align-items-center w-100": "d-none"}`}>
+
+            <div className={`${modal ? "d-flex justify-content-center align-items-center w-100" : "d-none"}`}>
                 <div class="card w-50">
                     <div className="card-header bg-dark text-light">
                         <h3>Add Doctor</h3>

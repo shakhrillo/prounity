@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import './sidebar.css';
+import { Link, Outlet } from "react-router-dom";
 
 const Sidebar = () => {
     const [activeItem, setActiveItem] = useState(0);
@@ -22,30 +23,41 @@ const Sidebar = () => {
                         Home
                     </a>
                 </li>
-                <li>
-                    <a href="#" className={`nav-link mt-3 rounded-5 ${activeItem === 1 ? "active text-white" : ""} text-secondary`} onClick={() => handleItemClick(1)}>
-                        <svg className="bi me-2" width={16} height={30}><use xlinkHref="#speedometer2" /></svg>
-                        Dashboard
-                    </a>
-                </li>
-                <li>
-                    <a href="#" className={`nav-link mt-3 rounded-5 ${activeItem === 2 ? "active text-white" : ""} text-secondary`} onClick={() => handleItemClick(2)}>
-                        <svg className="bi me-2" width={16} height={30}><use xlinkHref="#table" /></svg>
-                        Orders
-                    </a>
-                </li>
-                <li>
-                    <a href="#" className={`nav-link mt-3 rounded-5 ${activeItem === 3 ? "active text-white" : ""} text-secondary`} onClick={() => handleItemClick(3)}>
-                        <svg className="bi me-2" width={16} height={30}><use xlinkHref="#grid" /></svg>
-                        Products
-                    </a>
-                </li>
-                <li>
-                    <a href="#" className={`nav-link mt-3 rounded-5 ${activeItem === 4 ? "active text-white" : ""} text-secondary`} onClick={() => handleItemClick(4)}>
-                        <svg className="bi me-2" width={16} height={30}><use xlinkHref="#people-circle" /></svg>
-                        Customers
-                    </a>
-                </li>
+                <Link to={'/dashboard'}>
+                    <li>
+                        <a href="#" className={`nav-link mt-3 rounded-5 ${activeItem === 1 ? "active text-white" : ""} text-secondary`} onClick={() => handleItemClick(1)}>
+                            <svg className="bi me-2" width={16} height={30}><use xlinkHref="#speedometer2" /></svg>
+                            Dashboard
+                        </a>
+                    </li>
+                </Link>
+                <Link to={'/doctors'}>
+                    <li>
+                        <a href="#" className={`nav-link mt-3 rounded-5 ${activeItem === 2 ? "active text-white" : ""} text-secondary`} onClick={() => handleItemClick(2)}>
+                            <svg className="bi me-2" width={16} height={30}><use xlinkHref="#table" /></svg>
+                            Doctors
+                        </a>
+                    </li>
+                </Link>
+                <Link to={'/clients'}>
+                    <li>
+                        <a href="#" className={`nav-link mt-3 rounded-5 ${activeItem === 3 ? "active text-white" : ""} text-secondary`} onClick={() => handleItemClick(3)}>
+                            <svg className="bi me-2" width={16} height={30}><use xlinkHref="#grid" /></svg>
+                            Clients
+                        </a>
+                    </li>
+                </Link>
+
+                <Link to={'/blogs'}>
+                    <li>
+                        <a href="#" className={`nav-link mt-3 rounded-5 ${activeItem === 4 ? "active text-white" : ""} text-secondary`} onClick={() => handleItemClick(4)}>
+                            <svg className="bi me-2" width={16} height={30}><use xlinkHref="#people-circle" /></svg>
+                            Blogs
+                        </a>
+                    </li>
+                </Link>
+
+
             </ul>
             <hr />
             <div className="dropdown">
@@ -62,7 +74,7 @@ const Sidebar = () => {
                 </ul>
             </div>
         </div>
-
+        <Outlet />
     </>;
 };
 
