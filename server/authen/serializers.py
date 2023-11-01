@@ -1,7 +1,7 @@
 """ DJango DRF Serializers """
 from rest_framework import serializers
 from django.contrib.auth.models import Group
-from authen.facebook import facebook
+from authen.facebook import Facebook
 from authen.google import *
 from authen.register import register_social_user
 from home.models import CustumUsers, PhoneCode
@@ -40,7 +40,7 @@ class FacebookSocialAuthSerializer(serializers.Serializer):
     auth_token = serializers.CharField()
 
     def validate_auth_token(self, auth_token):
-        user_data = facebook.Facebook.validate(auth_token)
+        user_data = Facebook.validate(auth_token)
 
         try:
             user_id = user_data['id']
