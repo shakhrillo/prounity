@@ -1,35 +1,32 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Layout from "../../Layout/Layout";
 
 const Patients = () => {
 
-    // const [patients, setPatients] = useState([])
+    const [patients, setPatients] = useState([])
 
-    const patients = [
-        {id: 1, first_name: "davlatshoh", username: "davi123", last_name: "naimov"},
-        {id: 2, first_name: "amir", username: "amir123", last_name: "azimov"}
-    ]
-
-    // const getPatients = async () => {
-    //     try {
-    //         const response = await fetch(
-    //             "http://192.168.1.163:8000/v1/api/user_group_patient_views/",
-    //             {
-    //                 headers: {
-    //                     Authorization: `Bearer ${localStorage.getItem("token")}`,
-    //                 },
-    //             }
-    //         );
-    //         const jsonData = await response.json();
-    //         console.log(jsonData);
-    //         setPatients(jsonData)
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // }
+    const getPatients = async () => {
+        try {
+            const response = await fetch(
+                "http://192.168.1.163:8000/v1/api/user_group_patient_views/",
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    },
+                }
+            );
+            const jsonData = await response.json();
+            console.log(jsonData);
+            setPatients(jsonData)
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     return(
-        <div className="w-100 p-3">
+        <Layout>
+            <div className="w-100 p-3">
             <h1>Patients</h1>
             <table className="table">
                 <thead>
@@ -54,6 +51,7 @@ const Patients = () => {
                 </tbody>
             </table> 
         </div>
+        </Layout>
     )
 }
 

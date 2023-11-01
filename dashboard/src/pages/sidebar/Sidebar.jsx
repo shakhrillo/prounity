@@ -27,6 +27,11 @@ const navbarData = [
         "id": 5,
         "name": "Blogs",
         "path": "/blogs"
+    },
+    {
+        "id": 6,
+        "name": "Patients",
+        "path": "/patients"
     }
 ]
 
