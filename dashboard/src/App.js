@@ -6,7 +6,9 @@ import Table from "./pages/Table/Table";
 import { Routes, Route } from "react-router-dom";
 import Doctors from "./pages/Doctors/Doctors";
 import Clients from "./pages/Clients/Clients";
-import Blogs from "./pages/Blogs/Blogs";
+import News from "./pages/News/News";
+import Patients from "./pages/Patients/Patients";
+import PatientDetail from './pages/Patients/PatientDetail'
 
 function App() {
   return (
