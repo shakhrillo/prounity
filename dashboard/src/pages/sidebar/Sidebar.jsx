@@ -23,7 +23,7 @@ const Sidebar = () => {
                         Home
                     </a>
                 </li>
-                <Link to={'/dashboard'}>
+                <Link style={{ textDecoration: 'none' }} to={'/dashboard'}>
                     <li>
                         <a href="#" className={`nav-link mt-3 rounded-5 ${activeItem === 1 ? "active text-white" : ""} text-secondary`} onClick={() => handleItemClick(1)}>
                             <svg className="bi me-2" width={16} height={30}><use xlinkHref="#speedometer2" /></svg>
@@ -31,7 +31,7 @@ const Sidebar = () => {
                         </a>
                     </li>
                 </Link>
-                <Link to={'/doctors'}>
+                <Link style={{ textDecoration: 'none' }} to={'/doctors'}>
                     <li>
                         <a href="#" className={`nav-link mt-3 rounded-5 ${activeItem === 2 ? "active text-white" : ""} text-secondary`} onClick={() => handleItemClick(2)}>
                             <svg className="bi me-2" width={16} height={30}><use xlinkHref="#table" /></svg>
@@ -39,7 +39,7 @@ const Sidebar = () => {
                         </a>
                     </li>
                 </Link>
-                <Link to={'/clients'}>
+                <Link style={{ textDecoration: 'none' }} k to={'/clients'}>
                     <li>
                         <a href="#" className={`nav-link mt-3 rounded-5 ${activeItem === 3 ? "active text-white" : ""} text-secondary`} onClick={() => handleItemClick(3)}>
                             <svg className="bi me-2" width={16} height={30}><use xlinkHref="#grid" /></svg>
@@ -48,7 +48,7 @@ const Sidebar = () => {
                     </li>
                 </Link>
 
-                <Link to={'/blogs'}>
+                <Link style={{ textDecoration: 'none' }} to={'/blogs'}>
                     <li>
                         <a href="#" className={`nav-link mt-3 rounded-5 ${activeItem === 4 ? "active text-white" : ""} text-secondary`} onClick={() => handleItemClick(4)}>
                             <svg className="bi me-2" width={16} height={30}><use xlinkHref="#people-circle" /></svg>

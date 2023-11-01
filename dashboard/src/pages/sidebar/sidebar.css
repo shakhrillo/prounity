@@ -1,3 +1,7 @@
 .nav-link.active {
   background-color: black !important;
 }
+
+.no-decoration {
+  text-decoration: none;
+}
