@@ -1,19 +1,13 @@
-import logo from "./logo.svg";
 import "./App.css";
 import Login from "./pages/login";
-import Sidebar from "./pages/sidebar/Sidebar";
-import Navbar from "./pages/Navbar/Navbar";
-import Table from "./pages/Table/Table";
-
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App d-flex">
-        <Sidebar />
-      <div className="w-100">
-        <Navbar/>
-        <Table />
-      </div>
+    <div className="App">
+      <Routes>
+        <Route path="/login" element={<Login />} />
+      </Routes>
     </div>
   );
 }
