@@ -3,7 +3,6 @@ import Sidebar from "../pages/sidebar/Sidebar";
 import Navbar from "../pages/Navbar/Navbar";
 
 const Layout = ({ children }) => {
-    console.log(children);
     return <div className="w-100 d-flex h-100">
         <Sidebar />
         <div className="w-100">

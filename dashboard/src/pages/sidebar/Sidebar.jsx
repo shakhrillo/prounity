@@ -38,6 +38,11 @@ const navbarData = [
     name: "Category",
     path: "/category",
   },
+  {
+    id: 8,
+    name: "Card-history",
+    path: "/card-history",
+  },
 ];
 
 const Sidebar = () => {
