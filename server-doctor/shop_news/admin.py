@@ -23,3 +23,11 @@ class NewBayDrugs(admin.ModelAdmin):
 
 
 admin.site.register(BayDrugs, NewBayDrugs)
+
+
+class NewUserCard(admin.ModelAdmin):
+    model = UserCard
+    list_display = ["id", "number_card", "user_id"]
+
+
+admin.site.register(UserCard, NewUserCard)

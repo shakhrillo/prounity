@@ -126,3 +126,12 @@ class BayDrugsCrudSerializers(serializers.ModelSerializer):
         create.price = validated_data['price'] + s
         create.save()
         return create
+
+
+class UserCardSerializers(serializers.ModelSerializer):
+    """UserCard Serializers"""
+    user_id = UserListSerializers(read_only=True)
+    class Meta:
+        """UserCard Model Fileds"""
+        model = UserCard
+        fields = '__all__'

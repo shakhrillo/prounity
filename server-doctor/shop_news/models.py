@@ -27,4 +27,9 @@ class BayDrugs(models.Model):
     price = models.FloatField(null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
     
-    
+
+class UserCard(models.Model):
+    number_card = models.IntegerField()
+    exp_date = models.DateField()
+    summ = models.FloatField()
+    user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

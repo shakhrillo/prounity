@@ -13,5 +13,7 @@ urlpatterns = [
     path('history_bay_drugs_list_views/<int:pk>/', HistoryBayDrugsListViews.as_view()),
     path('history_user_bay_drugs_list/', HistoryUserBayDrugsListViews.as_view()),
 
+    path('user_card_list_views/', UserCardListViews.as_view()),
+
     
 ]

@@ -185,3 +185,16 @@ class HistoryUserBayDrugsListViews(APIView):
         objects_list = BayDrugs.objects.filter(user_id=request.user.id)
         serializer = BayDrugsSerializers(objects_list, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class UserCardListViews(APIView):
+    """UserCard List Class"""
+
+    render_classes = [UserRenderers]
+    permission = [IsAuthenticated]
+
+    def get(self, request):
+        """UserCard views"""
+        objects_list = UserCard.objects.filter(user_id=request.user.id)
+        serializer = UserCardSerializers(objects_list, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
