@@ -1,5 +1,11 @@
 from django.contrib import admin
-from shop_news.models import *
+from shop_news.models import (
+    News,
+    Drugs,
+    BayDrugs,
+    UserCard,
+)
+
 
 class NewNews(admin.ModelAdmin):
     model = News

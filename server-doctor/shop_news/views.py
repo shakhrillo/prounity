@@ -1,17 +1,26 @@
 """ Django DRF Packaging """
-from django.contrib.auth import authenticate
-from rest_framework.decorators import api_view, permission_classes
-from django.contrib.auth import update_session_auth_hash
 from django.shortcuts import get_object_or_404
-from django.contrib.auth.models import User, Group
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework_simplejwt.tokens import RefreshToken
 from api.renderers import UserRenderers
-from shop_news.models import *
-from shop_news.serializers import *
+from shop_news.models import (
+    Drugs,
+    BayDrugs,
+    News,
+    UserCard,
+)
+from shop_news.serializers import (
+    NewsSerializers,
+    NewsPostSerializers,
+    # drugs
+    DrugsSerializers,
+    NewsDrugsSerializers,
+    BayDrugsSerializers,
+    BayDrugsCrudSerializers,
+    UserCardSerializers,
+)
 
 
 class NewsListViews(APIView):
@@ -25,12 +34,10 @@ class NewsListViews(APIView):
         objects_list = News.objects.all()
         serializer = NewsSerializers(objects_list, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
-    
+
     def post(self, request):
         """News POST views"""
-        serializer = NewsPostSerializers(
-            data=request.data
-        )
+        serializer = NewsPostSerializers(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -69,8 +76,7 @@ class NewsCRUDViews(APIView):
         objects_get = News.objects.get(id=new_id)
         objects_get.delete()
         return Response(
-            {"message": "Delete success"},
-            status=status.HTTP_200_OK
+            {"message": "Delete success"}, status=status.HTTP_200_OK
         )
 
 
@@ -86,12 +92,10 @@ class DrugsListViews(APIView):
         objects_list = Drugs.objects.all()
         serializer = DrugsSerializers(objects_list, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
-    
+
     def post(self, request):
         """Drugs POST views"""
-        serializer = NewsDrugsSerializers(
-            data=request.data
-        )
+        serializer = NewsDrugsSerializers(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -130,8 +134,7 @@ class DrugsCRUDViews(APIView):
         objects_get = Drugs.objects.get(id=pk)
         objects_get.delete()
         return Response(
-            {"message": "Delete success"},
-            status=status.HTTP_200_OK
+            {"message": "Delete success"}, status=status.HTTP_200_OK
         )
 
 
@@ -146,7 +149,7 @@ class BayDrugsListViews(APIView):
         objects_list = BayDrugs.objects.all()
         serializer = BayDrugsSerializers(objects_list, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
-    
+
     def post(self, request):
         """BayDrugs POST views"""
         serializer = BayDrugsCrudSerializers(
