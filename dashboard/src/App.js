@@ -8,6 +8,8 @@ import Doctors from "./pages/Doctors/Doctors";
 import Clients from "./pages/Clients/Clients";
 import Category from "./pages/Category/category";
 import EditCategory from "./pages/Category/Edit-category";
+import News from "./pages/News/News";
+import CurrentNews from "./pages/News/CurrentNews";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Table />} />
         <Route path="/doctors" element={<Doctors />} />
+        <Route path="/blogs" element={<News />} />
+        <Route path="/current-news/:id" element={<CurrentNews />} />
         <Route path="/clients" element={<Clients />} />
         <Route path="/category" element={<Category />} />
         <Route path="/category/:id" element={<EditCategory />} />
