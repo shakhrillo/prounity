@@ -1,4 +1,4 @@
-
+""" Django Libraries """
 from django.contrib.auth import authenticate
 from django.shortcuts import get_object_or_404, redirect, reverse
 from django.db.models import Q
@@ -25,8 +25,8 @@ def get_token_for_user(user):
 
 
 class UserSigInUpViews(APIView):
+    """ Views """
     render_classes = [UserRenderers]
-
 
     def post(self, request):
         serializer = UserSigInUpSerializers(data=request.data, context={'avatar' : request.FILES.get('avatar', None)})
@@ -37,9 +37,9 @@ class UserSigInUpViews(APIView):
 
 
 class UserRegisterViews(APIView):
+    """ Views """
     render_classes = [UserRenderers]
     perrmisson_class = [IsAuthenticated]
-
 
     def post(self, request):
         serializer = UserSigInUpSerializers(data=request.data, context={'avatar' : request.FILES.get('avatar', None)})
@@ -50,8 +50,8 @@ class UserRegisterViews(APIView):
 
 
 class UserSigInViews(APIView):
+    """ Views """
     render_classes = [UserRenderers]
-
 
     def post(self, request):
         serializer = UserSigInInSerializers(data=request.data, partial=True)
@@ -84,10 +84,9 @@ class UserSigInViews(APIView):
 
 
 class CheckSmsCode(APIView):
-
+    """ Views """
     render_classes = [UserRenderers]
     perrmisson_class = [IsAuthenticated]
-
 
     def post(self, request):
         sms_code = request.data["sms_code"]
@@ -105,9 +104,9 @@ class CheckSmsCode(APIView):
 
 
 class UserProfilesViews(APIView):
+    """ Views """
     render_classes = [UserRenderers]
     permission = [IsAuthenticated]
-
 
     def get(self, request):
         serializer = UserInformationSerializers(request.user)
@@ -115,15 +114,14 @@ class UserProfilesViews(APIView):
 
 
 class UserDetailsViews(APIView):
+    """ Views """
     render_classes = [UserRenderers]
     permission = [IsAuthenticated]
-
 
     def get(self, request, id):
         queryset = get_object_or_404(CustomUser, id=id)
         serializers = UserInformationSerializers(queryset)
         return Response(serializers.data, status=status.HTTP_200_OK)
-
 
     def put(self, request, id):
         queryset = get_object_or_404(CustomUser, id=id)
@@ -133,16 +131,15 @@ class UserDetailsViews(APIView):
             return Response(serializers.data, status=status.HTTP_200_OK)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
     def delete(self, request, id):
         queryset = get_object_or_404(CustomUser, id=id).delete()
         return Response({'msg': 'User Deleted'}, status=status.HTTP_202_ACCEPTED)
 
 
 class UserGroupsDoctorViews(APIView):
+    """ Views """
     render_classes = [UserRenderers]
     permission = [IsAuthenticated]
-
 
     def get(self, request):
         queryset = CustomUser.objects.prefetch_related('groups').filter(groups__name__in=['Doctor'])
@@ -151,9 +148,9 @@ class UserGroupsDoctorViews(APIView):
 
 
 class UserGroupsPatientViews(APIView):
+    """ Views """
     render_classes = [UserRenderers]
     permission = [IsAuthenticated]
-
 
     def get(self, request):
         queryset = CustomUser.objects.prefetch_related('groups').filter(groups__name__in=['Patient'])
@@ -162,7 +159,7 @@ class UserGroupsPatientViews(APIView):
 
 
 class CategoriesList(APIView):
-
+    """ Views """
     render_classes = [UserRenderers]
     permission = [IsAuthenticated]
 
@@ -170,7 +167,6 @@ class CategoriesList(APIView):
         queryset = DoctorCategories.objects.all()
         serializers = DoctorCategoriesDetailSerializers(queryset, many=True)
         return Response(serializers.data, status=status.HTTP_200_OK)
-
 
     def post(self, request):
         serializers = DoctorCategoriesListSerializers(data=request.data)
@@ -181,7 +177,7 @@ class CategoriesList(APIView):
 
 
 class CategoriesDetail(APIView):
-
+    """ Views """
     render_classes = [UserRenderers]
     permission = [IsAuthenticated]
 

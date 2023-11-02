@@ -9,6 +9,7 @@ from .models import SmsCode, DoctorCategories, CustomUser
 
 
 class UserSigInUpSerializers(serializers.ModelSerializer):
+    """ Serializers """
     username = serializers.CharField(max_length=255, min_length=5, required=True,
                                      validators=[UniqueValidator(queryset=CustomUser.objects.all())])
     password = serializers.CharField(
@@ -56,6 +57,7 @@ class UserSigInUpSerializers(serializers.ModelSerializer):
 
 
 class UserSigInInSerializers(serializers.ModelSerializer):
+    """ Serializers """
     username = serializers.CharField(max_length=50, min_length=2)
     password = serializers.CharField(max_length=50, min_length=1)
 
@@ -65,6 +67,7 @@ class UserSigInInSerializers(serializers.ModelSerializer):
         read_only_fields = ("username",)
 
 class UserInformationSerializerss(serializers.ModelSerializer):
+    """ Serializers """
     class Meta:
         model = CustomUser
         fields = ["id", "username", "first_name", "last_name", "price", "reviews", "description", "categories_id", "avatar"]
@@ -72,7 +75,7 @@ class UserInformationSerializerss(serializers.ModelSerializer):
 
 
 class DoctorCategoriesListSerializers(serializers.ModelSerializer):
-
+    """ Serializers """
     class Meta:
         model = DoctorCategories
         fields = ['id', 'name', 'user']
@@ -92,6 +95,7 @@ class DoctorCategoriesListSerializers(serializers.ModelSerializer):
 
 
 class DoctorCategoriesDetailSerializers(serializers.ModelSerializer):
+    """ Serializers """
     user = UserInformationSerializerss(read_only=True, many=True)
 
     class Meta:
@@ -100,13 +104,14 @@ class DoctorCategoriesDetailSerializers(serializers.ModelSerializer):
 
 
 class GroupSerializers(serializers.ModelSerializer):
-
+    """ Serializers """
     class Meta:
         model = Group
         fields = '__all__'
 
 
 class UserInformationSerializers(serializers.ModelSerializer):
+    """ Serializers """
     categories_id = DoctorCategoriesDetailSerializers(read_only=True)
     groups = GroupSerializers(read_only=True, many=True)
 

@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class News(models.Model):
     title = models.CharField(max_length=250)
     content = models.TextField()
-    img = models.ImageField(upload_to='news/')
+    img = models.ImageField(upload_to='news/', null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
 
 

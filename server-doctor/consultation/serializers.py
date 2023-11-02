@@ -5,6 +5,7 @@ from api.models import CustomUser
 from datetime import datetime
 from django.db.models import Q
 from django.contrib.auth.models import User
+from api.seriializers import *
 
 
 class UserListSerializers(serializers.ModelSerializer):
@@ -24,7 +25,7 @@ class UserListSerializers(serializers.ModelSerializer):
 
 class ConsultationSerializers(serializers.ModelSerializer):
     """Consultation Serializers"""
-    doctor_id = UserListSerializers(read_only=True)
+    doctor_id = UserInformationSerializers(read_only=True)
     user_id = UserListSerializers(read_only=True)
     class Meta:
         """Consultation Fields"""
