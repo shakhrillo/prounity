@@ -27,8 +27,22 @@ def get_token_for_user(user):
 class UserSigInUpViews(APIView):
     render_classes = [UserRenderers]
 
+
     def post(self, request):
-        serializer = UserSigInUpSerializers(data=request.data)
+        serializer = UserSigInUpSerializers(data=request.data, context={'avatar' : request.FILES.get('avatar', None)})
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class UserRegisterViews(APIView):
+    render_classes = [UserRenderers]
+    perrmisson_class = [IsAuthenticated]
+
+
+    def post(self, request):
+        serializer = UserSigInUpSerializers(data=request.data, context={'avatar' : request.FILES.get('avatar', None)})
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -37,6 +51,7 @@ class UserSigInUpViews(APIView):
 
 class UserSigInViews(APIView):
     render_classes = [UserRenderers]
+
 
     def post(self, request):
         serializer = UserSigInInSerializers(data=request.data, partial=True)
@@ -73,6 +88,7 @@ class CheckSmsCode(APIView):
     render_classes = [UserRenderers]
     perrmisson_class = [IsAuthenticated]
 
+
     def post(self, request):
         sms_code = request.data["sms_code"]
         if sms_code == "":
@@ -92,10 +108,57 @@ class UserProfilesViews(APIView):
     render_classes = [UserRenderers]
     permission = [IsAuthenticated]
 
+
     def get(self, request):
         serializer = UserInformationSerializers(request.user)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+
+class UserDetailsViews(APIView):
+    render_classes = [UserRenderers]
+    permission = [IsAuthenticated]
+
+
+    def get(self, request, id):
+        queryset = get_object_or_404(CustomUser, id=id)
+        serializers = UserInformationSerializers(queryset)
+        return Response(serializers.data, status=status.HTTP_200_OK)
+
+
+    def put(self, request, id):
+        queryset = get_object_or_404(CustomUser, id=id)
+        serializers = UserSigInUpSerializers(instance=queryset, data=request.data, partial=True, context={'avatar':request.FILES.get('avatar', None)})
+        if serializers.is_valid(raise_exception=True):
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+    def delete(self, request, id):
+        queryset = get_object_or_404(CustomUser, id=id).delete()
+        return Response({'msg': 'User Deleted'}, status=status.HTTP_202_ACCEPTED)
+
+
+class UserGroupsDoctorViews(APIView):
+    render_classes = [UserRenderers]
+    permission = [IsAuthenticated]
+
+
+    def get(self, request):
+        queryset = CustomUser.objects.prefetch_related('groups').filter(groups__name__in=['Doctor'])
+        serializers = UserInformationSerializers(queryset, many=True)
+        return Response(serializers.data, status=status.HTTP_200_OK)
+
+
+class UserGroupsPatientViews(APIView):
+    render_classes = [UserRenderers]
+    permission = [IsAuthenticated]
+
+
+    def get(self, request):
+        queryset = CustomUser.objects.prefetch_related('groups').filter(groups__name__in=['Patient'])
+        serializers = UserInformationSerializers(queryset, many=True)
+        return Response(serializers.data, status=status.HTTP_200_OK)
 
 
 class CategoriesList(APIView):
@@ -110,7 +173,7 @@ class CategoriesList(APIView):
 
 
     def post(self, request):
-        serializers = DoctorCategoriesListSerializers(data=request.data, context={'get_list': request.data['list_param']})
+        serializers = DoctorCategoriesListSerializers(data=request.data)
         if serializers.is_valid(raise_exception=True):
             serializers.save()
             return Response(serializers.data, status=status.HTTP_201_CREATED)
@@ -129,7 +192,7 @@ class CategoriesDetail(APIView):
 
     def put(self, request, id):
         queryset = get_object_or_404(DoctorCategories, id=id)
-        serializers = DoctorCategoriesListSerializers(instance=queryset, data=request.data, partial=True,context={'get_list': request.data['list_param']})
+        serializers = DoctorCategoriesListSerializers(instance=queryset, data=request.data, partial=True)
         if serializers.is_valid(raise_exception=True):
             serializers.save()
             return Response(serializers.data, status=status.HTTP_200_OK)
@@ -138,4 +201,4 @@ class CategoriesDetail(APIView):
     def delete(self, request, id):
         queryset = get_object_or_404(DoctorCategories, id=id)
         queryset.delete()
-        return Response({'msg':'User deleted'},status=status.HTTP_200_OK)
+        return Response({'msg':'Category deleted'},status=status.HTTP_200_OK)

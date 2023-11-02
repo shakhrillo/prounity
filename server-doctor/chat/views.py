@@ -9,8 +9,7 @@ from .serializers import ConversationListSerializer, ConversationSerializer
 from django.db.models import Q
 from django.shortcuts import redirect, reverse
 from api.renderers import UserRenderers
-
-
+from api.models import CustomUser
 
 
 class StartConversationView(APIView):
@@ -19,15 +18,21 @@ class StartConversationView(APIView):
     def post(self, request):
         data = request.data
 
-        username = data.pop('username')
-        print(username)
-        try:
-            participant = User.objects.get(username=username)
-        except User.DoesNotExist:
-            return Response({'message': 'You cannot chat with a non existent user'})
+        # get doctor username here
+        username = data['username']
 
+        # check the user is or not in databases
+        try:
+            participant = CustomUser.objects.get(username=username)
+            print(participant)
+        except CustomUser.DoesNotExist:
+            return Response({'message': 'You cannot chat with a non existent user'})
+        # ------------------------------------
+        # we are checked (Patient and Doctor) or (Doctor and Patient) chat group has or not
         conversation = Conversation.objects.filter(Q(initiator=request.user, receiver=participant) |
                                                    Q(initiator=participant, receiver=request.user))
+        # -----------------------------------
+        # We are check groups is have or not, and if room is does not we will create new room
         if conversation.exists():
             return redirect(reverse('get_conversation', args=(conversation[0].id,)))
         else:
