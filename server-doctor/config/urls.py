@@ -1,4 +1,3 @@
-
 from django.contrib import admin
 from django.urls import path, include
 
@@ -12,19 +11,24 @@ from drf_spectacular.views import SpectacularAPIView
 
 urlpatterns = [
     path("schema/", SpectacularAPIView.as_view(), name="schema"),
-    path('admin/', admin.site.urls),
-    path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
-
-    path('docs/', TemplateView.as_view(
-        template_name='doc.html',
-        extra_context={'schema_url':'api_schema'}
-        ), name='swagger-ui'),
-
-
-    path('v1/api/', include('api.urls')),
-    path('v1/chat/', include('chat.urls')),
+    path("admin/", admin.site.urls),
+    path(
+        "api/token/", jwt_views.TokenObtainPairView.as_view(), name="token_obtain_pair"
+    ),
+    path(
+        "api/token/refresh/", jwt_views.TokenRefreshView.as_view(), name="token_refresh"
+    ),
+    path(
+        "docs/",
+        TemplateView.as_view(
+            template_name="doc.html", extra_context={"schema_url": "api_schema"}
+        ),
+        name="swagger-ui",
+    ),
+    path("v1/api/", include("api.urls")),
+    path("v1/chat/", include("chat.urls")),
+    path("v1/consultation/", include("consultation.urls")),
+    path('v1/shop_news/', include('shop_news.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-

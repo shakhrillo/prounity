@@ -35,6 +35,8 @@ INSTALLED_APPS = [
 
     'api',
     'chat',
+    'consultation',
+    'shop_news',
 ]
 
 MIDDLEWARE = [
