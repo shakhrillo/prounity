@@ -8,19 +8,21 @@ import Doctors from "./pages/Doctors/Doctors";
 import Clients from "./pages/Clients/Clients";
 import Category from "./pages/Category/category";
 import EditCategory from "./pages/Category/Edit-category";
-import Patients from "./pages/Patients/Patients"
-import PatientDetail from "./pages/Patients/PatientDetail"
-import PatientHistory from "./pages/Patients/PatientHistory"
-import CardHistory from "./pages/Card/Card-history"
-import Login from './pages/login'
+import Patients from "./pages/Patients/Patients";
+import PatientDetail from "./pages/Patients/PatientDetail";
+import PatientHistory from "./pages/Patients/PatientHistory";
+import CardHistory from "./pages/Card/Card-history";
+import Login from "./pages/login";
 import News from "./pages/News/News";
 import CurrentNews from "./pages/News/CurrentNews";
+import Shop from "./pages/Shop/Shop";
 
 function App() {
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Table />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/doctors" element={<Doctors />} />
         <Route path="/blogs" element={<News />} />
         <Route path="/current-news/:id" element={<CurrentNews />} />
@@ -32,6 +34,7 @@ function App() {
         <Route path="patient-detail/:id" element={<PatientDetail />} />
         <Route path="patient-history/:id" element={<PatientHistory />} />
         <Route path="/card-history" element={<CardHistory />} />
+        <Route path="/shop" element={<Shop />} />
       </Routes>
     </div>
   );

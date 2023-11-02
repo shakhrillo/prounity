@@ -40,8 +40,8 @@ const navbarData = [
   },
   {
     id: 8,
-    name: "Card-history",
-    path: "/card-history",
+    name: "Shop",
+    path: "/shop",
   },
 ];
 
@@ -97,7 +97,7 @@ const Sidebar = () => {
           >
             <img
               src="https://github.com/mdo.png"
-              alt
+              alt=""
               width={32}
               height={32}
               className="rounded-circle me-2"
