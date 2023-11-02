@@ -11,6 +11,7 @@ import EditCategory from "./pages/Category/Edit-category";
 
 import Login from './pages/login'
 import News from "./pages/News/News";
+import CurrentNews from "./pages/News/CurrentNews";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<Table />} />
         <Route path="/doctors" element={<Doctors />} />
         <Route path="/blogs" element={<News />} />
+        <Route path="/current-news/:id" element={<CurrentNews />} />
         <Route path="/login" element={<Login />} />
         <Route path="/clients" element={<Clients />} />
         <Route path="/category" element={<Category />} />
