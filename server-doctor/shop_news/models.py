@@ -22,7 +22,7 @@ class Drugs(models.Model):
 
 class BayDrugs(models.Model):
     drugs_id = models.JSONField(null=True, blank=True)
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
     count_drugs = models.IntegerField(null=True, blank=True)
     price = models.FloatField(null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)

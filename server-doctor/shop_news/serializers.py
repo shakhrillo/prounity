@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from shop_news.models import *
-from django.conf import settings
+from api.models import CustomUser
 from datetime import datetime
 from django.db.models import Q
 
@@ -11,7 +11,7 @@ class UserListSerializers(serializers.ModelSerializer):
     class Meta:
         """User Fields"""
 
-        model = User
+        model = CustomUser
         fields = (
             "id",
             "username",
