@@ -1,9 +1,10 @@
 from rest_framework import serializers
 from consultation.models import Consultation
 from shop_news.models import BayDrugs
-from django.conf import settings
+from api.models import CustomUser
 from datetime import datetime
 from django.db.models import Q
+from django.contrib.auth.models import User
 
 
 class UserListSerializers(serializers.ModelSerializer):
@@ -12,7 +13,7 @@ class UserListSerializers(serializers.ModelSerializer):
     class Meta:
         """User Fields"""
 
-        model = settings.AUTH_USER_MODEL
+        model = CustomUser
         fields = (
             "id",
             "username",
