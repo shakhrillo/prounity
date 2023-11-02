@@ -24,7 +24,8 @@ class UserListSerializers(serializers.ModelSerializer):
 
 class ConsultationSerializers(serializers.ModelSerializer):
     """Consultation Serializers"""
-    
+    doctor_id = UserListSerializers(read_only=True)
+    user_id = UserListSerializers(read_only=True)
     class Meta:
         """Consultation Fields"""
 
