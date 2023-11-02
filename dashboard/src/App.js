@@ -18,6 +18,7 @@ function App() {
         <Route path="/clients" element={<Clients />} />
         <Route path="/category" element={<Category />} />
         <Route path="/category/:id" element={<EditCategory />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );

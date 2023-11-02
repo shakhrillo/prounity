@@ -3,13 +3,15 @@ import Layout from "../../Layout/Layout";
 
 
 const Doctors = () => {
-    const [modal, setModal] = useState(true)
+    const [modal, setModal] = useState(false)
     const [doctors, setDoctors] = useState([]);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
-
+    const [description, setDescription] = useState("");
+    const [price, setPrice] = useState(0);
+    const [editingDoctorId, setEditingDoctorId] = useState(null);
 
     useEffect(() => {
         getDoctors();
@@ -27,7 +29,6 @@ const Doctors = () => {
             );
             const jsonData = await response.json();
             setDoctors(jsonData)
-            console.log(jsonData);
         } catch (error) {
             console.error(error);
         }
@@ -39,10 +40,10 @@ const Doctors = () => {
             username,
             first_name: firstName,
             last_name: lastName,
-            password,
+            password: password,
             password2: password,
-            price: 0,
-            description: "",
+            price,
+            description,
             groups: [1]
         };
 
@@ -63,7 +64,81 @@ const Doctors = () => {
             console.error(error);
         }
         getDoctors()
+        setModal(false)
+        clearInputs()
     };
+
+    const deleteDoctor = async (id) => {
+        const url = `http://192.168.1.163:8000/v1/api/user_details_views/${id}/`;
+        const requestOptions = {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+
+            },
+        };
+        try {
+            const response = await fetch(url, requestOptions);
+            const responseData = await response.json();
+        } catch (error) {
+            console.error(error);
+        }
+        getDoctors()
+    }
+
+    const editDoctor = (id) => {
+        const doctor = doctors.find((doctor) => doctor.id === id);
+        if (doctor) {
+            setEditingDoctorId(id);
+            setModal(true);
+            setUsername(doctor.username);
+            setFirstName(doctor.first_name);
+            setLastName(doctor.last_name);
+            setDescription(doctor.description);
+            setPrice(doctor.price);
+        }
+    };
+
+    const updateDoctor = async () => {
+        const url = `http://192.168.1.163:8000/v1/api/user_details_views/${editingDoctorId}/`;
+        const data = {
+            username,
+            first_name: firstName,
+            last_name: lastName,
+            price,
+            description,
+            groups: [1],
+        };
+
+        const requestOptions = {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        };
+
+        try {
+            const response = await fetch(url, requestOptions);
+            const responseData = await response.json();
+        } catch (error) {
+            console.error(error);
+        }
+        getDoctors();
+        setEditingDoctorId(null);
+        setModal(false);
+        clearInputs()
+    };
+
+    const clearInputs = () => {
+        setUsername("");
+        setFirstName("");
+        setLastName("");
+        setDescription("");
+        setPrice(0);
+        setPassword("");
+    };
+
 
     return <Layout>
         <div className="w-100">
@@ -82,6 +157,9 @@ const Doctors = () => {
                             <th>Username</th>
                             <th>Firstname</th>
                             <th>Lastname</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
 
@@ -92,44 +170,82 @@ const Doctors = () => {
                                 <td>{doctor.username}</td>
                                 <td>{doctor.first_name}</td>
                                 <td>{doctor.last_name}</td>
+                                <td>{doctor.description}</td>
+                                <td>{doctor.price}</td>
                                 <td>
-                                    <button className="btn btn-warning">Edit</button>
-                                </td>
-                                <td>
-                                    <button className="btn btn-danger">Delete</button>
+                                    <button onClick={() => editDoctor(doctor.id)} className="btn btn-warning">Edit</button>
+                                    <button onClick={() => deleteDoctor(doctor.id)} className="btn btn-danger">Delete</button>
+
                                 </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
             </div>
-            <div className={`${modal ? "d-flex  justify-content-center align-items-center w-100" : "d-none"}`}>
+            <div className={`${modal ? "d-flex modal-box justify-content-center align-items-center w-100" : "d-none"}`}>
                 <div className="card w-50">
-                    <div className="card-header bg-dark text-light">
-                        <h3>Add Doctor</h3>
+                    <div className="card-header d-flex justify-content-between align-items-center bg-dark text-light">
+                        <h3>{editingDoctorId ? "Edit Doctor" : "Add Doctor"}</h3>
+                        <button onClick={() => { setModal(!modal); setEditingDoctorId(null) }} className="btn-close bg-light"></button>
                     </div>
                     <div className="card-body">
-                        <input value={username} onChange={(e) => setUsername(e.target.value)}
+                        <input
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
                             className="form-control mb-2"
                             placeholder="username"
-                            type="text" />
-                        <input value={firstName} onChange={(e) => setFirstName(e.target.value)}
+                            type="text"
+                        />
+                        <input
+                            value={firstName}
+                            onChange={(e) => setFirstName(e.target.value)}
                             className="form-control mb-2"
                             placeholder="first name"
-                            type="text" />
-                        <input value={lastName} onChange={(e) => setLastName(e.target.value)}
+                            type="text"
+                        />
+                        <input
+                            value={lastName}
+                            onChange={(e) => setLastName(e.target.value)}
                             className="form-control mb-2"
                             placeholder="last name"
-                            type="text" />
-                        <input value={password} onChange={(e) => setPassword(e.target.value)}
+                            type="text"
+                        />
+                        <input
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
                             className="form-control mb-2"
-                            placeholder="password"
-                            type="text" />
-                        <button onClick={postData} className="btn btn-dark ">add</button>
+                            placeholder="description"
+                            type="text"
+                        />
+                        <input
+                            value={price}
+                            onChange={(e) => setPrice(e.target.value)}
+                            className="form-control mb-2"
+                            placeholder="price"
+                            type="number"
+                        />
+                        {!editingDoctorId && (
+                            <input
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                className="form-control mb-2"
+                                placeholder="password"
+                                type="text"
+                            />
+                        )}
+                        {editingDoctorId ? (
+                            <button onClick={updateDoctor} className="btn btn-dark">
+                                Update
+                            </button>
+                        ) : (
+                            <button onClick={postData} className="btn btn-dark">
+                                Add
+                            </button>
+                        )}
                     </div>
                 </div>
             </div>
-        </div>;
+        </div>
     </Layout>
 
 };
