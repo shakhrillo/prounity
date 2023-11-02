@@ -1,5 +1,11 @@
 from django.contrib import admin
-from shop_news.models import *
+from shop_news.models import (
+    News,
+    Drugs,
+    BayDrugs,
+    UserCard,
+)
+
 
 class NewNews(admin.ModelAdmin):
     model = News
@@ -23,3 +29,11 @@ class NewBayDrugs(admin.ModelAdmin):
 
 
 admin.site.register(BayDrugs, NewBayDrugs)
+
+
+class NewUserCard(admin.ModelAdmin):
+    model = UserCard
+    list_display = ["id", "number_card", "user_id"]
+
+
+admin.site.register(UserCard, NewUserCard)
