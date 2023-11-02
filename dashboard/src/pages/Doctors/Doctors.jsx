@@ -12,6 +12,7 @@ const Doctors = () => {
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState(0);
     const [editingDoctorId, setEditingDoctorId] = useState(null);
+    const BASE_URL = 'http://192.168.1.163:8000'
 
     useEffect(() => {
         getDoctors();
@@ -20,7 +21,7 @@ const Doctors = () => {
     const getDoctors = async () => {
         try {
             const response = await fetch(
-                "http://192.168.1.163:8000/v1/api/user_group_doctor_views/",
+                `${BASE_URL}/v1/api/user_group_doctor_views/`,
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -35,7 +36,7 @@ const Doctors = () => {
     }
 
     const postData = async () => {
-        const url = "http://192.168.1.163:8000/v1/api/user_create_views/";
+        const url = `${BASE_URL}/v1/api/user_create_views/`;
         const data = {
             username,
             first_name: firstName,
@@ -69,7 +70,7 @@ const Doctors = () => {
     };
 
     const deleteDoctor = async (id) => {
-        const url = `http://192.168.1.163:8000/v1/api/user_details_views/${id}/`;
+        const url = `${BASE_URL}/v1/api/user_details_views/${id}/`;
         const requestOptions = {
             method: "DELETE",
             headers: {
@@ -100,7 +101,7 @@ const Doctors = () => {
     };
 
     const updateDoctor = async () => {
-        const url = `http://192.168.1.163:8000/v1/api/user_details_views/${editingDoctorId}/`;
+        const url = `${BASE_URL}/v1/api/user_details_views/${editingDoctorId}/`;
         const data = {
             username,
             first_name: firstName,

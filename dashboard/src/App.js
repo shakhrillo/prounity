@@ -13,6 +13,8 @@ import PatientDetail from "./pages/Patients/PatientDetail";
 import PatientHistory from "./pages/Patients/PatientHistory";
 import CardHistory from "./pages/Card/Card-history";
 import Login from './pages/login'
+import News from "./pages/News/News";
+import CurrentNews from "./pages/News/CurrentNews";
 
 function App() {
   return (
@@ -20,7 +22,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Table />} />
         <Route path="/doctors" element={<Doctors />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/blogs" element={<News />} />
+        <Route path="/current-news/:id" element={<CurrentNews />} />
         <Route path="/clients" element={<Clients />} />
         <Route path="/category" element={<Category />} />
         <Route path="/category/:id" element={<EditCategory />} />
