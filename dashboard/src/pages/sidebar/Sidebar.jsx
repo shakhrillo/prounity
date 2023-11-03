@@ -19,7 +19,6 @@ const navs = [
     button: "Add Blogs",
     dropdownItems: [
       { name: "List", path: "/blogs" },
-      { name: "Deleted", path: "/" },
     ],
   },
   {
