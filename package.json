@@ -42,6 +42,7 @@
     "stylelint-config-twbs-bootstrap": "^11.0.1"
   },
   "dependencies": {
+    "base-64": "^1.0.0",
     "rfs": "^10.0.0"
   }
 }
