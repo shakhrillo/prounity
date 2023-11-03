@@ -9,14 +9,12 @@ const Login = () => {
 
   const handleRoll = async () => {
 
-    const authHeader = 'Basic ' + encode(usernameRef + ':' + passwordRef);
-
     try {
       const response = await fetch(
         "http://192.168.1.163:8000/v1/api/user_profiles_views/",
         {
           headers: {
-            Authorization: authHeader,
+            Authorization: localStorage.getItem('token'),
           },
         }
       );
@@ -47,11 +45,9 @@ const Login = () => {
 
       const data = await response.json();
       const token = data?.token?.access;
-      const encodedToken = encode(token); // Кодирование токена в формате base-64
-      localStorage.setItem("token", JSON.stringify(encodedToken));
-
-      // const data = await response.json();
-      // localStorage.setItem("token", data?.token?.access);
+      const encodedToken = btoa(token);
+      const decodedToken = atob(encodedToken);
+      localStorage.setItem("token", decodedToken);
       handleRoll();
     } catch (error) {
       console.error(error);
