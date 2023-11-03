@@ -3,7 +3,7 @@ import Table from "./pages/Table/Table";
 import { Routes, Route } from "react-router-dom";
 import Doctors from "./pages/Doctors/Doctors";
 import Clients from "./pages/Clients/Clients";
-import Category from "./pages/Category/Category";
+import Category from "./pages/Category/category";
 import EditCategory from "./pages/Category/Edit-category";
 import Patients from "./pages/Patients/Patients";
 import PatientDetail from "./pages/Patients/PatientDetail";
