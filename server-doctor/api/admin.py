@@ -1,7 +1,7 @@
 """ Django Libraries """
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from api.models import CustomUser, DoctorCategories, SmsCode
+from api.models import CustomUser, DoctorCategories, SmsCode, CountryList
 from api.form import ChangeUser, CreasteUser
 
 
@@ -55,3 +55,9 @@ class DoctorCategoriesAdmin(admin.ModelAdmin):
 class SmsCodeAdmin(admin.ModelAdmin):
     """ SMS Code """
     list_display = ("sms_code", "date", "id", "user_id")
+
+
+@admin.register(CountryList)
+class CountryListAdmin(admin.ModelAdmin):
+    """ SMS Code """
+    list_display = ("id", "name", "dial_code")

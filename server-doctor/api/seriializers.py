@@ -5,7 +5,14 @@ from django.contrib.auth.models import Group, User
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth import authenticate
 from django.conf import settings
-from .models import SmsCode, DoctorCategories, CustomUser
+from .models import SmsCode, DoctorCategories, CustomUser, CountryList
+
+
+class CountryListSerializerss(serializers.ModelSerializer):
+    """ Serializers """
+    class Meta:
+        model = CountryList
+        fields = '__all__'
 
 
 class UserSigInUpSerializers(serializers.ModelSerializer):

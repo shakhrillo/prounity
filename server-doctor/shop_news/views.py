@@ -10,6 +10,8 @@ from shop_news.models import (
     BayDrugs,
     News,
     UserCard,
+    BannerMain,
+    BannerLogin,
 )
 from shop_news.serializers import (
     NewsSerializers,
@@ -20,6 +22,11 @@ from shop_news.serializers import (
     BayDrugsSerializers,
     BayDrugsCrudSerializers,
     UserCardSerializers,
+    # banner
+    BannerMainSerializers,
+    BannerMainCRUDSerializers,
+    BannerLoginSerializers,
+    BannerLoginCRUDSerializers,
 )
 
 
@@ -200,4 +207,146 @@ class UserCardListViews(APIView):
         """UserCard views"""
         objects_list = UserCard.objects.filter(user_id=request.user.id)
         serializer = UserCardSerializers(objects_list, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+# banner
+class BannerMainListViews(APIView):
+    """BannerMain List Class"""
+
+    render_classes = [UserRenderers]
+    permission = [IsAuthenticated]
+
+    def get(self, request):
+        """BannerMain views"""
+        objects_list = BannerMain.objects.all()
+        serializer = BannerMainSerializers(objects_list, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        serializers = BannerMainCRUDSerializers(data=request.data)
+        if serializers.is_valid(raise_exception=True):
+            serializers.save()
+            return Response(
+                {'message': 'Create Sucsess'}, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class BannerMainCrudViews(APIView):
+    """BannerMain CRUD Class"""
+
+    render_classes = [UserRenderers]
+    permission = [IsAuthenticated]
+
+    def get(self, request, pk):
+        """BannerMain GET views"""
+        objects_list = BannerMain.objects.filter(
+            id=pk
+        )
+        serializer = BannerMainSerializers(objects_list, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def put(self, request, pk):
+        """BannerMain Update views"""
+        queryset = get_object_or_404(BannerMain, id=pk)
+        serializer = BannerMainCRUDSerializers(
+            instance=queryset,
+            data=request.data,
+            partial=True,
+        )
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(
+            {"error": "update error data"}, status=status.HTTP_400_BAD_REQUEST
+        )
+
+    def delete(self, request, pk):
+        """BannerMain Delete views"""
+        objects_get = BannerMain.objects.get(id=pk)
+        objects_get.delete()
+        return Response(
+            {"message": "Delete success"},
+            status=status.HTTP_200_OK
+        )
+
+
+class BannerLoginListViews(APIView):
+    """BannerLogin List Class"""
+
+    render_classes = [UserRenderers]
+    permission = [IsAuthenticated]
+
+    def get(self, request):
+        """BannerLogin views"""
+        objects_list = BannerLogin.objects.all()
+        serializer = BannerLoginSerializers(objects_list, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        serializers = BannerLoginSerializers(data=request.data)
+        if serializers.is_valid(raise_exception=True):
+            serializers.save()
+            return Response(
+                {'message': 'Create Sucsess'}, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class BannerLoginCrudViews(APIView):
+    """BannerLogin CRUD Class"""
+
+    render_classes = [UserRenderers]
+    permission = [IsAuthenticated]
+
+    def get(self, request, pk):
+        """BannerLogin GET views"""
+        objects_list = BannerLogin.objects.filter(
+            id=pk
+        )
+        serializer = BannerLoginSerializers(objects_list, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def put(self, request, pk):
+        """BannerLogin Update views"""
+        queryset = get_object_or_404(BannerLogin, id=pk)
+        serializer = BannerLoginCRUDSerializers(
+            instance=queryset,
+            data=request.data,
+            partial=True,
+        )
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(
+            {"error": "update error data"}, status=status.HTTP_400_BAD_REQUEST
+        )
+
+    def delete(self, request, pk):
+        """BannerLogin Delete views"""
+        objects_get = BannerLogin.objects.get(id=pk)
+        objects_get.delete()
+        return Response(
+            {"message": "Delete success"},
+            status=status.HTTP_200_OK
+        )
+
+
+# banner app
+class BannerLoginAppViews(APIView):
+    """BannerLogin List Class"""
+
+    def get(self, request):
+        """BannerLogin views"""
+        objects_list = BannerLogin.objects.all()
+        serializer = BannerLoginSerializers(objects_list, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class BannerMainAppViews(APIView):
+    """BannerMain List Class"""
+
+    def get(self, request):
+        """BannerMain views"""
+        objects_list = BannerMain.objects.all()
+        serializer = BannerMainSerializers(objects_list, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)

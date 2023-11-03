@@ -4,6 +4,8 @@ from shop_news.models import (
     Drugs,
     BayDrugs,
     UserCard,
+    BannerLogin,
+    BannerMain
 )
 
 
@@ -37,3 +39,19 @@ class NewUserCard(admin.ModelAdmin):
 
 
 admin.site.register(UserCard, NewUserCard)
+
+
+class NewBannerLogin(admin.ModelAdmin):
+    model = BannerLogin
+    list_display = ["id", "title"]
+
+
+admin.site.register(BannerLogin, NewBannerLogin)
+
+
+class NewBannerMain(admin.ModelAdmin):
+    model = BannerMain
+    list_display = ["id", "title"]
+
+
+admin.site.register(BannerMain, NewBannerMain)

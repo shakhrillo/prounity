@@ -24,6 +24,14 @@ def get_token_for_user(user):
       "access": str(refresh.access_token)}
 
 
+class CountryListViews(APIView):
+    """ Views """
+    def get(self, request):
+        objects_list = CountryList.objects.all()
+        serializer = CountryListSerializerss(objects_list, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
 class UserSigInUpViews(APIView):
     """ Views """
     render_classes = [UserRenderers]
