@@ -8,6 +8,17 @@ const PatientDetail = () => {
 
     const {id} = useParams()
     const [patientDetails, setPatientDetails] = useState([])
+    const items = [
+        {title:"Ashurov Jobir(Lor)", doctor_message: "hello", patient_message: "hello123" },
+        {title:"Ashurov Jobir(Lor)", doctor_message: "hello", patient_message: "hello123" },
+        {title:"Ashurov Jobir(Lor)", doctor_message: "hello", patient_message: "hello123" },
+        {title:"Ashurov Jobir(Lor)", doctor_message: "hello", patient_message: "hello123" },
+        {title:"Ashurov Jobir(Lor)", doctor_message: "hello", patient_message: "hello123" },
+        {title:"Ashurov Jobir(Lor)", doctor_message: "hello", patient_message: "hello123" },
+        {title:"Ashurov Jobir(Lor)", doctor_message: "hello", patient_message: "hello123" },
+        {title:"Ashurov Jobir(Lor)", doctor_message: "hello", patient_message: "hello123" },
+    ]
+    const [openIndex, setOpenIndex] = useState(null);
     const getPatientDetails = async () => {
         try {
             const response = await fetch(
@@ -30,19 +41,6 @@ const PatientDetail = () => {
         getPatientDetails()
     })
 
-    const items = [
-        {title:"Ashurov Jobir(Lor)", doctor_message: "hello", patient_message: "hello123" },
-        {title:"Ashurov Jobir(Lor)", doctor_message: "hello", patient_message: "hello123" },
-        {title:"Ashurov Jobir(Lor)", doctor_message: "hello", patient_message: "hello123" },
-        {title:"Ashurov Jobir(Lor)", doctor_message: "hello", patient_message: "hello123" },
-        {title:"Ashurov Jobir(Lor)", doctor_message: "hello", patient_message: "hello123" },
-        {title:"Ashurov Jobir(Lor)", doctor_message: "hello", patient_message: "hello123" },
-        {title:"Ashurov Jobir(Lor)", doctor_message: "hello", patient_message: "hello123" },
-        {title:"Ashurov Jobir(Lor)", doctor_message: "hello", patient_message: "hello123" },
-    ]
-
-    const [openIndex, setOpenIndex] = useState(null);
-
     const handleToggle = (index) => {
         setOpenIndex(openIndex === index ? null : index);
       };
@@ -53,8 +51,8 @@ const PatientDetail = () => {
             <div className="w-100 p-3 bg-light rounded">
                 <div className="row justify-content-between mb-3">
                     <div className="card  p-4 col-4">
-                        <div className="card-body d-flex align-items-center justify-content-around">
-                            <img style={{width:"100px",width:"100px", borderRadius:"50%"}} src={User} alt="" />
+                        <div className="row card-body d-flex align-items-center justify-content-around">
+                            <img className="col-2" style={{width:"100px",width:"100px", borderRadius:"50%"}} src={User} alt="" />
                             <div>
                                 <ul class="list-group">
                                     <li class="list-group-item">Firstname : Amirbek</li>

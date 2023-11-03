@@ -46,7 +46,7 @@ const PatientHistory = () => {
           <ol className="breadcrumb">
             <li className="breadcrumb-item breadcrumb-fs">
               <Link to={"/patients"}>
-                <a href="#">Patients</a>
+                <a href="#">Doctors list</a>
               </Link>
             </li>
             <li className="breadcrumb-item active breadcrumb-fs" aria-current="page">
