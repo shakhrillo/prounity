@@ -140,7 +140,6 @@ const Doctors = () => {
         setPassword("");
     };
 
-
     return <Layout>
         <div className="w-100">
             <div className="p-4 w-100 bg-light me-2">

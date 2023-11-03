@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { encode } from 'base-64';
 
 const Login = () => {
   const usernameRef = useRef(null);
@@ -7,12 +8,15 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleRoll = async () => {
+
+    const authHeader = 'Basic ' + encode(usernameRef + ':' + passwordRef);
+
     try {
       const response = await fetch(
         "http://192.168.1.163:8000/v1/api/user_profiles_views/",
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: authHeader,
           },
         }
       );
@@ -40,8 +44,14 @@ const Login = () => {
           body: JSON.stringify({ username, password }),
         }
       );
+
       const data = await response.json();
-      localStorage.setItem("token", data?.token?.access);
+      const token = data?.token?.access;
+      const encodedToken = encode(token); // Кодирование токена в формате base-64
+      localStorage.setItem("token", JSON.stringify(encodedToken));
+
+      // const data = await response.json();
+      // localStorage.setItem("token", data?.token?.access);
       handleRoll();
     } catch (error) {
       console.error(error);
@@ -118,9 +128,6 @@ const Login = () => {
                   </button>
                 </form>
               </div>
-            </div>
-            <div className="text-center mt-5 text-muted">
-              Copyright © 2017-2021 — Pro Unity
             </div>
           </div>
         </div>
