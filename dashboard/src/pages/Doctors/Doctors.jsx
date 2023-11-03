@@ -140,6 +140,25 @@ const Doctors = () => {
         setPassword("");
     };
 
+    // new code
+    const items = [
+        { title: "Ashurov Jobir(Bor)", doctor_message: "hello", patient_message: "hello123" },
+        { title: "Ashurov Jobir(Lor)", doctor_message: "hello", patient_message: "hello123" },
+        { title: "Ashurov Jobir(Lor)", doctor_message: "hello", patient_message: "hello123" },
+        { title: "Ashurov Jobir(Lor)", doctor_message: "hello", patient_message: "hello123" },
+        { title: "Ashurov Jobir(Lor)", doctor_message: "hello", patient_message: "hello123" },
+        { title: "Ashurov Jobir(Lor)", doctor_message: "hello", patient_message: "hello123" },
+        { title: "Ashurov Jobir(Lor)", doctor_message: "hello", patient_message: "hello123" },
+        { title: "Ashurov Jobir(Lor)", doctor_message: "hello", patient_message: "hello123" },
+    ]
+
+    const [openIndex, setOpenIndex] = useState(null);
+
+    const handleToggle = (index) => {
+        setOpenIndex(openIndex === index ? null : index);
+    };
+    // new code
+
     return <>
         <div className="w-100">
             <div className="p-4 w-100 bg-light me-2">

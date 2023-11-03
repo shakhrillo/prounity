@@ -15,6 +15,7 @@ import CurrentNews from "./pages/News/CurrentNews";
 import Shop from "./pages/Shop/Shop";
 import Sidebar from "./pages/sidebar/Sidebar";
 import DeletedDoctors from "./pages/Doctors/DeletedDoctors";
+import DoctorDetails from "./pages/Doctors/DoctorDetails";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/" element={<Table />} />
           <Route path="/doctors" element={<Doctors />} />
           <Route path="/deleted-doctors" element={<DeletedDoctors />} />
+          <Route path="/doctor-details" element={<DoctorDetails />} />
           <Route path="/blogs" element={<News />} />
           <Route path="/current-news/:id" element={<CurrentNews />} />
           <Route path="/login" element={<Login />} />
