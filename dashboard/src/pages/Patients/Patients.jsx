@@ -35,6 +35,7 @@ const Patients = () => {
                 <li className="breadcrumb-item active breadcrumb-fs" aria-current="page">Patients</li>
             </ol>
             </nav>
+            <div className="card p-3 mb-3">
             <table className="table">
                 <thead>
                     <tr>
@@ -54,14 +55,27 @@ const Patients = () => {
                             <td>{item.last_name}</td>
                             <td>
                                 <div className="btn-group" role="group" aria-label="Basic outline example">
-                                    <Link className="btn btn-outline-warning btn-sm" to={`/patient-detail/${item.id}`}>applies</Link>
-                                    <Link className="btn btn-outline-danger btn-sm" to={`/patient-history/${item.id}`}>history</Link>
+                                    <Link className="btn btn-outline-primary btn-sm" to={`/patient-history/${item.id}`}>view history</Link>
                                 </div>
                             </td>
                         </tr>   
                     )}
                 </tbody>
             </table> 
+            </div>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
         </Layout>
     )
