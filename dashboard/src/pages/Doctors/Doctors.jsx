@@ -140,7 +140,7 @@ const Doctors = () => {
         setPassword("");
     };
 
-    return <Layout>
+    return <>
         <div className="w-100">
             <div className="p-4 w-100 bg-light me-2">
                 <div className="d-flex justify-content-between align-items-center">
@@ -246,7 +246,7 @@ const Doctors = () => {
                 </div>
             </div>
         </div>
-    </Layout>
+    </>
 
 };
 

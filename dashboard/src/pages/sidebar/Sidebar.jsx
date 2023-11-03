@@ -9,7 +9,7 @@ const navs = [
     button: "Add doctor",
     dropdownItems: [
       { name: "List", path: "/doctors" },
-      { name: "Deleted", path: "/" },
+      { name: "Deleted", path: "/deleted-doctors" },
     ],
   },
   {
@@ -88,9 +88,8 @@ const Sidebar = () => {
             <div
               role="button"
               key={item.id}
-              className={`py-2 px-3 rounded-3 cursor-pointer ${
-                item.isDropdownOpen ? "border  bg-white" : ""
-              }`}
+              className={`py-2 px-3 rounded-3 cursor-pointer ${item.isDropdownOpen ? "border  bg-white" : ""
+                }`}
             >
               <h5 onClick={() => toggleDropdown(item.id)}>{item.name}</h5>
               {item.dropdownItems.length > 0 && item.isDropdownOpen && (
