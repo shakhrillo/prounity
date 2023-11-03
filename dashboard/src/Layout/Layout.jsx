@@ -6,8 +6,7 @@ const Layout = ({ children }) => {
   return (
     <div className="w-100 d-flex h-100">
       <Sidebar />
-      <div className="w-100">
-        <Navbar />
+      <div className="w-100 p-2">
         {children}
       </div>
     </div>
