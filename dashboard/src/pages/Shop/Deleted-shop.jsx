@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
-import DeleteItem from "../DeleteItem/DeleteItem";
 import { BaseURL } from "../../utils/Base-url";
-import AddShop from "./Add-shop";
-import EditShop from "./Edit-shop";
 
-const Shop = () => {
-  const [addModal, setAddModal] = useState(false);
-  const [deleteModal, setDeleteModal] = useState(false);
+const DeletedShop = () => {
   const [shop_data, setshop_data] = useState([]);
 
   const getData = async () => {
@@ -32,13 +27,7 @@ const Shop = () => {
   return (
     <div className="p-4 bg-light me-2 w-100">
       <div className="d-flex justify-content-between align-items-center">
-        <h1>Shop</h1>
-        <button
-          className="btn btn-outline-dark"
-          onClick={() => setAddModal(!addModal)}
-        >
-          + Add Shop
-        </button>
+        <h1>Deleted Shop</h1>
       </div>
       <div className="card p-3">
         <table className="table table-bordered justify-content-center">
@@ -51,9 +40,6 @@ const Shop = () => {
               <th scope="col">Price</th>
               <th scope="col">Quantity</th>
               <th scope="col">Content</th>
-              <th className="text-end" scope="col">
-                Actions
-              </th>
             </tr>
           </thead>
           <tbody>
@@ -64,7 +50,7 @@ const Shop = () => {
                 </th>
                 <td>{shop?.company}</td>
                 <td align="center">
-                  <img width={100} src={`${BaseURL}${shop.img}`} alt="" />
+                  <img width={100} src={`${BaseURL}${shop.img}`} alt="img" />
                 </td>
                 <td>{shop?.name}</td>
                 <td align="center">{shop?.price}</td>
@@ -72,23 +58,13 @@ const Shop = () => {
                 <td>
                   <p className="text-wrapp">{shop?.content}</p>
                 </td>
-                <td align="right">
-                  <EditShop data={shop} get_data={getData} />
-
-                  <DeleteItem
-                    get_data={getData}
-                    url={`v1/shop_news/drugs_crud_views/${shop?.id}/`}
-                    toggle={setDeleteModal}
-                  />
-                </td>
               </tr>
             ))}
           </tbody>
         </table>
-        {addModal && <AddShop get_data={getData} toggle={setAddModal} />}
       </div>
     </div>
   );
 };
 
-export default Shop;
+export default DeletedShop;

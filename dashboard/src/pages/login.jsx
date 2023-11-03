@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { encode } from 'base-64';
 
 const Login = () => {
   const usernameRef = useRef(null);
@@ -8,13 +7,12 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleRoll = async () => {
-
     try {
       const response = await fetch(
         "http://192.168.1.163:8000/v1/api/user_profiles_views/",
         {
           headers: {
-            Authorization: localStorage.getItem('token'),
+            Authorization: localStorage.getItem("token"),
           },
         }
       );

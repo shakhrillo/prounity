@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Layout from "../../Layout/Layout";
 import { BaseURL } from "../../utils/Base-url";
 
 const Category = () => {
@@ -66,89 +65,87 @@ const Category = () => {
   };
 
   return (
-    <Layout>
-      <div className="p-4 bg-light me-2 w-100">
-        <div className="d-flex justify-content-between align-items-center">
-          <h1>Edit Category {category.name}</h1>
-          <button
-            className="btn btn-outline-dark"
-            onClick={() => setAddModal(true)}
-          >
-            + Add Doctor
-          </button>
-        </div>
-        <div className="card p-3">
-          <table className="table">
-            <thead className="thead-dark">
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">First Name</th>
-                <th scope="col">Last Name</th>
+    <div className="p-4 bg-light me-2 w-100">
+      <div className="d-flex justify-content-between align-items-center">
+        <h1>Edit Category {category.name}</h1>
+        <button
+          className="btn btn-outline-dark"
+          onClick={() => setAddModal(true)}
+        >
+          + Add Doctor
+        </button>
+      </div>
+      <div className="card p-3">
+        <table className="table">
+          <thead className="thead-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            {category?.user?.map((item, index) => (
+              <tr key={item?.id}>
+                <th scope="row">{index + 1}</th>
+                <td>{item?.first_name}</td>
+                <td>{item?.first_name}</td>
               </tr>
-            </thead>
-            <tbody>
-              {category?.user?.map((item, index) => (
-                <tr key={item?.id}>
-                  <th scope="row">{index + 1}</th>
-                  <td>{item?.first_name}</td>
-                  <td>{item?.first_name}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          {addModal && (
-            <div>
-              <div className="h-100 modal-box">
-                <div className="row justify-content-sm-center align-items-center h-100">
-                  <div className="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
-                    <div className="card shadow-lg">
-                      <div className="card-body p-4">
-                        <h1 className="fs-4 card-title text-center fw-bold mb-4">
-                          Add users
-                        </h1>
-                        <form
-                          method="POST"
-                          className="needs-validation"
-                          autoComplete="off"
+            ))}
+          </tbody>
+        </table>
+        {addModal && (
+          <div>
+            <div className="h-100 modal-box">
+              <div className="row justify-content-sm-center align-items-center h-100">
+                <div className="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
+                  <div className="card shadow-lg">
+                    <div className="card-body p-4">
+                      <h1 className="fs-4 card-title text-center fw-bold mb-4">
+                        Add users
+                      </h1>
+                      <form
+                        method="POST"
+                        className="needs-validation"
+                        autoComplete="off"
+                      >
+                        <select
+                          multiple
+                          className="form-select"
+                          size="5"
+                          aria-label="size 3 select example"
+                          onChange={handleOptionSelect}
                         >
-                          <select
-                            multiple
-                            className="form-select"
-                            size="5"
-                            aria-label="size 3 select example"
-                            onChange={handleOptionSelect}
-                          >
-                            {sellect_data.map((item) => (
-                              <option value={item?.id}>
-                                {item?.first_name} {item?.last_name}
-                              </option>
-                            ))}
-                          </select>
-                          <button
-                            onClick={handlePost}
-                            type="button"
-                            className="btn mt-4 float-right btn-success"
-                          >
-                            Save changes
-                          </button>
-                          <button
-                            onClick={() => setAddModal(false)}
-                            type="button"
-                            className="btn mt-4 float-right btn-secondary mx-2"
-                          >
-                            Cancel
-                          </button>
-                        </form>
-                      </div>
+                          {sellect_data.map((item) => (
+                            <option value={item?.id}>
+                              {item?.first_name} {item?.last_name}
+                            </option>
+                          ))}
+                        </select>
+                        <button
+                          onClick={handlePost}
+                          type="button"
+                          className="btn mt-4 float-right btn-success"
+                        >
+                          Save changes
+                        </button>
+                        <button
+                          onClick={() => setAddModal(false)}
+                          type="button"
+                          className="btn mt-4 float-right btn-secondary mx-2"
+                        >
+                          Cancel
+                        </button>
+                      </form>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
-    </Layout>
+    </div>
   );
 };
 

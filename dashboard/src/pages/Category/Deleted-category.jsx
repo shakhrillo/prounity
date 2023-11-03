@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
-import AddCategory from "./Add-category";
-import { Link } from "react-router-dom";
-import DeleteItem from "../DeleteItem/DeleteItem";
 import { BaseURL } from "../../utils/Base-url";
 
-const Category = () => {
-  const [addModal, setAddModal] = useState(false);
+const DeletedCategory = () => {
   const [categories, setCategories] = useState([]);
 
   const getData = async () => {
@@ -32,13 +28,7 @@ const Category = () => {
   return (
     <div className="p-4 bg-light me-2 w-100">
       <div className="d-flex justify-content-between align-items-center">
-        <h1>Category</h1>
-        <button
-          className="btn btn-outline-dark"
-          onClick={() => setAddModal(!addModal)}
-        >
-          + Add Category
-        </button>
+        <h1>Deleted Category</h1>
       </div>
       <div className="card p-3">
         <table className="table">
@@ -46,9 +36,6 @@ const Category = () => {
             <tr>
               <th scope="col">#</th>
               <th scope="col">Name</th>
-              <th className="text-end" scope="col">
-                Actions
-              </th>
             </tr>
           </thead>
           <tbody>
@@ -56,28 +43,13 @@ const Category = () => {
               <tr key={category.id}>
                 <th scope="row">{index + 1}</th>
                 <td>{category.name}</td>
-                <td align="right">
-                  <button className="btn btn-warning mx-2">
-                    <Link
-                      className="text-decoration-none text-white"
-                      to={`/category/${category?.id}`}
-                    >
-                      Edit
-                    </Link>
-                  </button>
-                  <DeleteItem
-                    get_data={getData}
-                    url={`v1/api/doctor-categories-detail/${category?.id}/`}
-                  />
-                </td>
               </tr>
             ))}
           </tbody>
         </table>
-        {addModal && <AddCategory get_data={getData} toggle={setAddModal} />}
       </div>
     </div>
   );
 };
 
-export default Category;
+export default DeletedCategory;

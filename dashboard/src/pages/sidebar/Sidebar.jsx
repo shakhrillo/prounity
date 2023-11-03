@@ -17,28 +17,22 @@ const navs = [
     name: "Blogs",
     isDropdownOpen: false,
     button: "Add Blogs",
-    dropdownItems: [
-      { name: "List", path: "/blogs" },
-    ],
+    dropdownItems: [{ name: "List", path: "/blogs" }],
   },
   {
     id: 6,
     name: "Patients",
     path: "/patients",
     button: false,
-    dropdownItems: [
-      { name: "List", path: "/doctors" },
-      { name: "Deleted", path: "/" },
-    ],
+    dropdownItems: [{ name: "List", path: "/doctors" }],
   },
   {
     id: 7,
     name: "Category",
-    path: "/category",
     button: "Add category",
     dropdownItems: [
-      { name: "List", path: "/doctors" },
-      { name: "Deleted", path: "/" },
+      { name: "List", path: "/category" },
+      { name: "Deleted", path: "/category-deleted" },
     ],
   },
   {
@@ -47,8 +41,8 @@ const navs = [
     path: "/shop",
     button: "Add Shop",
     dropdownItems: [
-      { name: "List", path: "/doctors" },
-      { name: "Deleted", path: "/" },
+      { name: "List", path: "/shop" },
+      { name: "Deleted", path: "/shop-deleted" },
     ],
   },
 ];
@@ -87,8 +81,9 @@ const Sidebar = () => {
             <div
               role="button"
               key={item.id}
-              className={`py-2 px-3 rounded-3 cursor-pointer ${item.isDropdownOpen ? "border  bg-white" : ""
-                }`}
+              className={`py-2 px-3 rounded-3 cursor-pointer ${
+                item.isDropdownOpen ? "border  bg-white" : ""
+              }`}
             >
               <h5 onClick={() => toggleDropdown(item.id)}>{item.name}</h5>
               {item.dropdownItems.length > 0 && item.isDropdownOpen && (
