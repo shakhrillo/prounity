@@ -7,7 +7,14 @@ from shop_news.views import (
     BayDrugsListViews,
     HistoryBayDrugsListViews,
     HistoryUserBayDrugsListViews,
-    UserCardListViews
+    UserCardListViews,
+    # banner
+    BannerLoginListViews,
+    BannerLoginCrudViews,
+    BannerLoginAppViews,
+    BannerMainListViews,
+    BannerMainCrudViews,
+    BannerMainAppViews,
 )
 
 
@@ -27,4 +34,11 @@ urlpatterns = [
         HistoryUserBayDrugsListViews.as_view()
     ),
     path("user_card_list_views/", UserCardListViews.as_view()),
+    # banner
+    path('banner_login_list_views/', BannerLoginListViews.as_view()),
+    path('banner_login_crud_views/<int:pk>/', BannerLoginCrudViews.as_view()),
+    path('banner_login_app_views/', BannerLoginAppViews.as_view()),
+    path('banner_main_list_views/', BannerMainListViews.as_view()),
+    path('banner_main_crud_views/<int:pk>/', BannerMainCrudViews.as_view()),
+    path('banner_main_app_views/', BannerMainAppViews.as_view()),
 ]

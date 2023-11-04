@@ -5,6 +5,8 @@ from shop_news.models import (
     Drugs,
     BayDrugs,
     UserCard,
+    BannerLogin,
+    BannerMain,
 )
 
 
@@ -165,3 +167,73 @@ class UserCardSerializers(serializers.ModelSerializer):
 
         model = UserCard
         fields = "__all__"
+
+
+class BannerMainSerializers(serializers.ModelSerializer):
+    """BannerMain Serializers"""
+    class Meta:
+        """BannerMain Model Fileds"""
+
+        model = BannerMain
+        fields = "__all__"
+
+
+class BannerMainCRUDSerializers(serializers.ModelSerializer):
+    """BannerMain Serializers"""
+    class Meta:
+        """BannerMain Model Fileds"""
+
+        model = BannerMain
+        fields = "__all__"
+
+    def create(self, validated_data):
+        """BannerMain Create"""
+        create = BannerMain.objects.create(**validated_data)
+        create.save()
+        return create
+
+    def update(self, instance, validated_data):
+        """BannerMain Update"""
+        instance.title = validated_data.get("title", instance.titletitle)
+        instance.content = validated_data.get("content", instance.content)
+        if instance.img == None:
+            instance.img = self.context.get("img")
+        else:
+            instance.img = validated_data.get("img", instance.img)
+        instance.save()
+        return instance
+
+
+class BannerLoginSerializers(serializers.ModelSerializer):
+    """BannerLogin Serializers"""
+    class Meta:
+        """BannerLogin Model Fileds"""
+
+        model = BannerLogin
+        fields = "__all__"
+
+
+class BannerLoginCRUDSerializers(serializers.ModelSerializer):
+    """BannerLogin Serializers"""
+    class Meta:
+        """BannerLogin Model Fileds"""
+
+        model = BannerLogin
+        fields = "__all__"
+
+    def create(self, validated_data):
+        """BannerLogin Create"""
+        create = BannerLogin.objects.create(**validated_data)
+        create.save()
+        return create
+
+    def update(self, instance, validated_data):
+        """BannerLogin Update"""
+        instance.title = validated_data.get("title", instance.titletitle)
+        instance.content = validated_data.get("content", instance.content)
+        if instance.img == None:
+            instance.img = self.context.get("img")
+        else:
+            instance.img = validated_data.get("img", instance.img)
+        instance.save()
+        return instance

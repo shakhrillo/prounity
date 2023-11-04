@@ -6,7 +6,10 @@ class News(models.Model):
     title = models.CharField(max_length=250)
     content = models.TextField()
     img = models.ImageField(upload_to='news/', null=True, blank=True)
+<<<<<<< HEAD
     img = models.ImageField(upload_to="news/")
+=======
+>>>>>>> c36e697f9c286948f9266a591f6d2fb6ecaa6cf7
     date = models.DateTimeField(auto_now_add=True)
 
 
@@ -41,3 +44,17 @@ class UserCard(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE
     )
+
+
+class BannerLogin(models.Model):
+    title = models.CharField(max_length=100)
+    content = models.TextField()
+    img = models.ImageField(upload_to='login_banner/', null=True, blank=True)
+    create_date = models.DateTimeField(auto_now_add=True)
+
+
+class BannerMain(models.Model):
+    title = models.CharField(max_length=100)
+    content = models.TextField()
+    img = models.ImageField(upload_to='main_banner/', null=True, blank=True)
+    create_date = models.DateTimeField(auto_now_add=True)

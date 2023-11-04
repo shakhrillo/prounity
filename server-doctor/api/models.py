@@ -4,6 +4,13 @@ from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 
 
+class CountryList(models.Model):
+    name = models.CharField(max_length=100)
+    dial_code = models.CharField(max_length=50)
+    emoji = models.CharField(max_length=50)
+    code = models.CharField(max_length=50)
+
+
 class DoctorCategories(models.Model):
     """ Doctor Categories Table """
     name = models.CharField(max_length=150, null=True, blank=True)
