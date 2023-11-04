@@ -8,11 +8,13 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.decorators import api_view
+from rest_framework.pagination import PageNumberPagination
 
 from .models import *
 from .seriializers import *
 from .renderers import *
 from .utils import *
+from .pagination import *
 
 import random, datetime
 
@@ -136,26 +138,42 @@ class UserDetailsViews(APIView):
         return Response({'msg': 'User Deleted'}, status=status.HTTP_202_ACCEPTED)
 
 
-class UserGroupsDoctorViews(APIView):
+class BasicPagination(PageNumberPagination):
+    page_size = 10
+    page_size_query_param = 'page_size'
+    max_page_size = 1000
+
+
+class UserGroupsDoctorViews(APIView, PaginationHandlerMixin):
     """ Views """
+    pagination_class = BasicPagination
     render_classes = [UserRenderers]
     permission = [IsAuthenticated]
 
-    def get(self, request):
-        queryset = CustomUser.objects.prefetch_related('groups').filter(groups__name__in=['Doctor'])
-        serializers = UserInformationSerializers(queryset, many=True)
-        return Response(serializers.data, status=status.HTTP_200_OK)
+    def get(self, request, format=None, *args, **kwargs):
+        instance = CustomUser.objects.prefetch_related('groups').filter(groups__name__in=['Doctor'])
+        page = self.paginate_queryset(instance)
+        if page is not None:
+            serializer = self.get_paginated_response(UserInformationSerializers(page, many=True).data)
+        else:
+            serializer = UserInformationSerializers(instance, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-class UserGroupsPatientViews(APIView):
+class UserGroupsPatientViews(APIView, PaginationHandlerMixin):
     """ Views """
     render_classes = [UserRenderers]
     permission = [IsAuthenticated]
+    pagination_class = BasicPagination
 
-    def get(self, request):
-        queryset = CustomUser.objects.prefetch_related('groups').filter(groups__name__in=['Patient'])
-        serializers = UserInformationSerializers(queryset, many=True)
-        return Response(serializers.data, status=status.HTTP_200_OK)
+    def get(self, request, format=None, *args, **kwargs):
+        instance = CustomUser.objects.prefetch_related('groups').filter(groups__name__in=['Patient'])
+        page = self.paginate_queryset(instance)
+        if page is not None:
+            serializer = self.get_paginated_response(UserInformationSerializers(page, many=True).data)
+        else:
+            serializer = UserInformationSerializers(instance, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class CategoriesList(APIView):

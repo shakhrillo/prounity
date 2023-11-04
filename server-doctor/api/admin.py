@@ -24,7 +24,8 @@ class NewMyUser(UserAdmin):
                 "reviews",
                 "description",
                 "categories_id",
-                "avatar"
+                "avatar",
+                "online_status"
             )},
         ),
     )
@@ -36,7 +37,8 @@ class NewMyUser(UserAdmin):
                 "reviews",
                 "description",
                 "categories_id",
-                "avatar"
+                "avatar",
+                "online_status"
             )},
         ),
     )

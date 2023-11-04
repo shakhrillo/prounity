@@ -4,7 +4,8 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
-from django.contrib.auth.models import User
+from rest_framework import status
+from django.shortcuts import get_object_or_404
 from .serializers import ConversationListSerializer, ConversationSerializer
 from django.db.models import Q
 from django.shortcuts import redirect, reverse
@@ -24,7 +25,6 @@ class StartConversationView(APIView):
         # check the user is or not in databases
         try:
             participant = CustomUser.objects.get(username=username)
-            print(participant)
         except CustomUser.DoesNotExist:
             return Response({'message': 'You cannot chat with a non existent user'})
         # ------------------------------------
@@ -37,7 +37,7 @@ class StartConversationView(APIView):
             return redirect(reverse('get_conversation', args=(conversation[0].id,)))
         else:
             conversation = Conversation.objects.create(initiator=request.user, receiver=participant)
-            return Response(ConversationSerializer(instance=conversation).data)
+            return Response(ConversationSerializer(instance=conversation).data, status=status.HTTP_200_OK)
 
 
 @api_view(['GET'])
@@ -47,12 +47,55 @@ def get_conversation(request, convo_id):
         return Response({'message': 'Conversation does not exist'})
     else:
         serializer = ConversationSerializer(instance=conversation[0])
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 @api_view(['GET'])
 def conversations(request):
+
     conversation_list = Conversation.objects.filter(Q(initiator=request.user) |
                                                     Q(receiver=request.user))
     serializer = ConversationListSerializer(instance=conversation_list, many=True)
-    return Response(serializer.data)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class GetDoctorConversations(APIView):
+    render_classes = [UserRenderers]
+    permission = [IsAuthenticated]
+
+    def get(self, request, pk):
+
+        queryset = get_object_or_404(CustomUser, id=pk)
+        get_convo = Conversation.objects.select_related(
+            'receiver'
+        ).filter(
+            receiver__id=queryset.id
+        )
+        serializer = ConversationSerializer(instance=get_convo, many=True)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class GetPatientConversations(APIView):
+    render_classes = [UserRenderers]
+    permission = [IsAuthenticated]
+
+    def get(self, request, pk):
+        queryset = get_object_or_404(CustomUser, id=pk)
+        get_convo = Conversation.objects.select_related(
+            'initiator'
+        ).filter(
+            initiator__id=queryset.id
+        )
+        serializer = ConversationSerializer(instance=get_convo, many=True)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class DeleteChatSMSView(APIView):
+    render_classes = [UserRenderers]
+    permission = [IsAuthenticated]
+
+    def delete(self, request, pk):
+        queryset = get_object_or_404(Message, id=pk).delete()
+        return Response({'msg': "Message Deleted successfully"}, status=status.HTTP_200_OK)

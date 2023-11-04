@@ -5,11 +5,8 @@ from django.conf import settings
 class News(models.Model):
     title = models.CharField(max_length=250)
     content = models.TextField()
-<<<<<<< HEAD
     img = models.ImageField(upload_to='news/', null=True, blank=True)
-=======
     img = models.ImageField(upload_to="news/")
->>>>>>> 11bc596e66f17090982cbf2de416bd231c958182
     date = models.DateTimeField(auto_now_add=True)
 
 

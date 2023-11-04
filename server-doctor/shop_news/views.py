@@ -198,6 +198,8 @@ class UserCardListViews(APIView):
 
     def get(self, request):
         """UserCard views"""
-        objects_list = UserCard.objects.filter(user_id=request.user.id)
+        objects_list = UserCard.objects.all()
         serializer = UserCardSerializers(objects_list, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+

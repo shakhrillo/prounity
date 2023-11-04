@@ -2,12 +2,9 @@ from rest_framework import serializers
 from consultation.models import Consultation
 from api.models import CustomUser
 from django.db.models import Q
-<<<<<<< HEAD
+
 from django.contrib.auth.models import User
 from api.seriializers import *
-=======
->>>>>>> 11bc596e66f17090982cbf2de416bd231c958182
-
 
 class UserListSerializers(serializers.ModelSerializer):
     """User Serializers"""
@@ -26,12 +23,8 @@ class UserListSerializers(serializers.ModelSerializer):
 
 class ConsultationSerializers(serializers.ModelSerializer):
     """Consultation Serializers"""
-<<<<<<< HEAD
-    doctor_id = UserInformationSerializers(read_only=True)
-=======
 
-    doctor_id = UserListSerializers(read_only=True)
->>>>>>> 11bc596e66f17090982cbf2de416bd231c958182
+    doctor_id = UserInformationSerializers(read_only=True)
     user_id = UserListSerializers(read_only=True)
 
     class Meta:

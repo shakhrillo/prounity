@@ -15,14 +15,25 @@ class DoctorCategories(models.Model):
 
 class CustomUser(AbstractUser):
     """ Custom Users Table """
-    price = models.IntegerField(default=0, null=True, blank=True)
-    reviews = models.FloatField(default=0, null=True, blank=True)
-    description = models.TextField(null=True, blank=True)
+    price = models.IntegerField(
+        default=0, null=True, blank=True)
+    reviews = models.FloatField(
+        default=0, null=True, blank=True)
+    description = models.TextField(
+        null=True, blank=True)
     categories_id = models.ForeignKey(
         DoctorCategories,
         on_delete=models.CASCADE,
         null=True, blank=True)
-    avatar = models.ImageField(upload_to='avatar/', null=True, blank=True)
+    avatar = models.ImageField(
+        upload_to='avatar/',
+        null=True, blank=True
+    )
+    online_status = models.BooleanField(
+        default=False,
+        null=True, blank=True,
+        verbose_name='Is online or not'
+    )
 
 
 class SmsCode(models.Model):
@@ -32,4 +43,5 @@ class SmsCode(models.Model):
         on_delete=models.CASCADE,
         related_name='users')
     sms_code = models.IntegerField()
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateTimeField(
+        auto_now_add=True)
