@@ -25,6 +25,8 @@ const PatientDetail = () => {
             );
             const jsonData = await response.json();
             setPatientDetails(jsonData)
+            console.log(jsonData)
+            
         } catch (error) {
             console.error(error);
         }   
@@ -58,8 +60,8 @@ const PatientDetail = () => {
             }
           );
           const jsonData = await response.json();
-          setApply(jsonData.history);
-          console.log(jsonData.history);
+          setApply(jsonData.results);
+          console.log(jsonData);
         } catch (error) {
           console.error(error);
         }
