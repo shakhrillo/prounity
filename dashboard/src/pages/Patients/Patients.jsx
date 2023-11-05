@@ -35,7 +35,6 @@ const Patients = () => {
   };
 
   return (
-    <Layout>
       <div className="w-100 p-3 bg-light rounded">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb">
@@ -92,7 +91,6 @@ const Patients = () => {
           </ul>
         </nav>
       </div>
-    </Layout>
   );
 };
 

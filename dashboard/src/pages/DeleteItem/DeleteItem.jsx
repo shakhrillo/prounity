@@ -23,7 +23,7 @@ const DeleteItem = ({ url, get_data }) => {
         onClick={() => setShow((prev) => !prev)}
         className="btn btn-danger m-2"
       >
-        Delete
+        d
       </button>
       {show && (
         <div className=" text-start h-100 modal-box">

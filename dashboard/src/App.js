@@ -10,7 +10,7 @@ import Login from "./pages/login";
 import News from "./pages/News/News";
 import CurrentNews from "./pages/News/CurrentNews";
 import Shop from "./pages/Shop/Shop";
-import Sidebar from "./pages/Sidebar/Sidebar";
+import Sidebar from "./pages/sidebar/Sidebar";
 import DeletedShop from "./pages/Shop/Deleted-shop";
 import DeletedCategory from "./pages/Category/Deleted-category";
 import DeletedDoctors from "./pages/Doctors/DeletedDoctors";

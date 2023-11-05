@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import Layout from "../../Layout/Layout"
 import { Link } from "react-router-dom"
 import User from '../../assets/images/user1.png'
 import DeleteItem from "../DeleteItem/DeleteItem"
@@ -10,6 +9,7 @@ const PatientDetail = () => {
     const {id} = useParams()
     const [patientDetails, setPatientDetails] = useState([])
     const [message, setMessage] = useState([])
+    const [apply, setApply] = useState([])
     const [patientHistory, setPatientHistory] = useState([]);
 
     const [openIndex, setOpenIndex] = useState(null);
@@ -25,7 +25,6 @@ const PatientDetail = () => {
             );
             const jsonData = await response.json();
             setPatientDetails(jsonData)
-            console.log(jsonData)
         } catch (error) {
             console.error(error);
         }   
@@ -43,11 +42,28 @@ const PatientDetail = () => {
             );
             const jsonData = await response.json();
             setMessage(jsonData)
-            console.log(jsonData)
         } catch (error) {
             console.error(error);
         }   
     }
+
+    const getApply = async () => {
+        try {
+          const response = await fetch(
+            `http://192.168.1.163:8000/v1/consultation/consultation_history_list/${id}/`,
+            {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
+            }
+          );
+          const jsonData = await response.json();
+          setApply(jsonData.history);
+          console.log(jsonData.history);
+        } catch (error) {
+          console.error(error);
+        }
+      };
 
     const getPatientHistory = async () => {
         try {
@@ -81,6 +97,7 @@ const PatientDetail = () => {
         getPatientDetails()
         getMessage()
         getPatientHistory();
+        getApply()
     },[])
 
     const handleToggle = (index) => {
@@ -88,15 +105,15 @@ const PatientDetail = () => {
         // getMessage()
       };
 
-    return(
 
-        <Layout>
+
+    return(
             <div className="w-100 p-3 bg-light rounded">
                 <div className="row justify-content-between mb-3">
                     <div className="card  p-4 col-4">
                         <div className="row card-body d-flex align-items-center justify-content-around">
                             <img className="col-2" style={{width:"100px",width:"100px", borderRadius:"50%"}} src={User} alt="" />
-                            <div>
+                            <div className="col-8">
                                     <ul class="list-group">
                                     <li class="list-group-item">Firstname : {patientDetails.first_name}</li>
                                     <li class="list-group-item">Lastname : {patientDetails.last_name}</li>
@@ -125,9 +142,17 @@ const PatientDetail = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                </tr>
+                                {apply.map((item,index)=>
+                                    <tr>
+                                        <td>{index+1}</td>
+                                        <td>{item.doctor_id.first_name}</td>
+                                        <td>{item.doctor_id.last_name}</td>
+                                        <td>{item.appoint_date}</td>
+                                        <td>{item.appoint_time}</td>
+                                        <td>{item.doctor_id.categories_id.name}</td>
+
+                                    </tr>
+                                )}
                             </tbody>
                         </table>
                         <nav aria-label="Page navigation example">
@@ -148,12 +173,8 @@ const PatientDetail = () => {
                 </div>
                 <div className="row justify-content-between mb-3">
                     <div className="card  p-4 col-4">
-                        
                         <div style={{height:"350px"}} className="overflow-auto ">
-                            {message.map((item, index) => (
-                                
-                                
-                                    
+                            {message.map((item, index) => (   
                                 <div key={index}>
                                 <button
                                     className="btn btn-light text-start my-2 w-100"
@@ -165,12 +186,12 @@ const PatientDetail = () => {
                                 </button>
                                 {openIndex === index && (
                                     <div style={{height:"300px"}} className="collapse show overflow-auto bg-light p-2">
-                                    <div className="bg-warning w-50 p-2 rounded text-light text-start mb-2 d-flex align-items-center justify-content-between">{item.message_set.map(i=> <>{i.sender.groups.map(g=><>{g.name == "Doctor" ? <p className="p-0 m-0">{i.text}</p>:""}</>)}<DeleteItem get_data={getMessage} url={`v1/chat/message_delete/${i.id}/`}/></>)}</div>
-                                    <div className="bg-success w-50 p-2 text-start rounded text-light float-end mb-2">{item.message_set.map(i=> <>{i.sender.groups.map(g=><>{g.name == "Patient" ? <p className="p-0 m-0">{i.text}</p>:""}</>)}</>)}</div>
+                                    <div className="bg-warning w-50  rounded text-light text-start mb-2 d-flex align-items-center justify-content-between">{item.message_set.map(i=> <>{i.sender.groups.map(g=><>{g.name == "Doctor" ? <div className="d-flex align-items-center justify-content-between px-1"><div className=" w-75">{i.text}</div> <DeleteItem get_data={getMessage} url={`v1/chat/message_delete/${i.id}/`}/></div>:""}</>)}</>)}</div>
+                                    <div className="bg-success w-50  text-start rounded text-light float-end mb-2 ">{item.message_set.map(i=> <>{i.sender.groups.map(g=><>{g.name == "Patient" ? <div className="d-flex align-items-center justify-content-between px-1"><div className=" w-75">{i.text}</div> <DeleteItem  get_data={getMessage} url={`v1/chat/message_delete/${i.id}/`}/></div>:""}</>)}</>)}</div>
                                     </div>
                                 )}
-                                </div>
                                 
+                                </div>
                             ))}
                         </div>
                         <nav className="py-4" aria-label="breadcrumb">
@@ -248,9 +269,6 @@ const PatientDetail = () => {
                 </div>
                 </div>
             </div>
-            
-        </Layout>
-
     )
 };
 
