@@ -49,6 +49,8 @@ export namespace Components {
     interface PuIcon {
     }
     interface PuImg {
+        "rounded": boolean;
+        "src": string;
     }
     interface PuInput {
     }
@@ -341,6 +343,8 @@ declare namespace LocalJSX {
     interface PuIcon {
     }
     interface PuImg {
+        "rounded"?: boolean;
+        "src"?: string;
     }
     interface PuInput {
     }

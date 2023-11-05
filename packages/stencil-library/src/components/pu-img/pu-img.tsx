@@ -1,4 +1,4 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, Prop, h } from '@stencil/core';
 
 @Component({
   tag: 'pu-img',
@@ -7,9 +7,19 @@ import { Component, Host, h } from '@stencil/core';
 })
 export class PuImg {
 
+  @Prop() rounded: boolean;
+
+  @Prop() src: string;
+
   render() {
     return (
-      <Host>
+      <Host class={{
+        'rounded': this.rounded,
+      }}
+      style={{
+        backgroundImage: `url(${this.src})`,
+      }}
+      >
         <slot></slot>
       </Host>
     );
