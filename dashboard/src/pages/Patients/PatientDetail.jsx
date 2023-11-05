@@ -112,8 +112,8 @@ const PatientDetail = () => {
                 <div className="row justify-content-between mb-3">
                     <div className="card  p-4 col-4">
                         <div className="row card-body d-flex align-items-center justify-content-around">
-                            <img className="col-2" style={{width:"100px",width:"100px", borderRadius:"50%"}} src={User} alt="" />
-                            <div className="col-8">
+                            <img className="col-2 bg-danger" style={{width:"100px",width:"100px", borderRadius:"50%"}} src={User} alt="" />
+                            <div className="col-8 bg-success">
                                     <ul class="list-group">
                                     <li class="list-group-item">Firstname : {patientDetails.first_name}</li>
                                     <li class="list-group-item">Lastname : {patientDetails.last_name}</li>
@@ -190,7 +190,6 @@ const PatientDetail = () => {
                                     <div className="bg-success w-50  text-start rounded text-light float-end mb-2 ">{item.message_set.map(i=> <>{i.sender.groups.map(g=><>{g.name == "Patient" ? <div className="d-flex align-items-center justify-content-between px-1"><div className=" w-75">{i.text}</div> <DeleteItem  get_data={getMessage} url={`v1/chat/message_delete/${i.id}/`}/></div>:""}</>)}</>)}</div>
                                     </div>
                                 )}
-                                
                                 </div>
                             ))}
                         </div>
