@@ -1,0 +1,36 @@
+{
+  "name": "react-library",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "Shakhrillo Tukhsanov <mr.jhon1327@gmail.com>",
+  "homepage": "https://github.com/shakhrillo/prounity#readme",
+  "license": "ISC",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shakhrillo/prounity.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/react-library.test.js",
+    "build": "npm run tsc",
+    "tsc": "tsc -p . --outDir ./dist"
+  },
+  "bugs": {
+    "url": "https://github.com/shakhrillo/prounity/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "stencil-library": "*"
+  }
+}
