@@ -114,8 +114,8 @@ const PatientDetail = () => {
                 <div className="row justify-content-between mb-3">
                     <div className="card  p-4 col-4">
                         <div className="row card-body d-flex align-items-center justify-content-around">
-                            <img className="col-2 bg-danger" style={{width:"100px",width:"100px", borderRadius:"50%"}} src={User} alt="" />
-                            <div className="col-8 bg-success">
+                            <img className="col-2 " style={{width:"100px",width:"100px", borderRadius:"50%"}} src={User} alt="" />
+                            <div className="col-8">
                                     <ul class="list-group">
                                     <li class="list-group-item">Firstname : {patientDetails.first_name}</li>
                                     <li class="list-group-item">Lastname : {patientDetails.last_name}</li>
