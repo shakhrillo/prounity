@@ -20,6 +20,62 @@ export namespace Components {
          */
         "middle": string;
     }
+    interface PuAccordion {
+    }
+    interface PuAlert {
+    }
+    interface PuApp {
+    }
+    interface PuAvatar {
+    }
+    interface PuBadge {
+    }
+    interface PuBreadcrumb {
+    }
+    interface PuButton {
+    }
+    interface PuCard {
+    }
+    interface PuCheckbox {
+    }
+    interface PuChip {
+    }
+    interface PuContent {
+    }
+    interface PuDatetime {
+    }
+    interface PuFab {
+    }
+    interface PuIcon {
+    }
+    interface PuImg {
+    }
+    interface PuInput {
+    }
+    interface PuList {
+    }
+    interface PuLoading {
+    }
+    interface PuMenu {
+    }
+    interface PuModal {
+    }
+    interface PuNav {
+    }
+    interface PuRadio {
+    }
+    interface PuSearchbar {
+    }
+    interface PuSelect {
+    }
+    interface PuTabs {
+    }
+    interface PuText {
+    }
+    interface PuToast {
+    }
+    interface PuToggle {
+    }
     interface PuToolbar {
         /**
           * The mode determines which platform styles to use.
@@ -34,6 +90,174 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    interface HTMLPuAccordionElement extends Components.PuAccordion, HTMLStencilElement {
+    }
+    var HTMLPuAccordionElement: {
+        prototype: HTMLPuAccordionElement;
+        new (): HTMLPuAccordionElement;
+    };
+    interface HTMLPuAlertElement extends Components.PuAlert, HTMLStencilElement {
+    }
+    var HTMLPuAlertElement: {
+        prototype: HTMLPuAlertElement;
+        new (): HTMLPuAlertElement;
+    };
+    interface HTMLPuAppElement extends Components.PuApp, HTMLStencilElement {
+    }
+    var HTMLPuAppElement: {
+        prototype: HTMLPuAppElement;
+        new (): HTMLPuAppElement;
+    };
+    interface HTMLPuAvatarElement extends Components.PuAvatar, HTMLStencilElement {
+    }
+    var HTMLPuAvatarElement: {
+        prototype: HTMLPuAvatarElement;
+        new (): HTMLPuAvatarElement;
+    };
+    interface HTMLPuBadgeElement extends Components.PuBadge, HTMLStencilElement {
+    }
+    var HTMLPuBadgeElement: {
+        prototype: HTMLPuBadgeElement;
+        new (): HTMLPuBadgeElement;
+    };
+    interface HTMLPuBreadcrumbElement extends Components.PuBreadcrumb, HTMLStencilElement {
+    }
+    var HTMLPuBreadcrumbElement: {
+        prototype: HTMLPuBreadcrumbElement;
+        new (): HTMLPuBreadcrumbElement;
+    };
+    interface HTMLPuButtonElement extends Components.PuButton, HTMLStencilElement {
+    }
+    var HTMLPuButtonElement: {
+        prototype: HTMLPuButtonElement;
+        new (): HTMLPuButtonElement;
+    };
+    interface HTMLPuCardElement extends Components.PuCard, HTMLStencilElement {
+    }
+    var HTMLPuCardElement: {
+        prototype: HTMLPuCardElement;
+        new (): HTMLPuCardElement;
+    };
+    interface HTMLPuCheckboxElement extends Components.PuCheckbox, HTMLStencilElement {
+    }
+    var HTMLPuCheckboxElement: {
+        prototype: HTMLPuCheckboxElement;
+        new (): HTMLPuCheckboxElement;
+    };
+    interface HTMLPuChipElement extends Components.PuChip, HTMLStencilElement {
+    }
+    var HTMLPuChipElement: {
+        prototype: HTMLPuChipElement;
+        new (): HTMLPuChipElement;
+    };
+    interface HTMLPuContentElement extends Components.PuContent, HTMLStencilElement {
+    }
+    var HTMLPuContentElement: {
+        prototype: HTMLPuContentElement;
+        new (): HTMLPuContentElement;
+    };
+    interface HTMLPuDatetimeElement extends Components.PuDatetime, HTMLStencilElement {
+    }
+    var HTMLPuDatetimeElement: {
+        prototype: HTMLPuDatetimeElement;
+        new (): HTMLPuDatetimeElement;
+    };
+    interface HTMLPuFabElement extends Components.PuFab, HTMLStencilElement {
+    }
+    var HTMLPuFabElement: {
+        prototype: HTMLPuFabElement;
+        new (): HTMLPuFabElement;
+    };
+    interface HTMLPuIconElement extends Components.PuIcon, HTMLStencilElement {
+    }
+    var HTMLPuIconElement: {
+        prototype: HTMLPuIconElement;
+        new (): HTMLPuIconElement;
+    };
+    interface HTMLPuImgElement extends Components.PuImg, HTMLStencilElement {
+    }
+    var HTMLPuImgElement: {
+        prototype: HTMLPuImgElement;
+        new (): HTMLPuImgElement;
+    };
+    interface HTMLPuInputElement extends Components.PuInput, HTMLStencilElement {
+    }
+    var HTMLPuInputElement: {
+        prototype: HTMLPuInputElement;
+        new (): HTMLPuInputElement;
+    };
+    interface HTMLPuListElement extends Components.PuList, HTMLStencilElement {
+    }
+    var HTMLPuListElement: {
+        prototype: HTMLPuListElement;
+        new (): HTMLPuListElement;
+    };
+    interface HTMLPuLoadingElement extends Components.PuLoading, HTMLStencilElement {
+    }
+    var HTMLPuLoadingElement: {
+        prototype: HTMLPuLoadingElement;
+        new (): HTMLPuLoadingElement;
+    };
+    interface HTMLPuMenuElement extends Components.PuMenu, HTMLStencilElement {
+    }
+    var HTMLPuMenuElement: {
+        prototype: HTMLPuMenuElement;
+        new (): HTMLPuMenuElement;
+    };
+    interface HTMLPuModalElement extends Components.PuModal, HTMLStencilElement {
+    }
+    var HTMLPuModalElement: {
+        prototype: HTMLPuModalElement;
+        new (): HTMLPuModalElement;
+    };
+    interface HTMLPuNavElement extends Components.PuNav, HTMLStencilElement {
+    }
+    var HTMLPuNavElement: {
+        prototype: HTMLPuNavElement;
+        new (): HTMLPuNavElement;
+    };
+    interface HTMLPuRadioElement extends Components.PuRadio, HTMLStencilElement {
+    }
+    var HTMLPuRadioElement: {
+        prototype: HTMLPuRadioElement;
+        new (): HTMLPuRadioElement;
+    };
+    interface HTMLPuSearchbarElement extends Components.PuSearchbar, HTMLStencilElement {
+    }
+    var HTMLPuSearchbarElement: {
+        prototype: HTMLPuSearchbarElement;
+        new (): HTMLPuSearchbarElement;
+    };
+    interface HTMLPuSelectElement extends Components.PuSelect, HTMLStencilElement {
+    }
+    var HTMLPuSelectElement: {
+        prototype: HTMLPuSelectElement;
+        new (): HTMLPuSelectElement;
+    };
+    interface HTMLPuTabsElement extends Components.PuTabs, HTMLStencilElement {
+    }
+    var HTMLPuTabsElement: {
+        prototype: HTMLPuTabsElement;
+        new (): HTMLPuTabsElement;
+    };
+    interface HTMLPuTextElement extends Components.PuText, HTMLStencilElement {
+    }
+    var HTMLPuTextElement: {
+        prototype: HTMLPuTextElement;
+        new (): HTMLPuTextElement;
+    };
+    interface HTMLPuToastElement extends Components.PuToast, HTMLStencilElement {
+    }
+    var HTMLPuToastElement: {
+        prototype: HTMLPuToastElement;
+        new (): HTMLPuToastElement;
+    };
+    interface HTMLPuToggleElement extends Components.PuToggle, HTMLStencilElement {
+    }
+    var HTMLPuToggleElement: {
+        prototype: HTMLPuToggleElement;
+        new (): HTMLPuToggleElement;
+    };
     interface HTMLPuToolbarElement extends Components.PuToolbar, HTMLStencilElement {
     }
     var HTMLPuToolbarElement: {
@@ -42,6 +266,34 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
+        "pu-accordion": HTMLPuAccordionElement;
+        "pu-alert": HTMLPuAlertElement;
+        "pu-app": HTMLPuAppElement;
+        "pu-avatar": HTMLPuAvatarElement;
+        "pu-badge": HTMLPuBadgeElement;
+        "pu-breadcrumb": HTMLPuBreadcrumbElement;
+        "pu-button": HTMLPuButtonElement;
+        "pu-card": HTMLPuCardElement;
+        "pu-checkbox": HTMLPuCheckboxElement;
+        "pu-chip": HTMLPuChipElement;
+        "pu-content": HTMLPuContentElement;
+        "pu-datetime": HTMLPuDatetimeElement;
+        "pu-fab": HTMLPuFabElement;
+        "pu-icon": HTMLPuIconElement;
+        "pu-img": HTMLPuImgElement;
+        "pu-input": HTMLPuInputElement;
+        "pu-list": HTMLPuListElement;
+        "pu-loading": HTMLPuLoadingElement;
+        "pu-menu": HTMLPuMenuElement;
+        "pu-modal": HTMLPuModalElement;
+        "pu-nav": HTMLPuNavElement;
+        "pu-radio": HTMLPuRadioElement;
+        "pu-searchbar": HTMLPuSearchbarElement;
+        "pu-select": HTMLPuSelectElement;
+        "pu-tabs": HTMLPuTabsElement;
+        "pu-text": HTMLPuTextElement;
+        "pu-toast": HTMLPuToastElement;
+        "pu-toggle": HTMLPuToggleElement;
         "pu-toolbar": HTMLPuToolbarElement;
     }
 }
@@ -60,6 +312,62 @@ declare namespace LocalJSX {
          */
         "middle"?: string;
     }
+    interface PuAccordion {
+    }
+    interface PuAlert {
+    }
+    interface PuApp {
+    }
+    interface PuAvatar {
+    }
+    interface PuBadge {
+    }
+    interface PuBreadcrumb {
+    }
+    interface PuButton {
+    }
+    interface PuCard {
+    }
+    interface PuCheckbox {
+    }
+    interface PuChip {
+    }
+    interface PuContent {
+    }
+    interface PuDatetime {
+    }
+    interface PuFab {
+    }
+    interface PuIcon {
+    }
+    interface PuImg {
+    }
+    interface PuInput {
+    }
+    interface PuList {
+    }
+    interface PuLoading {
+    }
+    interface PuMenu {
+    }
+    interface PuModal {
+    }
+    interface PuNav {
+    }
+    interface PuRadio {
+    }
+    interface PuSearchbar {
+    }
+    interface PuSelect {
+    }
+    interface PuTabs {
+    }
+    interface PuText {
+    }
+    interface PuToast {
+    }
+    interface PuToggle {
+    }
     interface PuToolbar {
         /**
           * The mode determines which platform styles to use.
@@ -68,6 +376,34 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "my-component": MyComponent;
+        "pu-accordion": PuAccordion;
+        "pu-alert": PuAlert;
+        "pu-app": PuApp;
+        "pu-avatar": PuAvatar;
+        "pu-badge": PuBadge;
+        "pu-breadcrumb": PuBreadcrumb;
+        "pu-button": PuButton;
+        "pu-card": PuCard;
+        "pu-checkbox": PuCheckbox;
+        "pu-chip": PuChip;
+        "pu-content": PuContent;
+        "pu-datetime": PuDatetime;
+        "pu-fab": PuFab;
+        "pu-icon": PuIcon;
+        "pu-img": PuImg;
+        "pu-input": PuInput;
+        "pu-list": PuList;
+        "pu-loading": PuLoading;
+        "pu-menu": PuMenu;
+        "pu-modal": PuModal;
+        "pu-nav": PuNav;
+        "pu-radio": PuRadio;
+        "pu-searchbar": PuSearchbar;
+        "pu-select": PuSelect;
+        "pu-tabs": PuTabs;
+        "pu-text": PuText;
+        "pu-toast": PuToast;
+        "pu-toggle": PuToggle;
         "pu-toolbar": PuToolbar;
     }
 }
@@ -76,6 +412,34 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "pu-accordion": LocalJSX.PuAccordion & JSXBase.HTMLAttributes<HTMLPuAccordionElement>;
+            "pu-alert": LocalJSX.PuAlert & JSXBase.HTMLAttributes<HTMLPuAlertElement>;
+            "pu-app": LocalJSX.PuApp & JSXBase.HTMLAttributes<HTMLPuAppElement>;
+            "pu-avatar": LocalJSX.PuAvatar & JSXBase.HTMLAttributes<HTMLPuAvatarElement>;
+            "pu-badge": LocalJSX.PuBadge & JSXBase.HTMLAttributes<HTMLPuBadgeElement>;
+            "pu-breadcrumb": LocalJSX.PuBreadcrumb & JSXBase.HTMLAttributes<HTMLPuBreadcrumbElement>;
+            "pu-button": LocalJSX.PuButton & JSXBase.HTMLAttributes<HTMLPuButtonElement>;
+            "pu-card": LocalJSX.PuCard & JSXBase.HTMLAttributes<HTMLPuCardElement>;
+            "pu-checkbox": LocalJSX.PuCheckbox & JSXBase.HTMLAttributes<HTMLPuCheckboxElement>;
+            "pu-chip": LocalJSX.PuChip & JSXBase.HTMLAttributes<HTMLPuChipElement>;
+            "pu-content": LocalJSX.PuContent & JSXBase.HTMLAttributes<HTMLPuContentElement>;
+            "pu-datetime": LocalJSX.PuDatetime & JSXBase.HTMLAttributes<HTMLPuDatetimeElement>;
+            "pu-fab": LocalJSX.PuFab & JSXBase.HTMLAttributes<HTMLPuFabElement>;
+            "pu-icon": LocalJSX.PuIcon & JSXBase.HTMLAttributes<HTMLPuIconElement>;
+            "pu-img": LocalJSX.PuImg & JSXBase.HTMLAttributes<HTMLPuImgElement>;
+            "pu-input": LocalJSX.PuInput & JSXBase.HTMLAttributes<HTMLPuInputElement>;
+            "pu-list": LocalJSX.PuList & JSXBase.HTMLAttributes<HTMLPuListElement>;
+            "pu-loading": LocalJSX.PuLoading & JSXBase.HTMLAttributes<HTMLPuLoadingElement>;
+            "pu-menu": LocalJSX.PuMenu & JSXBase.HTMLAttributes<HTMLPuMenuElement>;
+            "pu-modal": LocalJSX.PuModal & JSXBase.HTMLAttributes<HTMLPuModalElement>;
+            "pu-nav": LocalJSX.PuNav & JSXBase.HTMLAttributes<HTMLPuNavElement>;
+            "pu-radio": LocalJSX.PuRadio & JSXBase.HTMLAttributes<HTMLPuRadioElement>;
+            "pu-searchbar": LocalJSX.PuSearchbar & JSXBase.HTMLAttributes<HTMLPuSearchbarElement>;
+            "pu-select": LocalJSX.PuSelect & JSXBase.HTMLAttributes<HTMLPuSelectElement>;
+            "pu-tabs": LocalJSX.PuTabs & JSXBase.HTMLAttributes<HTMLPuTabsElement>;
+            "pu-text": LocalJSX.PuText & JSXBase.HTMLAttributes<HTMLPuTextElement>;
+            "pu-toast": LocalJSX.PuToast & JSXBase.HTMLAttributes<HTMLPuToastElement>;
+            "pu-toggle": LocalJSX.PuToggle & JSXBase.HTMLAttributes<HTMLPuToggleElement>;
             "pu-toolbar": LocalJSX.PuToolbar & JSXBase.HTMLAttributes<HTMLPuToolbarElement>;
         }
     }

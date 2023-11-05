@@ -7,11 +7,71 @@
 
     <script type="module" src="/build/stencil-library.esm.js"></script>
     <script nomodule src="/build/stencil-library.js"></script>
+
+    <style>
+      body {
+        display: flex;
+        padding: 0;
+        margin: 0;
+      }
+
+      aside {
+        width: 200px;
+        background: #f5f5f5;
+        padding: 20px;
+      }
+
+      section {
+        flex: 1;
+        padding: 20px;
+      }
+    </style>
   </head>
   <body>
-    <pu-toolbar>
-      My toolbar
-    </pu-toolbar>
-    <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
+    <aside>
+      <a href="">
+        Docs
+      </a>
+      <nav>
+        <ul>
+          <li>
+            <a href="">Getting Started</a>
+          </li>
+          <li>
+            <a href="">Action Sheet</a>
+          </li>
+          <li>
+            <a href="">Accordion</a>
+          </li>
+          <li>
+            <a href="">Alert</a>
+          </li>
+          <li>
+            <a href="">Badge</a>
+          </li>
+          <li>
+            <a href="">Breadcrumb</a>
+          </li>
+          <li>
+            <a href="">Button</a>
+          </li>
+          <li>
+            <a href="">Card</a>
+          </li>
+          <li>
+            <a href="">Checkbox</a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+    <section>
+      <h1>Pu accordion</h1>
+      <p>
+        
+      </p>
+      <pu-accordion>
+        First accordion
+      </pu-accordion>
+    </section>
   </body>
 </html>
