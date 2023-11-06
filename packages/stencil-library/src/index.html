@@ -43,6 +43,7 @@
         background-color: #eafd1c58;
         border-radius: 10px;
         display: flex;
+        gap: 3px;
         justify-content: center;
         align-items: center;
         margin-bottom: 20px;
@@ -59,6 +60,10 @@
         color: #0c3291;
         font-weight: 500;
         overflow: scroll;
+      }
+
+      .column{
+        flex-direction: column;
       }
     </style>
   </head>
@@ -305,6 +310,96 @@
         </p>
       </div>
     </div>
+
+    <!-- new -->
+    <div class="interface">
+      <div class="title-of-component">
+        <h1>PU Button</h1>
+        <p>
+          Buttons provide a clickable element, which can be used in forms, or anywhere that needs simple, standard button functionality. They may display text, icons, or both.
+          Buttons can be styled with several attributes to look a specific way.
+        </p>
+      </div>
+      <div class="component">
+        <pu-button color="success">Success Button</pu-button>
+        <pu-button color="primary">Primary Button</pu-button>
+        <pu-button color="warning">Warning Button</pu-button>
+      </div>
+      <div class="code-of-component">
+        <p>import {pu-button} from '../../</p>
+        <p>
+          function Example() { <br />
+          return ( <br />
+          &lt;&gt; <br />
+          &lt;PuButton&gt; <br />
+          &lt; pu-button color="success">Success Button &lt;/ pu-button &gt; <br />
+          &lt; pu-button color="primary">Primary Button &lt;/ pu-button &gt; <br />
+          &lt; pu-button color="warning">Warning Button &lt;/ pu-button &gt; <br />
+          &lt;/PuButton&gt; <br />
+          &lt;/&gt; <br />
+          ); <br />
+          } <br />
+          export default Example;
+        </p>
+      </div>
+    </div>
+    <div class="interface">
+      <div class="title-of-component">
+        <h1>PU Checkbox</h1>
+        <p>
+          Checkboxes allow the selection of multiple options from a set of options. They appear as checked (ticked) when activated. Clicking on a checkbox will toggle the checked
+          property. They can also be checked programmatically by setting the checked property.
+        </p>
+      </div>
+      <div class="component column">
+        <pu-checkbox slot="start"> Checkbox Label </pu-checkbox>
+        <pu-checkbox slot="end"> Checkbox Label </pu-checkbox>
+      </div>
+      <div class="code-of-component">
+        <p>import {pu-checkbox} from '../../</p>
+        <p>
+          function Example() { <br />
+          return ( <br />
+          &lt;&gt; <br />
+          &lt;PuCheckbox&gt; <br />
+          &lt; pu-checkbox slot="start">Checkbox Label &lt;/ pu-checkbox &gt; <br />
+          &lt; pu-checkbox slot="end">Checkbox Label &lt;/ pu-checkbox &gt; <br />
+          &lt;/PuCheckbox&gt; <br />
+          &lt;/&gt; <br />
+          ); <br />
+          } <br />
+          export default Example;
+        </p>
+      </div>
+    </div>
+    <div class="interface">
+      <div class="title-of-component">
+        <h1>PU Alert</h1>
+        <p>
+          An Alert is a dialog that presents users with information or collects information from the user using inputs. An alert appears on top of the app's content, and must be
+          manually dismissed by the user before they can resume interaction with the app. It can also optionally have a message.
+        </p>
+      </div>
+      <div class="component column">
+        <pu-alert role="alert" header="Alert Header" message="This is the alert message"></pu-alert>
+      </div>
+      <div class="code-of-component">
+        <p>import {pu-checkbox} from '../../</p>
+        <p>
+          function Example() { <br />
+          return ( <br />
+          &lt;&gt; <br />
+          &lt;PuAlert&gt; <br />
+          &lt; pu-alert role="alert" header="Alert Header" message="This is the alert message">&lt;/ pu-alert &gt; <br />
+          &lt;/PuAlert&gt; <br />
+          &lt;/&gt; <br />
+          ); <br />
+          } <br />
+          export default Example;
+        </p>
+      </div>
+    </div>
+    <!-- new -->
     
   </body>
 </html>

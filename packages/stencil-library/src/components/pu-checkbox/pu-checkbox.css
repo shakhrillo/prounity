@@ -1,3 +1,33 @@
-:host {
-  display: block;
+/* :host {
+  display: inline-block;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #333; 
+} */
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-label.left {
+  flex-direction: row-reverse;
+}
+
+.checkbox-label.right {
+  flex-direction: row;
+}
+
+.checkbox-input {
+  margin-right: 8px;
+}
+
+.checkbox-input.left {
+  margin-right: 0;
+  margin-left: 8px;
 }

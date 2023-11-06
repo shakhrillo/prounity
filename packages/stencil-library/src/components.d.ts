@@ -23,6 +23,9 @@ export namespace Components {
     interface PuAccordion {
     }
     interface PuAlert {
+        "header"?: string;
+        "message"?: string;
+        "role": string;
     }
     interface PuApp {
     }
@@ -44,6 +47,9 @@ export namespace Components {
         "target"?: string | undefined;
     }
     interface PuButton {
+        "color": 'primary' | 'success' | 'warning';
+        "disabled": boolean;
+        "size": 'sm' | 'md' | 'large';
     }
     interface PuCard {
         "content": string;
@@ -52,6 +58,7 @@ export namespace Components {
         "title": string;
     }
     interface PuCheckbox {
+        "slot": 'start' | 'end';
     }
     interface PuChip {
         "disabled": boolean;
@@ -334,6 +341,9 @@ declare namespace LocalJSX {
     interface PuAccordion {
     }
     interface PuAlert {
+        "header"?: string;
+        "message"?: string;
+        "role"?: string;
     }
     interface PuApp {
     }
@@ -355,6 +365,9 @@ declare namespace LocalJSX {
         "target"?: string | undefined;
     }
     interface PuButton {
+        "color"?: 'primary' | 'success' | 'warning';
+        "disabled"?: boolean;
+        "size"?: 'sm' | 'md' | 'large';
     }
     interface PuCard {
         "content"?: string;
@@ -363,6 +376,7 @@ declare namespace LocalJSX {
         "title"?: string;
     }
     interface PuCheckbox {
+        "slot"?: 'start' | 'end';
     }
     interface PuChip {
         "disabled"?: boolean;

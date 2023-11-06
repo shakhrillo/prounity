@@ -27,7 +27,9 @@
     "publish": "npm run build && npm link && npm link stencil-library"
   },
   "dependencies": {
-    "@stencil/core": "^4.7.0"
+    "@stencil/core": "^4.7.0",
+    "@types/chai": "^4.3.9",
+    "chai": "^4.3.10"
   },
   "devDependencies": {
     "@stencil/react-output-target": "^0.5.3",

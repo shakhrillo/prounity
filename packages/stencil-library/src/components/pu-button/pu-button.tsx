@@ -1,4 +1,4 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, h, Prop } from '@stencil/core';
 
 @Component({
   tag: 'pu-button',
@@ -6,13 +6,17 @@ import { Component, Host, h } from '@stencil/core';
   shadow: true,
 })
 export class PuButton {
+  @Prop() color: 'primary' | 'success' | 'warning' = 'primary';
+  @Prop() size: 'sm' | 'md' | 'large' = 'md';
+  @Prop() disabled: boolean = false;
 
   render() {
     return (
       <Host>
-        <slot></slot>
+        <button class={`button-${this.color} button-${this.size}`} disabled={this.disabled}>
+          <slot></slot>
+        </button>
       </Host>
     );
   }
-
 }
