@@ -1,4 +1,4 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, h, Host, Prop } from '@stencil/core';
 
 @Component({
   tag: 'pu-avatar',
@@ -6,13 +6,17 @@ import { Component, Host, h } from '@stencil/core';
   shadow: true,
 })
 export class PuAvatar {
+  @Prop() src: string;
+  @Prop() alt: string;
+  @Prop() size: string;
+  @Prop() shape: string;
 
   render() {
     return (
-      <Host>
+      <Host class={`pu-avatar ${this.size} ${this.shape}`}>
+        <img src={`${this.src?this.src:"https://www.pngmart.com/files/21/Account-User-PNG.png"}`} alt={this.alt} />
         <slot></slot>
       </Host>
     );
   }
-
 }

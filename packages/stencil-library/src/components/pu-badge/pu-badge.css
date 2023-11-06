@@ -1,3 +1,59 @@
 :host {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  font-weight: bold
 }
+
+:host(.primary){
+  background-color: rgb(17, 116, 223);
+  color: white;
+}
+:host(.secondary){
+  background-color: rgb(130, 130, 130);
+  color: white;
+}
+:host(.success){
+  background-color: rgb(32, 194, 32);
+  color: white;
+}
+:host(.warning){
+  background-color: rgb(251, 251, 51);
+  color: black;
+}
+:host(.danger){
+  background-color: red;
+  color: white;
+}
+:host(.light){
+  background-color: rgb(241, 237, 237);
+  color: black;
+}
+:host(.dark){
+  background-color: rgb(31, 31, 31);
+  color: white;
+}
+:host(.round-1){
+  border-radius: 10%;
+}
+:host(.round-2){
+  border-radius: 30%;
+}
+:host(.round-3){
+  border-radius: 50%;
+}
+:host(.small){
+  width: 20px;
+  height: 20px;
+}
+:host(.big){
+  width: 50px;
+  height: 50px;
+}
+:host(.long){
+  padding-left: 20px;
+  padding-right: 20px;
+}
+

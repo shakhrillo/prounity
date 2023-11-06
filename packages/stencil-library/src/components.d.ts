@@ -27,8 +27,15 @@ export namespace Components {
     interface PuApp {
     }
     interface PuAvatar {
+        "alt": string;
+        "shape": string;
+        "size": string;
+        "src": string;
     }
     interface PuBadge {
+        "color": string;
+        "shape": string;
+        "size": string;
     }
     interface PuBreadcrumb {
     }
@@ -321,8 +328,15 @@ declare namespace LocalJSX {
     interface PuApp {
     }
     interface PuAvatar {
+        "alt"?: string;
+        "shape"?: string;
+        "size"?: string;
+        "src"?: string;
     }
     interface PuBadge {
+        "color"?: string;
+        "shape"?: string;
+        "size"?: string;
     }
     interface PuBreadcrumb {
     }

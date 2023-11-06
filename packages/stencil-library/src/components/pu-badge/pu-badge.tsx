@@ -1,4 +1,4 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, h, Prop } from '@stencil/core';
 
 @Component({
   tag: 'pu-badge',
@@ -6,10 +6,13 @@ import { Component, Host, h } from '@stencil/core';
   shadow: true,
 })
 export class PuBadge {
+  @Prop() color: string;
+  @Prop() shape: string;
+  @Prop() size: string;
 
   render() {
     return (
-      <Host>
+      <Host class={`pu-badge ${this.color?this.color:'light'} ${this.shape} ${this.size}`}>
         <slot></slot>
       </Host>
     );
