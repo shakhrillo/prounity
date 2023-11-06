@@ -1,4 +1,4 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, Prop, h } from '@stencil/core';
 
 @Component({
   tag: 'pu-chip',
@@ -6,13 +6,13 @@ import { Component, Host, h } from '@stencil/core';
   shadow: true,
 })
 export class PuChip {
-
+  @Prop() outline = false;
+  @Prop() disabled = false;
   render() {
     return (
-      <Host>
+      <Host class={`${this.outline && 'outline'} ${this.disabled && 'disable'}`}>
         <slot></slot>
       </Host>
     );
   }
-
 }

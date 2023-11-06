@@ -11,6 +11,7 @@
     <style>
       body {
         display: flex;
+        flex-direction: column;
         min-height: 100vh;
         justify-content: center;
         align-items: center;
@@ -30,13 +31,13 @@
         padding: 20px;
       }
 
-      .interface{
+      .interface {
         padding: 20px 0;
         width: 600px;
         min-height: 800px;
       }
 
-      .component{
+      .component {
         width: 100%;
         height: 200px;
         background-color: #f1ff576e;
@@ -46,9 +47,10 @@
         justify-content: center;
         align-items: center;
         margin-bottom: 20px;
+        overflow: auto;
       }
 
-      .code-of-component{
+      .code-of-component {
         max-width: 100%;
         min-height: 200px;
         padding: 20px 10px;
@@ -58,38 +60,174 @@
         font-weight: 500;
         overflow: scroll;
       }
-
     </style>
   </head>
   <body>
-
     <div class="interface">
       <div class="title-of-component">
         <h1>PU Avatar</h1>
         <p>Avatars are circular components that usually wrap an image or icon. They can be used to represent a person or an object.</p>
-        <p>Avatars can be used by themselves or inside of any element. If placed inside of an ion-chip or ion-item, the avatar will resize to fit the parent component. To position an avatar on the left or right side of an item, set the slot to start or end, respectively.</p>
+        <p>
+          Avatars can be used by themselves or inside of any element. If placed inside of an ion-chip or ion-item, the avatar will resize to fit the parent component. To position
+          an avatar on the left or right side of an item, set the slot to start or end, respectively.
+        </p>
       </div>
       <div class="component">
         <pu-avatar alt="User Avatar"></pu-avatar>
       </div>
       <div class="code-of-component">
         <p>import {pu-avatar} from '../../</p>
-          <p>
-            function Example() { <br>
-              return ( <br>
-                &lt;&gt; <br>
-                &lt;IonAvatar&gt; <br>
-                &lt;img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" /&gt; <br>
-                &lt;/IonAvatar&gt; <br>
-                &lt;/&gt; <br>
-              ); <br>
-            } <br>
-            export default Example;
-          </p>
+        <p>
+          function Example() { <br />
+          return ( <br />
+          &lt;&gt; <br />
+          &lt;IonAvatar&gt; <br />
+          &lt;img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" /&gt; <br />
+          &lt;/IonAvatar&gt; <br />
+          &lt;/&gt; <br />
+          ); <br />
+          } <br />
+          export default Example;
+        </p>
+      </div>
+    </div>
+    <div class="interface">
+      <div class="title-of-component">
+        <h1>PU Avatar</h1>
+        <p>Avatars are circular components that usually wrap an image or icon. They can be used to represent a person or an object.</p>
+        <p>
+          Avatars can be used by themselves or inside of any element. If placed inside of an ion-chip or ion-item, the avatar will resize to fit the parent component. To position
+          an avatar on the left or right side of an item, set the slot to start or end, respectively.
+        </p>
+      </div>
+      <div class="component">
+        <section>
+          <pu-accordion>
+            <div slot="header">First Accordion</div>
+            <div slot="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum aspernatur porro alias, nam molestiae vel!</div>
+          </pu-accordion>
+          <pu-accordion>
+            <div slot="header">Second Accordion</div>
+            <div slot="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum aspernatur porro alias, nam molestiae vel!</div>
+          </pu-accordion>
+        </section>
+      </div>
+      <div class="code-of-component">
+        <p>import {pu-avatar} from '../../</p>
+        <p>
+          function Example() { <br />
+          return ( <br />
+          &lt;&gt; <br />
+          &lt;pu-accordion&gt; <br />
+          &lt;div slot="header"&gt;First Accordion&lt;/div&gt;<br />
+          &lt;/pu-accordion&gt; <br />
+          &lt;/&gt; <br />
+          ); <br />
+          } <br />
+          export default Example;
+        </p>
+      </div>
+    </div>
+    <div class="interface">
+      <div class="title-of-component">
+        <h1>PU Avatar</h1>
+        <p>Avatars are circular components that usually wrap an image or icon. They can be used to represent a person or an object.</p>
+        <p>
+          Avatars can be used by themselves or inside of any element. If placed inside of an ion-chip or ion-item, the avatar will resize to fit the parent component. To position
+          an avatar on the left or right side of an item, set the slot to start or end, respectively.
+        </p>
+      </div>
+      <div class="component">
+        <section>
+          <pu-breadcrumb href="home" name="Home"></pu-breadcrumb>
+          <pu-breadcrumb href="about" active name="About"></pu-breadcrumb>
+        </section>
+      </div>
+      <div class="code-of-component">
+        <p>import {pu-avatar} from '../../</p>
+        <p>
+          function Example() { <br />
+          return ( <br />
+          &lt;&gt; <br />
+          &lt;pu-accordion&gt; <br />
+          &lt;div slot="header"&gt;First Accordion&lt;/div&gt;<br />
+          &lt;/pu-accordion&gt; <br />
+          &lt;/&gt; <br />
+          ); <br />
+          } <br />
+          export default Example;
+        </p>
+      </div>
+    <div class="interface">
+      <div class="title-of-component">
+        <h1>PU Avatar</h1>
+        <p>Avatars are circular components that usually wrap an image or icon. They can be used to represent a person or an object.</p>
+        <p>
+          Avatars can be used by themselves or inside of any element. If placed inside of an ion-chip or ion-item, the avatar will resize to fit the parent component. To position
+          an avatar on the left or right side of an item, set the slot to start or end, respectively.
+        </p>
+      </div>
+      <div class="component">
+        <section>
+          <pu-accordion>
+            <div slot="header">First Accordion</div>
+            <div slot="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum aspernatur porro alias, nam molestiae vel!</div>
+          </pu-accordion>
+          <pu-accordion>
+            <div slot="header">Second Accordion</div>
+            <div slot="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum aspernatur porro alias, nam molestiae vel!</div>
+          </pu-accordion>
+        </section>
+      </div>
+      <div class="code-of-component">
+        <p>import {pu-avatar} from '../../</p>
+        <p>
+          function Example() { <br />
+          return ( <br />
+          &lt;&gt; <br />
+          &lt;pu-accordion&gt; <br />
+          &lt;div slot="header"&gt;First Accordion&lt;/div&gt;<br />
+          &lt;/pu-accordion&gt; <br />
+          &lt;/&gt; <br />
+          ); <br />
+          } <br />
+          export default Example;
+        </p>
+      </div>
+    </div>
+    <div class="interface">
+      <div class="title-of-component">
+        <h1>PU Avatar</h1>
+        <p>Avatars are circular components that usually wrap an image or icon. They can be used to represent a person or an object.</p>
+        <p>
+          Avatars can be used by themselves or inside of any element. If placed inside of an ion-chip or ion-item, the avatar will resize to fit the parent component. To position
+          an avatar on the left or right side of an item, set the slot to start or end, respectively.
+        </p>
+      </div>
+      <div class="component">
+        <section>
+          <pu-chip>Default</pu-chip>
+          <pu-chip outline>Outline</pu-chip>
+          <pu-chip disabled>Disabled</pu-chip>
+        </section>
+      </div>
+      <div class="code-of-component">
+        <p>import {pu-avatar} from '../../</p>
+        <p>
+          function Example() { <br />
+          return ( <br />
+          &lt;&gt; <br />
+          &lt;pu-accordion&gt; <br />
+          &lt;div slot="header"&gt;First Accordion&lt;/div&gt;<br />
+          &lt;/pu-accordion&gt; <br />
+          &lt;/&gt; <br />
+          ); <br />
+          } <br />
+          export default Example;
+        </p>
       </div>
     </div>
 
-    <!-- <pu-avatar alt="User Avatar"></pu-avatar>
-    <pu-badge>99</pu-badge> -->
+   
   </body>
 </html>

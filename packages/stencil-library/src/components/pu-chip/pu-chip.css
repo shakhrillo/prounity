@@ -1,3 +1,15 @@
 :host {
-  display: block;
+  display: inline-block;
+  padding: 6px 12px;
+  background: rgb(190, 190, 190);
+  border-radius: 1rem;
+  cursor: pointer;
+}
+:host(.outline) {
+  background: transparent;
+  outline: 1px solid rgb(190, 190, 190);
+}
+:host(.disable) {
+  cursor: not-allowed;
+  opacity: 0.4;
 }

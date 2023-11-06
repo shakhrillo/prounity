@@ -38,6 +38,10 @@ export namespace Components {
         "size": string;
     }
     interface PuBreadcrumb {
+        "active"?: boolean | undefined;
+        "href"?: string | undefined;
+        "name"?: string | undefined;
+        "target"?: string | undefined;
     }
     interface PuButton {
     }
@@ -46,6 +50,8 @@ export namespace Components {
     interface PuCheckbox {
     }
     interface PuChip {
+        "disabled": boolean;
+        "outline": boolean;
     }
     interface PuContent {
     }
@@ -339,6 +345,10 @@ declare namespace LocalJSX {
         "size"?: string;
     }
     interface PuBreadcrumb {
+        "active"?: boolean | undefined;
+        "href"?: string | undefined;
+        "name"?: string | undefined;
+        "target"?: string | undefined;
     }
     interface PuButton {
     }
@@ -347,6 +357,8 @@ declare namespace LocalJSX {
     interface PuCheckbox {
     }
     interface PuChip {
+        "disabled"?: boolean;
+        "outline"?: boolean;
     }
     interface PuContent {
     }

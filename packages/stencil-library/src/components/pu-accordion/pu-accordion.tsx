@@ -1,4 +1,4 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, h, State } from '@stencil/core';
 
 @Component({
   tag: 'pu-accordion',
@@ -6,22 +6,26 @@ import { Component, Host, h } from '@stencil/core';
   shadow: true,
 })
 export class PuAccordion {
+  @State() isOpen: boolean = false;
 
-  // Lifecycle events
-  componentWillLoad() {
-    console.log('Component is about to be rendered');
+  private toggleAccordion() {
+    this.isOpen = !this.isOpen;
   }
-
-  componentDidLoad() {
-    console.log('Component has been rendered');
-  }
-
   render() {
     return (
       <Host>
-        <slot></slot>
+        <div id="header" class="accordion-header" onClick={() => this.toggleAccordion()}>
+          <h2>
+            <slot name="header"></slot>
+          </h2>
+          <div id="icon">{this.isOpen ? <span>&#9650;</span> : <span>&#9660;</span>}</div>
+        </div>
+        <div id="content" class={`accordion-content ${this.isOpen ? 'open' : 'close'}`}>
+          <div id="content-wrapper">
+            <slot name="content"></slot>
+          </div>
+        </div>
       </Host>
     );
   }
-
 }

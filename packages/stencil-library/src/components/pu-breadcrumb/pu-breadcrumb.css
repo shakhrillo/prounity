@@ -1,3 +1,16 @@
 :host {
-  display: block;
+  display: inline;
+}
+.breadcrumb {
+  display: inline;
+  color: #585858;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+.breadcrumb:hover {
+  color: #282828;
+}
+.breadcrumb.active {
+  color: rgb(80, 95, 255);
+  font-weight: bold;
 }
