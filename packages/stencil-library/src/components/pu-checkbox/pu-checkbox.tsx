@@ -1,4 +1,4 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, h, Prop } from '@stencil/core';
 
 @Component({
   tag: 'pu-checkbox',
@@ -6,13 +6,17 @@ import { Component, Host, h } from '@stencil/core';
   shadow: true,
 })
 export class PuCheckbox {
+  @Prop() slot: 'start' | 'end' = 'end';
 
   render() {
     return (
-      <Host>
-        <slot></slot>
+      <Host class={`checkbox-container `}>
+        <label>
+          {this.slot === 'start' && <input type="checkbox" class="checkbox-input" />}
+          <slot></slot>
+          {this.slot === 'end' && <input type="checkbox" class="checkbox-input" />}
+        </label>
       </Host>
     );
   }
-
 }
