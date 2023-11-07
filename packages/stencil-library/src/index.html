@@ -397,6 +397,99 @@
           export default Example;
         </p>
       </div>
-    </div>    
+    </div>
+  
+    <div class="interface">
+      <div class="title-of-component">
+        <h1>PU Icon</h1>
+        <p>
+          Icon can be used to display any icon from the Ionicons set, or a custom SVG. It also has support for styling such as size and color.
+        </p>
+      </div>
+      <div class="component">
+        <pu-icon size="sm" icon="https://cdn-icons-png.flaticon.com/512/447/447031.png"></pu-icon>
+        <pu-icon size="md" icon="https://www.freeiconspng.com/thumbs/email-icon/email-icon--clipart-best-22.png"></pu-icon>
+        <pu-icon size="large" icon="https://www.freeiconspng.com/thumbs/search-icon-png/search-icon-png-5.png"></pu-icon>
+      </div>
+      <div class="code-of-component">
+        <p>import {pu-icon} from '../../</p>
+        <p>
+          function Example() { <br />
+          return ( <br />
+          &lt;&gt; <br />
+          &lt;PuIcon&gt; <br />
+          &lt; pu-icon size="sm" icon={location}> &lt;/ pu-icon &gt; <br />
+          &lt; pu-icon size="md" icon={message}>&lt;/ pu-icon &gt; <br />
+          &lt; pu-icon size="large" icon={search}> &lt;/ pu-icon &gt; <br />
+          &lt;/PuIcon&gt; <br />
+          &lt;/&gt; <br />
+          ); <br />
+          } <br />
+          export default Example;
+        </p>
+      </div>
+    </div>
+
+    <div class="interface">
+      <div class="title-of-component">
+        <h1>PU Image</h1>
+        <p>
+          Icon can be used to display any icon from the Ionicons set, or a custom SVG. It also has support for styling such as size and color.
+        </p>
+      </div>
+      <div class="component">
+        <pu-img
+        rounded
+         src="https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg?size=626&ext=jpg&ga=GA1.1.1826414947.1699228800&semt=sph"
+         alt="pu-img"
+         >
+        </pu-img>
+      </div>
+      <div class="code-of-component">
+        <p>import {pu-img} from '../../</p>
+        <p>
+          function Example() { <br />
+          return ( <br />
+          &lt;&gt; <br />
+          &lt;PuImg&gt; <br />
+          &lt; pu-img rounded src={/assets/images/nature.png} alt="pu-img" <br> 
+          onLoad={() => console.log('Image loaded')} <br>
+          loadError={() => console.log('Image failed to load')}" > <br> 
+          &lt;/ pu-img &gt; <br />
+          &lt;/PuImg&gt; <br />
+          &lt;/&gt; <br />
+          ); <br />
+          } <br />
+          export default Example;
+        </p>
+      </div>
+    </div>
+
+    <div class="interface">
+      <div class="title-of-component">
+        <h1>PU Loader</h1>
+        <p>
+          An overlay that can be used to indicate activity while blocking user interaction. The loading indicator appears on top of the app's content
+        </p>
+      </div>
+      <div class="component">
+        <pu-loading message="Loader is loading..." duration="3000"></pu-loading>
+      </div>
+      <div class="code-of-component">
+        <p>import {pu-loader} from '../../</p>
+        <p>
+          function Example() { <br />
+          return ( <br />
+          &lt;&gt; <br />
+          &lt;PuLoader&gt; <br />
+          &lt; pu-loader message="Loader is loading... duration="3000" &lt;/ pu-loader &gt; <br />
+          &lt;/PuLoader&gt; <br />
+          &lt;/&gt; <br />
+          ); <br />
+          } <br />
+          export default Example;
+        </p>
+      </div>
+    </div>
   </body>
 </html>

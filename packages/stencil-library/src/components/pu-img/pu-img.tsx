@@ -6,23 +6,19 @@ import { Component, Host, Prop, h } from '@stencil/core';
   shadow: true,
 })
 export class PuImg {
-
   @Prop() rounded: boolean;
-
   @Prop() src: string;
+  @Prop() alt: string;
+  @Prop() onLoad: () => void;
+  @Prop() loadError: () => void;
 
   render() {
+    const imageClass = this.rounded ? 'rounded' : '';
+    const { src, alt, onLoad, loadError } = this;
     return (
-      <Host class={{
-        'rounded': this.rounded,
-      }}
-      style={{
-        backgroundImage: `url(${this.src})`,
-      }}
-      >
-        <slot></slot>
+      <Host>
+        <img src={src} alt={alt} onLoad={onLoad} onError={loadError} part="image" class={imageClass} />
       </Host>
     );
   }
-
 }

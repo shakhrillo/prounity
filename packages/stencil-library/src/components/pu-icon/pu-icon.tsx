@@ -1,4 +1,4 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, Prop, h } from '@stencil/core';
 
 @Component({
   tag: 'pu-icon',
@@ -6,13 +6,16 @@ import { Component, Host, h } from '@stencil/core';
   shadow: true,
 })
 export class PuIcon {
+  @Prop() size: 'sm' | 'md' | 'large' = 'md';
+  @Prop() icon: string;
 
   render() {
     return (
       <Host>
-        <slot></slot>
+        <span class={`icon icon-${this.size}`}>
+          <img src={this.icon} alt="Icon" />
+        </span>
       </Host>
     );
   }
-
 }

@@ -71,8 +71,13 @@ export namespace Components {
     interface PuFab {
     }
     interface PuIcon {
+        "icon": string;
+        "size": 'sm' | 'md' | 'large';
     }
     interface PuImg {
+        "alt": string;
+        "loadError": () => void;
+        "onLoad": () => void;
         "rounded": boolean;
         "src": string;
     }
@@ -81,6 +86,8 @@ export namespace Components {
     interface PuList {
     }
     interface PuLoading {
+        "duration": number;
+        "message": string;
     }
     interface PuMenu {
     }
@@ -389,8 +396,13 @@ declare namespace LocalJSX {
     interface PuFab {
     }
     interface PuIcon {
+        "icon"?: string;
+        "size"?: 'sm' | 'md' | 'large';
     }
     interface PuImg {
+        "alt"?: string;
+        "loadError"?: () => void;
+        "onLoad"?: () => void;
         "rounded"?: boolean;
         "src"?: string;
     }
@@ -399,6 +411,8 @@ declare namespace LocalJSX {
     interface PuList {
     }
     interface PuLoading {
+        "duration"?: number;
+        "message"?: string;
     }
     interface PuMenu {
     }
