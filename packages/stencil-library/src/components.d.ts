@@ -73,28 +73,46 @@ export namespace Components {
         "vertical"?: 'top' | 'bottom' | 'center';
     }
     interface PuIcon {
+        "icon": string;
+        "size": 'sm' | 'md' | 'large';
     }
     interface PuImg {
+        "alt": string;
+        "loadError": () => void;
+        "onLoad": () => void;
         "rounded": boolean;
         "src": string;
     }
     interface PuInput {
+        "disabled": boolean;
+        "label": string;
+        "placeholder": string;
+        "readonly": boolean;
+        "type": string;
+        "value": string;
     }
     interface PuList {
         "inset": boolean;
         "lines"?: 'full' | 'inset' | 'none';
     }
     interface PuLoading {
+        "duration": number;
+        "message": string;
     }
     interface PuMenu {
     }
     interface PuModal {
+        "modalContent": string;
+        "modalHeader": string;
     }
     interface PuNav {
     }
     interface PuRadio {
     }
     interface PuSearchbar {
+        "disabled": boolean;
+        "placeholder": string;
+        "value": string;
     }
     interface PuSelect {
     }
@@ -104,6 +122,8 @@ export namespace Components {
         "color"?: 'primary' | 'secondary' | 'tertiary' | 'success' | 'warning' | 'danger' | 'light' | 'medium' | 'dark';
     }
     interface PuToast {
+        "text": string;
+        "time": number;
     }
     interface PuToggle {
         "checked"?: boolean;
@@ -118,6 +138,7 @@ export namespace Components {
           * The mode determines which platform styles to use.
          */
         "mode"?: "ios" | "md";
+        "title": string;
     }
 }
 declare global {
@@ -402,28 +423,46 @@ declare namespace LocalJSX {
         "vertical"?: 'top' | 'bottom' | 'center';
     }
     interface PuIcon {
+        "icon"?: string;
+        "size"?: 'sm' | 'md' | 'large';
     }
     interface PuImg {
+        "alt"?: string;
+        "loadError"?: () => void;
+        "onLoad"?: () => void;
         "rounded"?: boolean;
         "src"?: string;
     }
     interface PuInput {
+        "disabled"?: boolean;
+        "label"?: string;
+        "placeholder"?: string;
+        "readonly"?: boolean;
+        "type"?: string;
+        "value"?: string;
     }
     interface PuList {
         "inset"?: boolean;
         "lines"?: 'full' | 'inset' | 'none';
     }
     interface PuLoading {
+        "duration"?: number;
+        "message"?: string;
     }
     interface PuMenu {
     }
     interface PuModal {
+        "modalContent"?: string;
+        "modalHeader"?: string;
     }
     interface PuNav {
     }
     interface PuRadio {
     }
     interface PuSearchbar {
+        "disabled"?: boolean;
+        "placeholder"?: string;
+        "value"?: string;
     }
     interface PuSelect {
     }
@@ -433,6 +472,8 @@ declare namespace LocalJSX {
         "color"?: 'primary' | 'secondary' | 'tertiary' | 'success' | 'warning' | 'danger' | 'light' | 'medium' | 'dark';
     }
     interface PuToast {
+        "text"?: string;
+        "time"?: number;
     }
     interface PuToggle {
         "checked"?: boolean;
@@ -447,6 +488,7 @@ declare namespace LocalJSX {
           * The mode determines which platform styles to use.
          */
         "mode"?: "ios" | "md";
+        "title"?: string;
     }
     interface IntrinsicElements {
         "my-component": MyComponent;

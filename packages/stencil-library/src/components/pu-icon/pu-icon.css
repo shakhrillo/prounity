@@ -1,3 +1,28 @@
 :host {
   display: block;
 }
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--icon-size, 24px);
+  height: var(--icon-size, 24px);
+}
+
+.icon-sm {
+  --icon-size: 16px;
+}
+
+.icon-md {
+  --icon-size: 24px;
+}
+
+.icon-large {
+  --icon-size: 32px;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
