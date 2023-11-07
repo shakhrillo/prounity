@@ -69,6 +69,8 @@ export namespace Components {
     interface PuDatetime {
     }
     interface PuFab {
+        "horizontal"?: 'start' | 'end' | 'center';
+        "vertical"?: 'top' | 'bottom' | 'center';
     }
     interface PuIcon {
     }
@@ -79,6 +81,8 @@ export namespace Components {
     interface PuInput {
     }
     interface PuList {
+        "inset": boolean;
+        "lines"?: 'full' | 'inset' | 'none';
     }
     interface PuLoading {
     }
@@ -97,10 +101,17 @@ export namespace Components {
     interface PuTabs {
     }
     interface PuText {
+        "color"?: 'primary' | 'secondary' | 'tertiary' | 'success' | 'warning' | 'danger' | 'light' | 'medium' | 'dark';
     }
     interface PuToast {
     }
     interface PuToggle {
+        "checked"?: boolean;
+        "checkedColor"?: string;
+        "disabled"?: boolean;
+        "justify"?: 'start' | 'end' | 'space-between';
+        "labelPlacement"?: 'start' | 'end';
+        "uncheckedColor"?: string;
     }
     interface PuToolbar {
         /**
@@ -387,6 +398,8 @@ declare namespace LocalJSX {
     interface PuDatetime {
     }
     interface PuFab {
+        "horizontal"?: 'start' | 'end' | 'center';
+        "vertical"?: 'top' | 'bottom' | 'center';
     }
     interface PuIcon {
     }
@@ -397,6 +410,8 @@ declare namespace LocalJSX {
     interface PuInput {
     }
     interface PuList {
+        "inset"?: boolean;
+        "lines"?: 'full' | 'inset' | 'none';
     }
     interface PuLoading {
     }
@@ -415,10 +430,17 @@ declare namespace LocalJSX {
     interface PuTabs {
     }
     interface PuText {
+        "color"?: 'primary' | 'secondary' | 'tertiary' | 'success' | 'warning' | 'danger' | 'light' | 'medium' | 'dark';
     }
     interface PuToast {
     }
     interface PuToggle {
+        "checked"?: boolean;
+        "checkedColor"?: string;
+        "disabled"?: boolean;
+        "justify"?: 'start' | 'end' | 'space-between';
+        "labelPlacement"?: 'start' | 'end';
+        "uncheckedColor"?: string;
     }
     interface PuToolbar {
         /**

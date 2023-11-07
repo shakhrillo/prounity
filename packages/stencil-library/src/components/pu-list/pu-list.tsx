@@ -1,4 +1,4 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, h, Prop } from '@stencil/core';
 
 @Component({
   tag: 'pu-list',
@@ -6,13 +6,14 @@ import { Component, Host, h } from '@stencil/core';
   shadow: true,
 })
 export class PuList {
+  @Prop() lines?: 'full' | 'inset' | 'none';
+  @Prop() inset = false;
 
   render() {
     return (
-      <Host>
+      <Host role="list" class={`list-lines-${this.lines}`}>
         <slot></slot>
       </Host>
     );
   }
-
 }

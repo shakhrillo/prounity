@@ -1,4 +1,4 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, h, Prop } from '@stencil/core';
 
 @Component({
   tag: 'pu-text',
@@ -6,13 +6,12 @@ import { Component, Host, h } from '@stencil/core';
   shadow: true,
 })
 export class PuText {
-
+  @Prop() color?: 'primary' | 'secondary' | 'tertiary' | 'success' | 'warning' | 'danger' | 'light' | 'medium' | 'dark';
   render() {
     return (
-      <Host>
+      <Host class={`pu-text-${this.color}`}>
         <slot></slot>
       </Host>
     );
   }
-
 }

@@ -1,3 +1,31 @@
 :host {
   display: block;
 }
+:host(.pu-text-primary) {
+  color: #3880ff;
+}
+:host(.pu-text-secondary) {
+  color: #3dc2ff;
+}
+:host(.pu-text-tertiary) {
+  color: #5260ff;
+}
+:host(.pu-text-success) {
+  color: #2dd36f;
+}
+:host(.pu-text-warning) {
+  color: #ffc409;
+}
+:host(.pu-text-danger) {
+  color: #eb445a;
+}
+:host(.pu-text-light) {
+  color: #f4f5f8;
+}
+:host(.pu-text-medium) {
+  color: #92949c;
+}
+
+:host(.pu-text-dark) {
+  color: #222428;
+}

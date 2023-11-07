@@ -1,3 +1,19 @@
 :host {
+  width: 100%;
   display: block;
+  contain: content;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+:host(.list-lines-full) {
+  border-bottom: 1px solid #888888;
+}
+:host(.list-lines-null) {
+  border-bottom: 1px solid transparent;
+}
+
+:host.list-inset {
+  transform: translateZ(0);
+  overflow: hidden;
 }

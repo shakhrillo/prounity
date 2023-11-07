@@ -1,3 +1,28 @@
 :host {
-  display: block;
+  position: absolute;
+  background-color: rgb(78, 78, 255);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+:host(.fab-horizontal-start) {
+  left: 0;
+}
+:host(.fab-horizontal-end) {
+  right: 0;
+}
+:host(.fab-vertical-top) {
+  top: 0;
+}
+:host(.fab-vertical-bottom) {
+  bottom: 0;
+}
+:host(.fab-vertical-center) {
+  margin: auto 0;
 }

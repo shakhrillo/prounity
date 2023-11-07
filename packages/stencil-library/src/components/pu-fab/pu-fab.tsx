@@ -1,4 +1,4 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, Prop, h } from '@stencil/core';
 
 @Component({
   tag: 'pu-fab',
@@ -6,13 +6,14 @@ import { Component, Host, h } from '@stencil/core';
   shadow: true,
 })
 export class PuFab {
+  @Prop() horizontal?: 'start' | 'end' | 'center';
+  @Prop() vertical?: 'top' | 'bottom' | 'center';
 
   render() {
     return (
-      <Host>
-        <slot></slot>
+      <Host class={`fab-horizontal-${this.horizontal}`}>
+        <slot>+</slot>
       </Host>
     );
   }
-
 }
