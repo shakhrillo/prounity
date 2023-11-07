@@ -1,3 +1,37 @@
 :host {
   display: block;
+  width: 100%;
+}
+
+.pu-toast{
+  width: 100%;
+  position: relative;
+  height: 200px;
+  background-color: white;
+}
+
+.pu-toast button{
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  margin: 0 auto;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(43, 43, 243);
+  color: white;
+  font-size: 20px;
+}
+
+.toast {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.2);
+  color: black;
+  padding: 10px;
+  border-radius: 4px;
 }

@@ -1,3 +1,65 @@
 :host {
   display: block;
+  width: 100%;
+  height: 150px;
+  
+
+}
+.pu-modal{
+  max-width: 100%;
+  height: 100%;
+  background-color: white;
+  position: relative;
+  overflow: hidden;
+}
+.pu-modal .open-button{
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  margin: 0 auto;
+  padding: 5px;
+  border: none;
+  border-radius: 10px;
+  background-color: rgb(43, 43, 243);
+  color: white;
+  font-size: 20px;
+}
+.modal-close{
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  position: absolute;
+  top: 100%;
+  transition: 100ms;
+}
+.modal-open{
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  transition: 100ms;
+}
+.modal-header{
+  width: 100%;
+  padding: 10px 0;
+  border-bottom: 1px solid rgb(228, 227, 227);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.modal-header p{
+  margin: 0;
+}
+.modal-body{
+  text-align: center;
+}
+.modal-body button{
+  background-color: rgb(43, 43, 243);
+  border: none;
+  border-radius: 5px;
+  padding: 5px 20px;
+  color: white;
 }

@@ -187,23 +187,7 @@
         </p>
       </div>
     </div>
-
-   
-        <p>import {pu-avatar} from '@pu/react'</p>
-          <p>
-            function Example() { <br>
-              return ( <br>
-                &lt;&gt; <br>
-                &lt;IonAvatar&gt; <br>
-                &lt;img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" /&gt; <br>
-                &lt;/IonAvatar&gt; <br>
-                &lt;/&gt; <br>
-              ); <br>
-            } <br>
-            export default Example;
-          </p>
       </div>
-    </div>
     <div class="interface">
       <div class="title-of-component">
         <h1>PU Badge</h1>
@@ -338,6 +322,32 @@
           &lt;/&gt; <br />
           ); <br />
           } <br />
+    <div class="interface">
+      <div class="title-of-component">
+        <h1>PU Input</h1>
+        <p>The input component is a wrapper to the HTML input element with custom styling and additional functionality. It accepts most of the same properties as the HTML input, but works great on desktop devices and integrates with the keyboard on mobile devices.</p>
+      </div>
+      <div class="component column">
+        <pu-input label="Default input"></pu-input>      
+        <pu-input label="Input with placeholder" placeholder="Hello World!" ></pu-input>      
+        <pu-input label="Input with value" value="121 S Pinckney St #300"></pu-input>      
+        <pu-input label="Readonly input"  value="Madison" readonly></pu-input>      
+        <pu-input label="Disabled input" value="Disabled" disabled></pu-input>      
+      </div>
+      <div class="code-of-component">
+        <p>import {pu-input} from '@pu/react'</p>
+        <p>
+          function Example() { <br>
+            return ( <br>
+              &lt;&gt; <br>
+              &lt;pu-input label="Default input" &gt; <br>
+              &lt;pu-input label="Input with placeholder" placeholder="Hello World!" &gt; <br>
+              &lt;pu-input label="Input with value" value="121 S Pinckney St #300" &gt; <br>              
+              &lt;pu-input label="Readonly input" value="Madison" readonly &gt; <br>              
+              &lt;pu-input label="Disabled input" value="Disabled" disabled &gt; <br>              
+              &lt;/&gt; <br>
+            ); <br>
+          } <br>
           export default Example;
         </p>
       </div>
@@ -487,6 +497,101 @@
           &lt;/&gt; <br />
           ); <br />
           } <br />
+        <h1>PU Modal</h1>
+        <p>A Modal is a dialog that appears on top of the app's content, and must be dismissed by the app before interaction can resume. It is useful as a select component when there are a lot of options to choose from, or when filtering items in a list, as well as many other use cases</p>
+      </div>
+      <div class="component">
+        <pu-modal  modal-header="modal" modal-content="Modal content">
+        </pu-modal>
+      </div>
+      <div class="code-of-component">
+        <p>import {pu-modal} from '@pu/react'</p>
+        <p>
+          function Example() { <br>
+            return ( <br>
+              &lt;&gt; <br>
+              &lt;pu-modal  modal-header="modal" modal-content="Modal content" &gt; &lt;/pu-modal&gt; <br>
+              &lt;/&gt; <br>
+            ); <br>
+          } <br>
+          export default Example;
+        </p>
+      </div>
+    </div>
+    <div class="interface">
+      <div class="title-of-component">
+        <h1>PU Searchbar</h1>
+        <p>Searchbars represent a text field that can be used to search through a collection. They can be displayed inside of a toolbar or the main content. A searchbar should be used instead of an input to search lists.</p>
+      </div>
+      <div class="component column">
+        <pu-searchbar></pu-searchbar>
+        <pu-searchbar placeholder="Search"></pu-searchbar>
+        <pu-searchbar placeholder="Disabled"  disabled></pu-searchbar>
+        <pu-searchbar value="Value"></pu-searchbar>
+      </div>
+      <div class="code-of-component">
+        <p>import {pu-searchbar} from '@pu/react'</p>
+        <p>
+          function Example() { <br>
+            return ( <br>
+              &lt;&gt; <br>
+              &lt;pu-searchbar&gt;&lt;/pu-searchbar&gt; <br>
+              &lt;pu-searchbar placeholder="Search" &gt;&lt;/pu-searchbar&gt; <br>
+              &lt;pu-searchbar placeholder="Disabled"  disabled &gt;&lt;/pu-searchbar&gt; <br>
+              &lt;pu-searchbar value="Value" &gt;&lt;/pu-searchbar&gt; <br>
+              &lt;/&gt; <br>
+            ); <br>
+          } <br>
+          export default Example;
+        </p>
+      </div>
+    </div>
+    <div class="interface">
+      <div class="title-of-component">
+        <h1>PU Toast</h1>
+        <p>The isOpen property on ion-toast allows developers to control the presentation state of the toast from their application state. This means when isOpen is set to true the toast will be presented and when isOpen is set to false the toast will be dismissed.</p>
+      </div>
+      <div class="component column">
+        <pu-toast time="3000" text="Toast Lorem ipsum dolor sit amet."></pu-toast>
+      </div>
+      <div class="code-of-component">
+        <p>import {pu-toast} from '@pu/react'</p>
+        <p>
+          function Example() { <br>
+            return ( <br>
+              &lt;&gt; <br>
+              &lt;pu-toast time="3000" text="Toast Lorem ipsum dolor sit amet." &gt; <br>&lt;/pu-toast&gt; <br>
+              &lt;/&gt; <br>
+            ); <br>
+          } <br>
+          export default Example;
+        </p>
+      </div>
+    </div>
+    <div class="interface">
+      <div class="title-of-component">
+        <h1>PU Toolbar</h1>
+        <p>Toolbars are generally positioned above or below content and provide content and actions for the current screen. When placed within the content, toolbars will scroll with the content.
+           Toolbars can contain several different components including titles, buttons, icons, back buttons, menu buttons, searchbars, segments, progress bars, and more.
+        </p>
+      </div>
+      <div class="component column">
+        <pu-toolbar>
+
+
+          <span slot="title">Toolbar</span>
+        </pu-toolbar>
+      </div>
+      <div class="code-of-component">
+        <p>import {pu-toolbar} from '@pu/react'</p>
+        <p>
+          function Example() { <br>
+            return ( <br>
+              &lt;&gt; <br>
+              &lt;pu-toolbar title="Toolbar"&gt; <br>&lt;/pu-toolbar&gt; <br>
+              &lt;/&gt; <br>
+            ); <br>
+          } <br>
           export default Example;
         </p>
       </div>

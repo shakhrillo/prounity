@@ -82,6 +82,12 @@ export namespace Components {
         "src": string;
     }
     interface PuInput {
+        "disabled": boolean;
+        "label": string;
+        "placeholder": string;
+        "readonly": boolean;
+        "type": string;
+        "value": string;
     }
     interface PuList {
     }
@@ -92,12 +98,17 @@ export namespace Components {
     interface PuMenu {
     }
     interface PuModal {
+        "modalContent": string;
+        "modalHeader": string;
     }
     interface PuNav {
     }
     interface PuRadio {
     }
     interface PuSearchbar {
+        "disabled": boolean;
+        "placeholder": string;
+        "value": string;
     }
     interface PuSelect {
     }
@@ -106,6 +117,8 @@ export namespace Components {
     interface PuText {
     }
     interface PuToast {
+        "text": string;
+        "time": number;
     }
     interface PuToggle {
     }
@@ -114,6 +127,7 @@ export namespace Components {
           * The mode determines which platform styles to use.
          */
         "mode"?: "ios" | "md";
+        "title": string;
     }
 }
 declare global {
@@ -407,6 +421,12 @@ declare namespace LocalJSX {
         "src"?: string;
     }
     interface PuInput {
+        "disabled"?: boolean;
+        "label"?: string;
+        "placeholder"?: string;
+        "readonly"?: boolean;
+        "type"?: string;
+        "value"?: string;
     }
     interface PuList {
     }
@@ -417,12 +437,17 @@ declare namespace LocalJSX {
     interface PuMenu {
     }
     interface PuModal {
+        "modalContent"?: string;
+        "modalHeader"?: string;
     }
     interface PuNav {
     }
     interface PuRadio {
     }
     interface PuSearchbar {
+        "disabled"?: boolean;
+        "placeholder"?: string;
+        "value"?: string;
     }
     interface PuSelect {
     }
@@ -431,6 +456,8 @@ declare namespace LocalJSX {
     interface PuText {
     }
     interface PuToast {
+        "text"?: string;
+        "time"?: number;
     }
     interface PuToggle {
     }
@@ -439,6 +466,7 @@ declare namespace LocalJSX {
           * The mode determines which platform styles to use.
          */
         "mode"?: "ios" | "md";
+        "title"?: string;
     }
     interface IntrinsicElements {
         "my-component": MyComponent;
