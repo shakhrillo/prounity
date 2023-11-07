@@ -37,22 +37,22 @@
         min-height: 800px;
       }
 
-      .component {
-        width: 100%;
-        height: 200px;
-        background-color: #f1ff576e;
-        border: 1px solid rgb(203, 202, 202);
+      .component{
+        max-width: 100%;
+        min-height: 200px;
+        background-color: #eafd1c58;
         border-radius: 10px;
         display: flex;
         justify-content: center;
         align-items: center;
         margin-bottom: 20px;
         overflow: auto;
+        padding: 20px;
       }
 
       .code-of-component {
         max-width: 100%;
-        min-height: 200px;
+        height: 300px;
         padding: 20px 10px;
         border-radius: 10px;
         background-color: rgb(240, 239, 239);
@@ -184,5 +184,135 @@
     </div>
 
    
+        <p>import {pu-avatar} from '@pu/react'</p>
+          <p>
+            function Example() { <br>
+              return ( <br>
+                &lt;&gt; <br>
+                &lt;IonAvatar&gt; <br>
+                &lt;img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" /&gt; <br>
+                &lt;/IonAvatar&gt; <br>
+                &lt;/&gt; <br>
+              ); <br>
+            } <br>
+            export default Example;
+          </p>
+      </div>
+    </div>
+    <div class="interface">
+      <div class="title-of-component">
+        <h1>PU Badge</h1>
+        <p>Badges are inline block elements that usually appear near another element. Typically they contain a number or other characters. They can be used as a notification that there are additional items associated with an element and indicate how many items there are. Badges are hidden if no content is passed in.</p>
+      </div>
+      <div class="component">
+        <pu-badge  color="primary">99</pu-badge>
+        <pu-badge color="danger">99</pu-badge>
+        <pu-badge color="secondary">99</pu-badge>
+        <pu-badge color="warning">99</pu-badge>
+        <pu-badge color="success">99</pu-badge>
+        <pu-badge color="light">99</pu-badge>
+        <pu-badge color="dark">99</pu-badge>
+      </div>
+      <div class="code-of-component">
+        <p>import {pu-badge} from '@pu/react'</p>
+          <p>
+            function Example() { <br>
+              return ( <br>
+                &lt;&gt; <br>
+                &lt;pu-badge color="primary"&gt;&lt;99/pu-badge &gt; <br>
+                &lt;pu-badge color="danger"&gt;99&lt;/pu-badge &gt; <br>
+                &lt;pu-badge color="secondary"&gt;99&lt;/pu-badge &gt;<br>
+                &lt;pu-badge color="warning"&gt;99&lt;/pu-badge &gt;<br>
+                &lt;pu-badge color="success"&gt;99&lt;/pu-badge &gt;<br>
+                &lt;pu-badge color="light"&gt;99&lt;/pu-badge &gt;<br>
+                &lt;pu-badge color="dark"&gt;99&lt;/pu-badge &gt;<br>
+                &lt;/&gt; <br>
+              ); <br>
+            } <br>
+            export default Example;
+          </p>
+      </div>
+    </div>
+    <div class="interface">
+      <div class="title-of-component">
+        <h1>PU Badge</h1>
+        <p>Badges are inline block elements that usually appear near another element. Typically they contain a number or other characters. They can be used as a notification that there are additional items associated with an element and indicate how many items there are. Badges are hidden if no content is passed in.</p>
+      </div>
+      <div class="component">
+        <pu-badge shape="round-3" color="primary">99</pu-badge>
+        <pu-badge shape="round-3" color="danger">99</pu-badge>
+        <pu-badge shape="round-3" color="secondary">99</pu-badge>
+        <pu-badge shape="round-3" color="warning">99</pu-badge>
+        <pu-badge shape="round-3" color="success">99</pu-badge>
+        <pu-badge shape="round-3" color="light">99</pu-badge>
+        <pu-badge shape="round-3" color="dark">99</pu-badge>
+      </div>
+      <div class="code-of-component">
+        <p>import {pu-badge} from '@pu/react'</p>
+          <p>
+            function Example() { <br>
+              return ( <br>
+                &lt;&gt; <br>
+                &lt;pu-badge shape="round-3" color="primary"&gt;&lt;99/pu-badge &gt; <br>
+                &lt;pu-badge shape="round-3" color="danger"&gt;99&lt;/pu-badge &gt; <br>
+                &lt;pu-badge shape="round-3" color="secondary"&gt;99&lt;/pu-badge &gt;<br>
+                &lt;pu-badge shape="round-3" color="warning"&gt;99&lt;/pu-badge &gt;<br>
+                &lt;pu-badge shape="round-3" color="success"&gt;99&lt;/pu-badge &gt;<br>
+                &lt;pu-badge shape="round-3" color="light"&gt;99&lt;/pu-badge &gt;<br>
+                &lt;pu-badge shape="round-3" color="dark"&gt;99&lt;/pu-badge &gt;<br>
+                &lt;/&gt; <br>
+              ); <br>
+            } <br>
+            export default Example;
+          </p>
+      </div>
+    </div>
+    <div class="interface">
+      <div class="title-of-component">
+        <h1>PU Card</h1>
+        <p>Cards are containers that display content such as text, images, buttons, and lists. A card can be a single component, but is often made up of a header, title, subtitle, and content. Cards are broken up into several components to accommodate this structure: card header, card title, card subtitle, and card content.</p>
+      </div>
+      <div class="component">
+        <pu-card title="Card Title" subtitle="Card Subtitle" content="Here is Card Content"></pu-card>
+      </div>
+      <div class="code-of-component">
+        <p>import {pu-card} from '@pu/react'</p>
+        <p>
+          function Example() { <br>
+            return ( <br>
+              &lt;&gt; <br>
+              &lt;pu-card <br> title="Card Title" <br> subtitle="Card Subtitle" <br> content="Here is Card Content"&gt; <br> &lt;/pu-card &gt; <br>
+              
+              &lt;/&gt; <br>
+            ); <br>
+          } <br>
+          export default Example;
+        </p>
+      </div>
+    </div>
+    <div class="interface">
+      <div class="title-of-component">
+        <h1>PU Card</h1>
+        <p>Cards are containers that display content such as text, images, buttons, and lists. A card can be a single component, but is often made up of a header, title, subtitle, and content. Cards are broken up into several components to accommodate this structure: card header, card title, card subtitle, and card content.</p>
+      </div>
+      <div class="component">
+        <pu-card src="https://ionicframework.com/docs/img/demos/card-media.png" title="Card Title" subtitle="Card Subtitle" content="Here is Card Content"></pu-card>
+      </div>
+      <div class="code-of-component">
+        <p>import {pu-card} from '@pu/react'</p>
+        <p>
+          function Example() { <br>
+            return ( <br>
+              &lt;&gt; <br>
+              &lt;pu-card <br> src="https://ionicframework.com/docs/img/demos/card-media.png" <br> title="Card Title" <br> subtitle="Card Subtitle" <br> content="Here is Card Content"&gt; <br> &lt;/pu-card &gt; <br>
+              
+              &lt;/&gt; <br>
+            ); <br>
+          } <br>
+          export default Example;
+        </p>
+      </div>
+    </div>
+    
   </body>
 </html>

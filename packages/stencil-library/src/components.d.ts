@@ -46,6 +46,10 @@ export namespace Components {
     interface PuButton {
     }
     interface PuCard {
+        "content": string;
+        "src": string;
+        "subtitle": string;
+        "title": string;
     }
     interface PuCheckbox {
     }
@@ -353,6 +357,10 @@ declare namespace LocalJSX {
     interface PuButton {
     }
     interface PuCard {
+        "content"?: string;
+        "src"?: string;
+        "subtitle"?: string;
+        "title"?: string;
     }
     interface PuCheckbox {
     }
