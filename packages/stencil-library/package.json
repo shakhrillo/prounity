@@ -24,7 +24,7 @@
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
-    "publish": "npm run build && npm link && npm link stencil-library"
+    "publish": "npm run build && npm link && npm link stencil-library && cd ../react-library && npm run build && cd ../stencil-library" 
   },
   "dependencies": {
     "@stencil/core": "^4.7.0",

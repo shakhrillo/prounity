@@ -10,6 +10,7 @@
 | Property | Attribute | Description                                       | Type            | Default     |
 | -------- | --------- | ------------------------------------------------- | --------------- | ----------- |
 | `mode`   | `mode`    | The mode determines which platform styles to use. | `"ios" \| "md"` | `undefined` |
+| `title`  | `title`   |                                                   | `string`        | `undefined` |
 
 
 ----------------------------------------------

@@ -7,10 +7,20 @@
 
 ## Properties
 
-| Property  | Attribute | Description | Type      | Default     |
-| --------- | --------- | ----------- | --------- | ----------- |
-| `rounded` | `rounded` |             | `boolean` | `undefined` |
-| `src`     | `src`     |             | `string`  | `undefined` |
+| Property    | Attribute | Description | Type         | Default     |
+| ----------- | --------- | ----------- | ------------ | ----------- |
+| `alt`       | `alt`     |             | `string`     | `undefined` |
+| `loadError` | --        |             | `() => void` | `undefined` |
+| `onLoad`    | --        |             | `() => void` | `undefined` |
+| `rounded`   | `rounded` |             | `boolean`    | `undefined` |
+| `src`       | `src`     |             | `string`     | `undefined` |
+
+
+## Shadow Parts
+
+| Part      | Description |
+| --------- | ----------- |
+| `"image"` |             |
 
 
 ----------------------------------------------

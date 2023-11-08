@@ -16,9 +16,9 @@ export const config: Config = {
       componentCorePackage: 'stencil-library',
       proxiesFile: '../react-library/lib/components/stencil-generated/index.ts',
     }),
-    {
-      type: 'www',
-      serviceWorker: null, // disable service workers
-    },
+    // {
+    //   type: 'www',
+    //   serviceWorker: null, // disable service workers
+    // },
   ],
 };
