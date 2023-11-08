@@ -20,10 +20,13 @@ const Tab1: React.FC = () => {
             <IonTitle size="large">Tab 1</IonTitle>
           </IonToolbar>
         </IonHeader>
+
         <PuAccordion>
           <div slot="header">First Accordion</div>
           <div slot="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum aspernatur porro alias, nam molestiae vel!</div>
         </PuAccordion>
+
+        
       </IonContent>
     </IonPage>
   );
