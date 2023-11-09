@@ -1,0 +1,38 @@
+.sidebar {
+  max-width: 320px;
+  height: 100vh;
+  width: 100%;
+  padding: 12px;
+}
+.sidebar-container {
+  background-color: rgb(226, 226, 226);
+  height: 100%;
+  width: 100%;
+  border-radius: 15px;
+  padding: 20px;
+}
+.sidebar .nav_link {
+  display: block;
+  text-decoration: none;
+  margin: auto 0;
+  color: #323232;
+}
+.collapse_nav {
+  display: block;
+  border: 0;
+  padding: 0 15px;
+  margin: 10px 0;
+  border-radius: 15px;
+  min-height: 55px;
+  background-color: rgb(255, 255, 255);
+}
+.uncollapse_nav {
+  display: block;
+  padding: 0 15px;
+  margin: 10px 0;
+  border-radius: 15px;
+  min-height: 55px;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+}

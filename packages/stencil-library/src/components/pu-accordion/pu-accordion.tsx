@@ -15,9 +15,9 @@ export class PuAccordion {
     return (
       <Host>
         <div id="header" class="accordion-header" onClick={() => this.toggleAccordion()}>
-          <h2>
+          <h3>
             <slot name="header"></slot>
-          </h2>
+          </h3>
           <div id="icon">{this.isOpen ? <span>&#9650;</span> : <span>&#9660;</span>}</div>
         </div>
         <div id="content" class={`accordion-content ${this.isOpen ? 'open' : 'close'}`}>

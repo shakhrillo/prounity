@@ -1,10 +1,36 @@
-import { PuButton, PuCard, PuInput } from "react-library";
+import { PuButton, PuCard, PuInput, PuText } from "react-library";
 import "./Login.css";
 import { BaseURL } from "../../utils/Base-url";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
   const userNameRef = useRef();
   const paswordRef = useRef();
+  const [error, setError] = useState<boolean>(false);
+  const navigate = useNavigate();
+
+  const handleRoll = () => {
+    fetch(`${BaseURL}authen/api/user_profiles_views/`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          setError(true);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data?.groups[0]?.name === "admin") {
+          navigate("/");
+        }
+      })
+      .catch((error) => {
+        console.error("Xato:", error);
+      });
+  };
 
   const handleLogin = () => {
     fetch(`${BaseURL}authen/api/user_sig_in_views/`, {
@@ -19,17 +45,19 @@ const Login = () => {
     })
       .then((response) => {
         if (!response.ok) {
-          throw new Error("HTTP xato, so'rov bajarilmadi");
+          setError(true);
         }
         return response.json();
       })
       .then((data) => {
-        console.log(data);
+        localStorage.setItem("token", data?.token?.access);
+        handleRoll();
       })
       .catch((error) => {
         console.error("Xato:", error);
       });
   };
+
   return (
     <div className="login">
       <PuCard className="login-box">
@@ -46,6 +74,7 @@ const Login = () => {
           <PuButton className="login-btn" onClick={handleLogin}>
             Login
           </PuButton>
+          {error && <PuText color="danger">Lorem ipsum dolor sit amet.</PuText>}
         </form>
       </PuCard>
     </div>

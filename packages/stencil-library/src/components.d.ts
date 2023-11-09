@@ -84,11 +84,11 @@ export namespace Components {
         "src": string;
     }
     interface PuInput {
-        "disabled": boolean;
-        "label": string;
-        "placeholder": string;
-        "readonly": boolean;
-        "type": string;
+        "disabled"?: boolean;
+        "label"?: string;
+        "placeholder"?: string;
+        "readonly"?: boolean;
+        "type"?: string;
         "value": string;
     }
     interface PuList {
@@ -140,6 +140,10 @@ export namespace Components {
         "mode"?: "ios" | "md";
         "title": string;
     }
+}
+export interface PuInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPuInputElement;
 }
 declare global {
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
@@ -238,7 +242,18 @@ declare global {
         prototype: HTMLPuImgElement;
         new (): HTMLPuImgElement;
     };
+    interface HTMLPuInputElementEventMap {
+        "changed": string;
+    }
     interface HTMLPuInputElement extends Components.PuInput, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPuInputElementEventMap>(type: K, listener: (this: HTMLPuInputElement, ev: PuInputCustomEvent<HTMLPuInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPuInputElementEventMap>(type: K, listener: (this: HTMLPuInputElement, ev: PuInputCustomEvent<HTMLPuInputElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPuInputElement: {
         prototype: HTMLPuInputElement;
@@ -436,6 +451,7 @@ declare namespace LocalJSX {
     interface PuInput {
         "disabled"?: boolean;
         "label"?: string;
+        "onChanged"?: (event: PuInputCustomEvent<string>) => void;
         "placeholder"?: string;
         "readonly"?: boolean;
         "type"?: string;

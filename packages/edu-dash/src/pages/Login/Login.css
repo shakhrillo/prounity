@@ -8,7 +8,8 @@
 .login .login-box {
   max-width: 420px;
   width: 100%;
-  padding: 0 30px;
+  padding: 10px 30px 30px;
+  text-align: center;
 }
 .login .login-btn {
   margin: 30px auto;
