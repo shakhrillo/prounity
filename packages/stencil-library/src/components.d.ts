@@ -47,6 +47,7 @@ export namespace Components {
         "target"?: string | undefined;
     }
     interface PuButton {
+        "align": 'start' | 'center' | 'end';
         "color": 'primary' | 'success' | 'warning';
         "disabled": boolean;
         "size": 'sm' | 'md' | 'large';
@@ -411,6 +412,7 @@ declare namespace LocalJSX {
         "target"?: string | undefined;
     }
     interface PuButton {
+        "align"?: 'start' | 'center' | 'end';
         "color"?: 'primary' | 'success' | 'warning';
         "disabled"?: boolean;
         "size"?: 'sm' | 'md' | 'large';

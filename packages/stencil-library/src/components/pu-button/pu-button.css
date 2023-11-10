@@ -72,3 +72,15 @@ button:disabled {
   background-color: #c69500;
   box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.15) inset;
 }
+
+.align-start {
+  justify-content: flex-start;
+}
+
+.align-center {
+  justify-content: center;
+}
+
+.align-end {
+  justify-content: flex-end;
+}
