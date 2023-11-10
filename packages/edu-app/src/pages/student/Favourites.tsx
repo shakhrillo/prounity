@@ -36,7 +36,7 @@ const Favourites: React.FC = () => {
         <IonTitle>Favourites</IonTitle>
       </IonToolbar>
       <IonContent fullscreen>
-        <div style={{ width: '100%', minHeight: '80%', display: 'flex', flexDirection:"column", justifyContent: 'center', alignItems: 'start', padding: '20px' }}>
+        <div style={{ width: '100%', minHeight: '80%', display: 'flex', flexDirection:"column", justifyContent: 'start', alignItems: 'center', padding: '20px' }}>
           {favourites.length === 0 ? (
             <p>No favorites available.</p>
           ) : (
