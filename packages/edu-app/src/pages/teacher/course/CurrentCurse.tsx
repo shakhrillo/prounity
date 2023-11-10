@@ -10,8 +10,17 @@ import {
 } from 'react-library';
 import { Link, useParams } from 'react-router-dom';
 
+interface Course {
+  id: number;
+  name: string;
+  content: string;
+  course_logo: string;
+  summ_course: number;
+  course: any;
+}
+
 const CurrentCurse: React.FC = () => {
-  const [currentCourse, setCurrentCourse] = useState([]);
+  const [currentCourse, setCurrentCourse] = useState<Course[]>([]);
   const { id }: { id: any } = useParams();
   const BASE_URL = 'http://192.168.1.185:8000';
 
@@ -73,7 +82,7 @@ const CurrentCurse: React.FC = () => {
               <p>{course.content}</p>
               <div>
                 <h1>Lessonss</h1>
-                {course.course.map((lesson) => (
+                {course.course.map((lesson: any) => (
                   <div key={lesson.id}>
                     <PuList>
                       <PuAccordion>

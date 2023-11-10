@@ -15,7 +15,7 @@ import { ellipse, square, triangle } from 'ionicons/icons';
 import Tab1 from '../Tab1';
 import Tab2 from '../Tab2';
 import Tab3 from '../Tab3';
-import Course from "./course/Course";
+import Course from './course/Course'
 import CurrentCourse from './course/CurrentCurse'
 import CreateCourse from './course/CreateCourse'
 import Blogs from './blogs/Blogs'
