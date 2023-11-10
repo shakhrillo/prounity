@@ -101,6 +101,7 @@ const CreateCourse: React.FC = () => {
               <div style={{ display: 'flex', gap: 5 }}>
                 <PuButton
                   onClick={() => deleteBlog(blog.id)}
+                  // @ts-ignore
                   color='danger'
                   style={{ marginTop: 15, marginBottom: 15 }}
                 >

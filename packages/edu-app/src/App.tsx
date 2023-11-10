@@ -1,5 +1,6 @@
 import { Redirect, Route } from 'react-router-dom';
 import { IonApp, setupIonicReact } from '@ionic/react';
+// @ts-ignore
 import TabBar from './pages/teacher/TabBar';
 import { useEffect } from 'react';
 
@@ -52,15 +53,17 @@ const App: React.FC = () => {
     setRole(role);
   };
 
-  return <IonApp>{role === 'teacher' ? <TabBar /> : role === "student" ? <Tabbar/> : <Signin/>}</IonApp>;
+  return (
+    <IonApp>
+      {role === 'teacher' ? (
+        <TabBar />
+      ) : role === 'student' ? (
+        <Tabbar />
+      ) : (
+        <Signin />
+      )}
+    </IonApp>
+  );
 };
 
 export default App;
-
-// const App: React.FC = () => (
-//   <IonApp>
-//     <TabBar />
-//   </IonApp>
-// );
-
-// export default App;
