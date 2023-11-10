@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { PuButton, PuCard, PuInput, PuText } from "react-library";
 import "./Login.css";
 import { BaseURL } from "../../utils/Base-url";
@@ -39,7 +40,9 @@ const Login = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        //  @ts-ignore
         username: userNameRef.current?.value,
+        //  @ts-ignore
         password: paswordRef.current?.value,
       }),
     })
@@ -64,9 +67,11 @@ const Login = () => {
         <h1>Login</h1>
         <form>
           <div className="login-inputs">
+            {/* @ts-ignore */}
             <PuInput label="Username" ref={userNameRef}></PuInput>
             <PuInput
               label="password"
+              //  @ts-ignore
               ref={paswordRef}
               type="password"
             ></PuInput>
@@ -74,7 +79,7 @@ const Login = () => {
           <PuButton className="login-btn" onClick={handleLogin}>
             Login
           </PuButton>
-          {error && <PuText color="danger">Lorem ipsum dolor sit amet.</PuText>}
+          {error && <PuText color="danger">Lorem ipsum dolor sit amet</PuText>}
         </form>
       </PuCard>
     </div>
