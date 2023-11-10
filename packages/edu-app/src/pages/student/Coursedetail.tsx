@@ -66,27 +66,11 @@ const Coursedetail: React.FC = () => {
               ></PuImg>
               <h3>{item.name}</h3>
               <p>{item.content}</p>
-              <p>Author : {item.author_id.first_name}  {item.author_id.last_name}</p>
-              <p>Price : {item.summ_course}</p>
+              <p>Author : {item?.author_id?.first_name}  {item?.author_id?.last_name}</p>
+              <p>Price : {item?.summ_course}</p>
               <div>
-                {/* <h1>Lessonss</h1> */}
-                {/* {item.course.map((i) => (
-                  <div key={i.id}>
-                    <PuList>
-                      <PuAccordion style={{padding:"10px"}}>
-                        <span slot='header'>{i.name}</span>
-                        <span slot='content'>{i.content}</span>
-                        <video
-                          style={{ width: '100%', marginTop: 15 }}
-                          slot='content'
-                          src={`http://192.168.1.185:8000/${i.video}`}
-                        ></video>
-                      </PuAccordion>
-                    </PuList>
-                  </div>
-                ))} */}
               </div>
-              {/* <p style={{ color: 'red' }}>{course.summ_course}$</p> */}
+              <PuButton size='sm'>buy</PuButton>
             </div>
           ))}
         </div>

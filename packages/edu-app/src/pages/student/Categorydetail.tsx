@@ -56,8 +56,8 @@ const Categorydetail: React.FC = () => {
             padding:20
           }}>
             {courses.map(item=>
-                <PuCard title={item.name} key={item.id} style={{marginBottom:"10px"}}>
-                    <img slot='img' src={`http://192.168.1.185:8000/${item.img}`} alt="" />
+                <PuCard title={item?.name} key={item?.id} style={{marginBottom:"10px"}}>
+                    <img slot='img' src={`http://192.168.1.185:8000/${item?.img}`} alt="" />
                 </PuCard>    
             )}
         </div>
