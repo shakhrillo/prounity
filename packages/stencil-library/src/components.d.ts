@@ -53,7 +53,6 @@ export namespace Components {
     }
     interface PuCard {
         "content": string;
-        "src": string;
         "subtitle": string;
         "title": string;
     }
@@ -418,7 +417,6 @@ declare namespace LocalJSX {
     }
     interface PuCard {
         "content"?: string;
-        "src"?: string;
         "subtitle"?: string;
         "title"?: string;
     }

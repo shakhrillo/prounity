@@ -6,6 +6,7 @@ import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core';
   shadow: true,
 })
 export class PuInput {
+<<<<<<< HEAD
   @Prop() label?: string;
   @Prop() placeholder?: string;
   @Prop() disabled?: boolean;
@@ -18,6 +19,20 @@ export class PuInput {
   private handleChange(ev) {
     this.value = ev.target ? ev.target.value : null;
     this.changed.emit(this.value);
+=======
+    @Prop() label: string;
+    @Prop() placeholder: string;
+    @Prop() disabled : boolean;
+    @Prop() type : string;
+    @Prop() readonly : boolean;
+    @Prop({ mutable: true }) value: string;
+
+    @Event() changed: EventEmitter<string>;
+
+    private handleChange(ev) {
+      this.value = ev.target ? ev.target.value : null;
+      this.changed.emit(this.value);
+>>>>>>> 98773f7 (...)
   }
 
   render() {

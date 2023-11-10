@@ -10,18 +10,20 @@ export class PuCard {
   @Prop() title: string; 
   @Prop() subtitle: string; 
   @Prop() content: string; 
-  @Prop() src: string; 
 
   render() {
     return (
-      <Host class={`pu-card ${this.title} ${this.subtitle} ${this.content} ${this.src}`}>
-        <img class={`${this.src?"img-card":"d-none"}`} src={`${this.src}`} alt="" />
+      <Host class={`pu-card ${this.title} ${this.subtitle} ${this.content}`}>
+        <div class={"img-card"}><slot name='img'></slot></div>
         <div class={"card-body"}>
           <p class={"card-title"}>{this.title}</p>
           <p class={"card-subtitle"}>{this.subtitle}</p>
-          <p class={"card-content"}>{this.content}</p>
+          <div class={"card-price"}>
+            <p class={"card-content"}>{this.content}</p>
+            <slot name='body'></slot>
+          </div>
         </div>
-        <slot></slot>
+        
       </Host>
     );
   }
