@@ -2,17 +2,16 @@
   display: block;
   width: 100%;
   height: 150px;
-  
-
 }
-.pu-modal{
+.pu-modal {
   max-width: 100%;
   height: 100%;
   background-color: white;
   position: relative;
   overflow: hidden;
 }
-.pu-modal .open-button{
+
+.pu-modal .open-button {
   position: absolute;
   left: 50%;
   top: 20%;
@@ -26,7 +25,7 @@
   color: white;
   font-size: 20px;
 }
-.modal-close{
+.modal-close {
   width: 100%;
   height: 100%;
   background-color: white;
@@ -34,7 +33,7 @@
   top: 100%;
   transition: 100ms;
 }
-.modal-open{
+.modal-open {
   width: 100%;
   height: 100%;
   background-color: white;
@@ -42,7 +41,8 @@
   top: 0;
   transition: 100ms;
 }
-.modal-header{
+
+.modal-header {
   width: 100%;
   padding: 10px 0;
   border-bottom: 1px solid rgb(228, 227, 227);
@@ -50,13 +50,13 @@
   justify-content: space-around;
   align-items: center;
 }
-.modal-header p{
+.modal-header p {
   margin: 0;
 }
-.modal-body{
+.modal-body {
   text-align: center;
 }
-.modal-body button{
+.modal-body button {
   background-color: rgb(43, 43, 243);
   border: none;
   border-radius: 5px;

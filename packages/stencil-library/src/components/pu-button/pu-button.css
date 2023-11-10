@@ -28,6 +28,10 @@ button:disabled {
   background-color: #ffc107;
 }
 
+.button-danger {
+  background-color: #d9534f;
+}
+
 .button-sm {
   font-size: 0.6rem;
 }
