@@ -32,7 +32,7 @@ const TabBar = () => {
             <IonReactRouter>
                 <IonTabs>
                     <IonRouterOutlet>
-                        <Route exact path="/course">
+                        <Route exact path="/courses">
                             <Course />
                         </Route>
                         <Route exact path="/pro">
@@ -65,13 +65,12 @@ const TabBar = () => {
                         <Route exact path="/edit-profile">
                             <EditProfile />
                         </Route>
-
                         <Route exact path="/">
-                            <Redirect to="/course" />
+                            <Redirect to="/courses" />
                         </Route>
                     </IonRouterOutlet>
                     <IonTabBar slot="bottom">
-                        <IonTabButton tab="course" href="/course">
+                        <IonTabButton tab="course" href="/courses">
                             <IonIcon aria-hidden="true" icon={triangle} />
                             <IonLabel>Course</IonLabel>
                         </IonTabButton>

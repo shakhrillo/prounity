@@ -25,6 +25,8 @@ import './theme/variables.css';
 setupIonicReact();
 
 import React from 'react';
+import Tabbar from './pages/student/tabbar';
+import Signin from './pages/signin/Signin';
 
 const App: React.FC = () => {
   const [role, setRole] = React.useState('');
@@ -50,7 +52,7 @@ const App: React.FC = () => {
     setRole(role);
   };
 
-  return <IonApp>{role === 'teacher' ? <TabBar /> : <h1>student</h1>}</IonApp>;
+  return <IonApp>{role === 'teacher' ? <TabBar /> : role === "student" ? <Tabbar/> : <Signin/>}</IonApp>;
 };
 
 export default App;
