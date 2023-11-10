@@ -11,6 +11,6 @@
   color: #282828;
 }
 .breadcrumb.active {
-  color: rgb(80, 95, 255);
-  font-weight: bold;
+  color: #02556d;
+  font-weight: 500;
 }

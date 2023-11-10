@@ -8,20 +8,15 @@ import { Component, Host, h, Prop } from '@stencil/core';
 export class PuToggle {
   checkbox: HTMLInputElement;
   background: HTMLSpanElement;
-  @Prop() checkedColor?: string = '#2196F3';
+  @Prop() checkedColor?: string = '#706CE7';
   @Prop() uncheckedColor?: string = '#ccc';
   @Prop({ mutable: true }) checked?: boolean = false;
   @Prop() labelPlacement?: 'start' | 'end';
   @Prop() disabled?: boolean = false;
   @Prop() justify?: 'start' | 'end' | 'space-between';
 
-  componentDidLoad() {
-    this.background.style.setProperty('background', this.checked ? this.checkedColor : this.uncheckedColor);
-  }
-
   toggleSwitch() {
     this.checked = this.checkbox.checked;
-    this.background.style.setProperty('background', this.checked ? this.checkedColor : this.uncheckedColor);
   }
   render() {
     return (
