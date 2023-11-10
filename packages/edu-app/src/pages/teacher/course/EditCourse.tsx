@@ -77,8 +77,7 @@ const EditCourse: React.FC = () => {
             course_logoRef.current.value = '';
           }
 
-          history.push('/course');
-          console.log('Course edited:', data);
+          history.push('/courses');
         })
         .catch((error) => {
           console.error('Error editing course:', error);

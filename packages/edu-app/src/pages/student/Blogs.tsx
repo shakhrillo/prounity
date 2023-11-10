@@ -1,7 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import {
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+} from '@ionic/react';
 import ExploreContainer from '../../components/ExploreContainer';
-import { PuButton, PuCard, PuInput, PuToolbar, defineCustomElements } from 'react-library';
+import {
+  PuButton,
+  PuCard,
+  PuInput,
+  PuToolbar,
+  defineCustomElements,
+} from 'react-library';
 import { Link } from 'react-router-dom';
 
 defineCustomElements();
@@ -41,9 +53,9 @@ const Blogs: React.FC = () => {
   }, []);
 
   return (
-    <IonPage className="">
+    <IonPage className=''>
       <PuToolbar>
-        <span slot="title">Blogs</span>
+        <span slot='title'>Blogs</span>
       </PuToolbar>
       <IonContent fullscreen>
         <div style={{ width: '100%', minHeight: '100%', padding: '20px' }}>
@@ -58,7 +70,7 @@ const Blogs: React.FC = () => {
                 marginBottom: '20px',
               }}
             >
-              <PuCard
+              <div
                 title={item.title}
                 subtitle={item.content}
                 content={`${item.author_id.first_name} ${item.author_id.last_name}`}
@@ -66,16 +78,16 @@ const Blogs: React.FC = () => {
               >
                 <img
                   style={{ width: '100%', height: '300px', objectFit: 'cover' }}
-                  slot="img"
+                  slot='img'
                   src={`http://192.168.1.185:8000/${item.img}`}
-                  alt=""
+                  alt=''
                 />
-                <div slot="body">
+                <div slot='body'>
                   <Link to={`/blog-detail/${item.id}`}>
-                    <PuButton size="sm">Show</PuButton>
+                    <PuButton size='sm'>Show</PuButton>
                   </Link>
                 </div>
-              </PuCard>
+              </div>
             </div>
           ))}
         </div>

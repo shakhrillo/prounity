@@ -94,7 +94,9 @@ const EditBlog: React.FC = () => {
           }}
         >
           <PuCard>
+            {/*@ts-ignore */}
             <PuInput label='Title' ref={titleRef}></PuInput>
+            {/*@ts-ignore */}
             <PuInput label='Content' ref={contentRef}></PuInput>
             <input placeholder='Blog img' ref={blogImgRef} type='file' />
 

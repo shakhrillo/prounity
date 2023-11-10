@@ -73,7 +73,9 @@ const CreateCourse: React.FC = () => {
           }}
         >
           <PuCard style={{ padding: 5 }}>
+            {/*@ts-ignore */}
             <PuInput label='Title' ref={nameRef}></PuInput>
+            {/*@ts-ignore */}
             <PuInput label='Content' ref={contentRef}></PuInput>
             <input
               style={{ marginTop: 10 }}
@@ -81,6 +83,7 @@ const CreateCourse: React.FC = () => {
               ref={courseLogoRef}
               type='file'
             />
+            {/*@ts-ignore */}
             <PuInput label='Price' type='number' ref={summ_courseRef}></PuInput>
             <div style={{ display: 'flex', justifyContent: 'end' }}>
               <PuButton onClick={handleAddCourse} style={{ marginTop: 15 }}>
