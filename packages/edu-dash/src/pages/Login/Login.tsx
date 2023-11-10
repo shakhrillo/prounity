@@ -79,7 +79,7 @@ const Login = () => {
           <PuButton className="login-btn" onClick={handleLogin}>
             Login
           </PuButton>
-          {error && <PuText color="danger">Lorem ipsum dolor sit amet</PuText>}
+          {error && <PuText color="danger">Lorem ipsum dolor sit amet...</PuText>}
         </form>
       </PuCard>
     </div>
