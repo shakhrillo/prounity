@@ -1,19 +1,7 @@
 import { Redirect, Route } from 'react-router-dom';
-import {
-  IonApp,
-  IonIcon,
-  IonLabel,
-  IonRouterOutlet,
-  IonTabBar,
-  IonTabButton,
-  IonTabs,
-  setupIonicReact,
-} from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
-import Tab1 from './pages/Tab1';
-import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
+import { IonApp, setupIonicReact } from '@ionic/react';
+import TabBar from './pages/teacher/TabBar';
+import { useEffect } from 'react';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -33,14 +21,44 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import TabBar from './pages/teacher/TabBar';
 
 setupIonicReact();
 
-const App: React.FC = () => (
-  <IonApp>
-    <TabBar />
-  </IonApp>
-);
+import React from 'react';
+
+const App: React.FC = () => {
+  const [role, setRole] = React.useState('');
+
+  useEffect(() => {
+    getRole();
+  }, []);
+
+  const getRole = async () => {
+    const token = localStorage.getItem('token');
+    const response = await fetch(
+      `http://192.168.1.185:8000/authen/api/user_profiles_views/`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const data = await response.json();
+    const role = data.groups[0].name;
+    setRole(role);
+  };
+
+  return <IonApp>{role === 'teacher' ? <TabBar /> : <h1>student</h1>}</IonApp>;
+};
 
 export default App;
+
+// const App: React.FC = () => (
+//   <IonApp>
+//     <TabBar />
+//   </IonApp>
+// );
+
+// export default App;

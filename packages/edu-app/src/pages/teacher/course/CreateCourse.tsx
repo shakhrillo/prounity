@@ -62,6 +62,9 @@ const CreateCourse: React.FC = () => {
         <PuToolbar>
           <span slot='title'>Create Course</span>
         </PuToolbar>
+
+        <h1 style={{ textAlign: 'center' }}>Create Your Course</h1>
+
         <div
           style={{
             display: 'flex',
@@ -69,14 +72,21 @@ const CreateCourse: React.FC = () => {
             paddingTop: 10,
           }}
         >
-          <PuCard>
+          <PuCard style={{ padding: 5 }}>
             <PuInput label='Title' ref={nameRef}></PuInput>
             <PuInput label='Content' ref={contentRef}></PuInput>
-            <input placeholder='Course Logo' ref={courseLogoRef} type='file' />
+            <input
+              style={{ marginTop: 10 }}
+              placeholder='Course Logo'
+              ref={courseLogoRef}
+              type='file'
+            />
             <PuInput label='Price' type='number' ref={summ_courseRef}></PuInput>
-            <PuButton onClick={handleAddCourse} style={{ marginTop: 15 }}>
-              Add
-            </PuButton>
+            <div style={{ display: 'flex', justifyContent: 'end' }}>
+              <PuButton onClick={handleAddCourse} style={{ marginTop: 15 }}>
+                Add
+              </PuButton>
+            </div>
           </PuCard>
         </div>
       </IonContent>
