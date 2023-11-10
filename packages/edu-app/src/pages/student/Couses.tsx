@@ -74,8 +74,8 @@ const Courses: React.FC = () => {
           </div>
           {course.map((item) => (
             <div key={item.id} style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'start', marginBottom: '20px' }}>
-              <PuCard title={item.content} subtitle={item.name} content="25$" style={{ padding: '5px', width: '100%' }}>
-                <img style={{ width: '100%', height: '300px', objectFit: 'cover' }} slot="img" src={`http://192.168.1.185:8000/${item.course_logo}`} alt="" />
+              <PuCard title={item.content} subtitle={item.name} style={{ padding: '5px', width: '100%' }}>
+                <img style={{ width: '100%', objectFit: 'cover' }} slot="img" src={`http://192.168.1.185:8000/${item.course_logo}`} alt="" />
                 <div slot="body">
                   <PuBadge
                     shape="round-3"

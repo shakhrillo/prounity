@@ -57,9 +57,6 @@ const Mycourses: React.FC = () => {
             <div key={item.id} style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'start', marginBottom: '20px' }}>
               <PuCard title={item.course_id.content} subtitle={item.course_id.name} content={item.course_id.summ_course + "$"} style={{ padding: '5px', width: '100%' }}>
                 <img style={{ width: '100%', height: '300px', objectFit: 'cover' }} slot="img" src={`http://192.168.1.185:8000/${item.course_id.course_logo}`} alt="salom" />
-                <div slot="body">
-                  <Link to={`/course-detail/${item.id}`}><PuButton>show</PuButton></Link>
-                </div>
               </PuCard>
             </div>
           ))}

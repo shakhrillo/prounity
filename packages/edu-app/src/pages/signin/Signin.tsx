@@ -1,7 +1,5 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import ExploreContainer from '../../components/ExploreContainer';
-
-
 import { PuAccordion, PuButton, PuCard, PuInput, PuToolbar, defineCustomElements } from 'react-library';
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
@@ -42,13 +40,18 @@ const Signin: React.FC = () => {
     <IonPage>
       <IonHeader>
       <PuToolbar>
-        <span slot="title">Toolbar</span>
+        <span slot="title">Sign-in</span>
       </PuToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <div  style={{width:"100%", height:"100%", display:"flex", justifyContent:"center", alignItems:"center", padding:"20px"}}>
           <PuCard  style={{padding:"5px"}}>
             <div slot='body'>
+              <form style={{width:"100%", height:"100%", display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}} action="">
+              <PuInput label='username'></PuInput>
+              <PuInput label='password' style={{marginBottom:"10px"}}></PuInput>
+              <PuButton>sign-in</PuButton>
+              </form>
               
             </div>
           </PuCard>
