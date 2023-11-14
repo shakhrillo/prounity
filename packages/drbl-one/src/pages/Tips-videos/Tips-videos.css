@@ -1,0 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;800;900&display=swap");
+.tab-bar {
+  display: none;
+}
+a {
+  text-decoration: none;
+}
+.videos-tollbar {
+  --background: rgb(255, 255, 255);
+  --border-style: none;
+  padding: 0px 10px;
+  font-size: 1.2rem;
+}
+.videos-list .searchbar .searchbar-input-container {
+  --background: #f2f2f2;
+  height: 50px;
+  --border-radius: 10px;
+  --placeholder-color: #b4b4b4;
+  --font-weight: bold;
+}
+.videos-card {
+  background-color: #fff0e7;
+  box-shadow: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  height: 190px;
+  font-family: "Poppins", sans-serif;
+}
+.card-title {
+  font-size: 1.3rem;
+  color: #000;
+  letter-spacing: 0.4px;
+  margin: 0;
+}
+.card-content {
+  margin-top: 4px;
+}
+.card-image {
+  width: 160px;
+  height: 113px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.card-text h3 {
+  margin: 10px 0 6px 0;
+  font-size: 1.1rem;
+  color: #000;
+}
+.card-text p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+.videos-list .play-btn-box {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding-right: 14px;
+  margin-top: 8px;
+}
+.play-btn-box ion-button {
+  border-radius: 50%;
+  background: #224d13;
+  color: #fff;
+  width: 50px;
+  min-height: 50px;
+  --padding-top: 0;
+  --padding-bottom: 0;
+  --padding-start: 0;
+  --padding-end: 0;
+}

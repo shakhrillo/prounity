@@ -41,6 +41,8 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import CurrentPlant from './pages/CurrenPlant/CurrentPlant';
+import TipsVideos from './pages/Tips-videos/Tips-videos';
+import TipsVideosDetails from './pages/Tips-videos-details/Tips-videos-details';
 
 setupIonicReact();
 
@@ -60,6 +62,15 @@ const App: React.FC = () => (
           </Route>
           <Route path='/current-plant/:id'>
             <CurrentPlant />
+          </Route>
+          <Route exact path='/'>
+            <Redirect to='/tab1' />
+          </Route>
+          <Route path='/tips-videos'>
+            <TipsVideos />
+          </Route>
+          <Route path='/tips-videos/:id'>
+            <TipsVideosDetails />
           </Route>
           <Route exact path='/'>
             <Redirect to='/tab1' />

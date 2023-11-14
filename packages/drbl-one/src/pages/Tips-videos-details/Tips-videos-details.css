@@ -1,0 +1,115 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;800;900&display=swap");
+.tab-bar {
+  display: none;
+}
+.content {
+  padding: 0px 26px;
+  font-family: "Poppins", sans-serif;
+}
+.video-box {
+  position: relative;
+}
+.play-btn-box {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 0;
+  top: 40%;
+}
+.back-btn {
+  position: absolute;
+  color: #ffffff;
+  z-index: 99;
+  margin-top: 65px;
+  margin-left: 28px;
+  font-size: 1.5rem;
+}
+.video-box .play-btn {
+  margin-top: 6px;
+  background: #fff;
+  border-radius: 50%;
+  color: #224d13;
+}
+.tips-videos-detail .video {
+  width: 100%;
+  border-radius: 25px;
+  height: 265px !important;
+  margin-top: 20px;
+  object-fit: cover;
+}
+
+.video-text .video-title h2 {
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+.video-text .video-desc {
+  line-height: 27px;
+  font-weight: 300;
+}
+.tips-videos-detail .video-text .video-desc span {
+  color: #224d13;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.tips-videos-detail .topics-video {
+  padding-top: 8px;
+}
+.tips-videos-detail .sub-title h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+.tips-videos-detail .topics-video-box {
+  padding-top: 12px;
+}
+.tips-videos-detail .topics-video-box .status-btn {
+  margin: 0;
+  background: #224d13;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 1rem;
+  padding: 0;
+  --padding-top: 0;
+  --padding-bottom: 0;
+  --padding-start: 0;
+  --padding-end: 0;
+  width: 37px;
+  min-height: 37px;
+  margin-inline: 0;
+}
+.topics-video-card.disabled .status-btn {
+  background: #9c9c9c;
+}
+
+.tips-videos-detail .topics-video-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.tips-videos-detail .topics-video-card .card-text {
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+.topics-video-card.disabled .card-text {
+  color: #9c9c9c;
+}
+.tips-videos-detail .step-bar {
+  width: 1px;
+  height: 27px;
+  background: #224d13;
+  margin-left: 17px;
+}
+.tips-videos-detail .step-bar.disabled {
+  background: #9c9c9c;
+}
+.recently-uploadet-cards {
+  margin-top: 26px;
+  display: flex;
+  gap: 26px;
+  overflow-x: auto;
+}
+.recently-uploadet-cards .card img {
+  min-width: 242px;
+  border-radius: 18px;
+}
