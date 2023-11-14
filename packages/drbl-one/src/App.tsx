@@ -1,4 +1,4 @@
-import { Redirect, Route } from "react-router-dom";
+import { Redirect, Route } from 'react-router-dom';
 import {
   IonApp,
   IonIcon,
@@ -8,8 +8,8 @@ import {
   IonTabButton,
   IonTabs,
   setupIonicReact,
-} from "@ionic/react";
-import { IonReactRouter } from "@ionic/react-router";
+} from '@ionic/react';
+import { IonReactRouter } from '@ionic/react-router';
 import {
   basket,
   ellipse,
@@ -17,31 +17,32 @@ import {
   settings,
   square,
   triangle,
-} from "ionicons/icons";
-import Tab1 from "./pages/Tab1";
-import Tab2 from "./pages/Tab2";
-import Tab3 from "./pages/Tab3";
+} from 'ionicons/icons';
+import Tab1 from './pages/Tab1';
+import Tab2 from './pages/Tab2';
+import Tab3 from './pages/Tab3';
 
 /* Core CSS required for Ionic components to work properly */
-import "@ionic/react/css/core.css";
+import '@ionic/react/css/core.css';
 
 /* Basic CSS for apps built with Ionic */
-import "@ionic/react/css/normalize.css";
-import "@ionic/react/css/structure.css";
-import "@ionic/react/css/typography.css";
+import '@ionic/react/css/normalize.css';
+import '@ionic/react/css/structure.css';
+import '@ionic/react/css/typography.css';
 
 /* Optional CSS utils that can be commented out */
-import "@ionic/react/css/padding.css";
-import "@ionic/react/css/float-elements.css";
-import "@ionic/react/css/text-alignment.css";
-import "@ionic/react/css/text-transformation.css";
-import "@ionic/react/css/flex-utils.css";
-import "@ionic/react/css/display.css";
+import '@ionic/react/css/padding.css';
+import '@ionic/react/css/float-elements.css';
+import '@ionic/react/css/text-alignment.css';
+import '@ionic/react/css/text-transformation.css';
+import '@ionic/react/css/flex-utils.css';
+import '@ionic/react/css/display.css';
 
 /* Theme variables */
-import "./theme/variables.css";
-import TipsVideos from "./pages/Tips-videos/Tips-videos";
-import TipsVideosDetails from "./pages/Tips-videos-details/Tips-videos-details";
+import './theme/variables.css';
+import CurrentPlant from './pages/CurrenPlant/CurrentPlant';
+import TipsVideos from './pages/Tips-videos/Tips-videos';
+import TipsVideosDetails from './pages/Tips-videos-details/Tips-videos-details';
 
 setupIonicReact();
 
@@ -50,34 +51,40 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-          <Route exact path="/tab1">
+          <Route exact path='/tab1'>
             <Tab1 />
           </Route>
-          <Route exact path="/tab2">
+          <Route exact path='/tab2'>
             <Tab2 />
           </Route>
-          <Route path="/tab3">
+          <Route path='/tab3'>
             <Tab3 />
           </Route>
-          <Route path="/tips-videos">
+          <Route path='/current-plant/:id'>
+            <CurrentPlant />
+          </Route>
+          <Route exact path='/'>
+            <Redirect to='/tab1' />
+          </Route>
+          <Route path='/tips-videos'>
             <TipsVideos />
           </Route>
-          <Route path="/tips-videos/:id">
+          <Route path='/tips-videos/:id'>
             <TipsVideosDetails />
           </Route>
-          <Route exact path="/">
-            <Redirect to="/tab1" />
+          <Route exact path='/'>
+            <Redirect to='/tab1' />
           </Route>
         </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
-            <IonIcon aria-hidden="true" icon={home} />
+        <IonTabBar slot='bottom'>
+          <IonTabButton tab='tab1' href='/tab1'>
+            <IonIcon aria-hidden='true' icon={home} />
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon aria-hidden="true" icon={basket} />
+          <IonTabButton tab='tab2' href='/tab2'>
+            <IonIcon aria-hidden='true' icon={basket} />
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon aria-hidden="true" icon={settings} />
+          <IonTabButton tab='tab3' href='/tab3'>
+            <IonIcon aria-hidden='true' icon={settings} />
           </IonTabButton>
         </IonTabBar>
       </IonTabs>

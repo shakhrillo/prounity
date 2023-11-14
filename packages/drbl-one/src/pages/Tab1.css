@@ -1,0 +1,64 @@
+.searchbar .searchbar-input-container input {
+  height: 50px;
+}
+
+.title {
+  padding-top: 10px;
+  padding-left: 20px;
+}
+
+.product-list-horizontal {
+  display: flex;
+  overflow-x: scroll;
+  padding-left: 20px;
+  padding-top: 12px;
+}
+
+.product-list-horizontal .product {
+  min-width: 285px;
+}
+
+.product-list-horizontal img {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+}
+
+.category-segment {
+  margin-top: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.all-price-list {
+  display: flex;
+  overflow-x: scroll;
+  gap: 14px;
+  padding-left: 20px;
+  padding-top: 22px;
+}
+
+.all-price-list img {
+  border-radius: 12px;
+  width: 145px;
+  height: 190px;
+}
+
+.banner-container {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.banner {
+  display: flex;
+  margin: 50px auto;
+  padding: 10px 14px;
+  width: 375px;
+  height: 125px;
+  border-radius: 16px;
+  background-color: white;
+}
+
+.banner button {
+  height: 10px;
+}

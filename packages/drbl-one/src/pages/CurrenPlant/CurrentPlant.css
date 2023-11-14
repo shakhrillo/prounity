@@ -1,0 +1,21 @@
+.peace-container {
+  display: flex;
+  align-items: end;
+  padding-right: 100px;
+  gap: 55px;
+}
+
+.peace-container img {
+  height: 330px;
+  width: 230px;
+  object-fit: cover;
+}
+
+.about-product-list {
+  margin-top: 26px;
+  gap: 5px;
+}
+
+.product-toolbar {
+  --background: rgba(255, 240, 224);
+}
