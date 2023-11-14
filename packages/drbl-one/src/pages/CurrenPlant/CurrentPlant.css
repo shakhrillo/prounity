@@ -1,6 +1,7 @@
 .peace-container {
   display: flex;
   align-items: end;
+  position: relative;
   padding-right: 100px;
   gap: 55px;
 }

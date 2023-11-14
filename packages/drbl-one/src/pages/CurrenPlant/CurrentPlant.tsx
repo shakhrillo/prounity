@@ -16,7 +16,14 @@ import {
   IonToolbar,
 } from '@ionic/react';
 import './CurrentPlant.css';
-import { logoIonic, arrowBack, heart, addCircle } from 'ionicons/icons';
+import {
+  arrowBack,
+  heart,
+  sunnyOutline,
+  waterOutline,
+  thermometerOutline,
+  calculatorOutline,
+} from 'ionicons/icons';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
@@ -105,9 +112,11 @@ const CurrentPlant: React.FC = () => {
           {currentPlant && (
             <div
               style={{
+                position: 'relative',
                 paddingTop: 0,
                 paddingBottom: 10,
                 background: 'rgba(255,240,224)',
+                borderBottomRightRadius: 70,
               }}
               className='title'
             >
@@ -146,6 +155,13 @@ const CurrentPlant: React.FC = () => {
                 </div>
 
                 <img
+                  style={{
+                    position: 'absolute',
+                    width: 250,
+                    height: 350,
+                    right: 0,
+                    bottom: -45,
+                  }}
                   src={`https://i.pinimg.com/originals/58/9d/4a/589d4a02eccbee79513e0d19d36d088c.png`}
                   alt=''
                 />
@@ -167,7 +183,20 @@ const CurrentPlant: React.FC = () => {
                       paddingTop: 10,
                     }}
                   >
-                    <h6>Light</h6>
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: 8,
+                      }}
+                    >
+                      <IonIcon
+                        style={{ fontSize: 23 }}
+                        icon={sunnyOutline}
+                      ></IonIcon>
+                      <h6>Light</h6>
+                    </div>
                     <b>{currentPlant.plant_light}%</b>
                   </div>
                 </IonCol>
@@ -186,7 +215,21 @@ const CurrentPlant: React.FC = () => {
                       paddingTop: 10,
                     }}
                   >
-                    <h6>Water</h6>
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: 3,
+                      }}
+                    >
+                      <IonIcon
+                        style={{ fontSize: 20 }}
+                        icon={waterOutline}
+                      ></IonIcon>
+                      <h6>Water</h6>
+                    </div>
+
                     <b>{currentPlant.plant_water}L</b>
                   </div>
                 </IonCol>
@@ -205,7 +248,20 @@ const CurrentPlant: React.FC = () => {
                       paddingTop: 10,
                     }}
                   >
-                    <h6>Temp</h6>
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: 3,
+                      }}
+                    >
+                      <IonIcon
+                        style={{ fontSize: 20 }}
+                        icon={thermometerOutline}
+                      ></IonIcon>
+                      <h6>Temp</h6>
+                    </div>
                     <b>{currentPlant.plant_temperature}C</b>
                   </div>
                 </IonCol>
@@ -224,7 +280,20 @@ const CurrentPlant: React.FC = () => {
                       paddingTop: 10,
                     }}
                   >
-                    <h6>Temp</h6>
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: 3,
+                      }}
+                    >
+                      <IonIcon
+                        style={{ fontSize: 20 }}
+                        icon={calculatorOutline}
+                      ></IonIcon>
+                      <h6>Size</h6>
+                    </div>
                     <b>{currentPlant.plant_tall}sm</b>
                   </div>
                 </IonCol>
