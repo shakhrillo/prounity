@@ -96,7 +96,7 @@ const App: React.FC = () => (
             <History />
           </Route>
         </IonRouterOutlet>
-        <IonTabBar slot='bottom'>
+        <IonTabBar className='tabbar' slot='bottom'>
           <IonTabButton tab='tab1' href='/tab1'>
             <IonIcon aria-hidden='true' icon={home} />
           </IonTabButton>
