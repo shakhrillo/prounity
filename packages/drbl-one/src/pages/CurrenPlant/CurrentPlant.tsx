@@ -112,7 +112,7 @@ const CurrentPlant: React.FC = () => {
               className='title'
             >
               <IonText style={{ fontSize: 35 }}>
-                {/* <b>{currentPlant.plant_name}</b> */}
+                <b>{currentPlant.plant_name}</b>
               </IonText>
 
               <div className='peace-container'>
@@ -134,10 +134,7 @@ const CurrentPlant: React.FC = () => {
                   <IonText color={'medium'} style={{ fontSize: 20 }}>
                     <span style={{ fontSize: 14 }}>Category</span>
                     <br />
-                    <b style={{ color: 'rgba(36,77,25)' }}>
-                      {/* {currentPlant.plant_categories.name} */}
-                      Category name
-                    </b>
+                    <b style={{ color: 'rgba(36,77,25)' }}>category name</b>
                   </IonText>
                   <IonText color={'medium'} style={{ fontSize: 20 }}>
                     <span style={{ fontSize: 14 }}>Price</span>
