@@ -28,6 +28,8 @@ import {
   calendarOutline,
   tvOutline,
   leafOutline,
+  search,
+  micOutline,
 } from 'ionicons/icons';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
@@ -130,7 +132,9 @@ const Tab1: React.FC = () => {
       </IonMenu>
       <IonPage id='main-content'>
         <IonContent color={'light'}>
-          <IonToolbar style={{ paddingLeft: 18, paddingRight: 18 }}>
+          <IonToolbar
+            style={{ paddingLeft: 18, paddingRight: 18, paddingTop: 20 }}
+          >
             <div style={{ display: 'flex', gap: 15 }}>
               <IonButtons slot='start'>
                 <IonMenuButton
@@ -138,16 +142,18 @@ const Tab1: React.FC = () => {
                   style={{
                     background: 'black',
                     width: 50,
-                    height: 45,
+                    height: 50,
                     borderRadius: 8,
                   }}
                   autoHide={false}
                 ></IonMenuButton>
               </IonButtons>
-              <p>
+              <p style={{ fontSize: 20 }}>
                 Hello Mia
                 <br />
-                <IonText color={'medium'}>Take care of your plants!</IonText>
+                <IonText style={{ fontSize: 16 }} color={'medium'}>
+                  Take care of your plants!
+                </IonText>
               </p>
             </div>
             <IonButtons slot='end'>
@@ -160,16 +166,30 @@ const Tab1: React.FC = () => {
                 style={{
                   backgroundColor: 'rgba(36,77,25)',
                   width: 50,
-                  height: 45,
+                  height: 50,
                   borderRadius: 8,
                 }}
               >
-                <IonIcon color='light' icon={cartOutline}></IonIcon>
+                <IonIcon
+                  color='light'
+                  size='large'
+                  icon={cartOutline}
+                ></IonIcon>
               </IonButton>
             </IonButtons>
           </IonToolbar>
-          <div style={{ padding: 10 }} className='searchbar'>
-            <IonSearchbar className='searchbar'></IonSearchbar>
+          {/* <div style={{ padding: 10 }} className='searchbar'>
+            <IonSearchbar
+              className='searchbar'
+              style={{ padding: '10px' }}
+            ></IonSearchbar>
+          </div> */}
+          <div style={{ padding: '0 20px' }} className='searchbar'>
+            <div className='body-searchbar'>
+              <IonIcon className='icon' icon={search}></IonIcon>
+              <input placeholder='Search' type='text' />
+              <IonIcon className='icon' icon={micOutline}></IonIcon>
+            </div>
           </div>
           <div className='title'>
             <IonText style={{ fontSize: 23 }}>
@@ -202,9 +222,19 @@ const Tab1: React.FC = () => {
             <IonSegment
               value={selectedSegment}
               onIonChange={handleSegmentChange}
+              className='segment-active'
             >
               <IonSegmentButton onClick={getPopularProducts} value={'popular'}>
                 <IonLabel>Popular</IonLabel>
+                <div className='segment-indicator'></div>
+              </IonSegmentButton>
+              <IonSegmentButton onClick={getPopularProducts} value={'porno'}>
+                <IonLabel>Popular</IonLabel>
+                <div className='segment-indicator'></div>
+              </IonSegmentButton>
+              <IonSegmentButton onClick={getPopularProducts} value={'sex'}>
+                <IonLabel>Popular</IonLabel>
+                <div className='segment-indicator'></div>
               </IonSegmentButton>
               {categories.map((category) => (
                 <IonSegmentButton
@@ -213,6 +243,7 @@ const Tab1: React.FC = () => {
                   value={category.name.toLowerCase()}
                 >
                   <IonLabel>{category.name}</IonLabel>
+                  <div className='segment-indicator'></div>
                 </IonSegmentButton>
               ))}
             </IonSegment>
@@ -282,13 +313,12 @@ const Tab1: React.FC = () => {
                       <b style={{ fontSize: '18px' }}>Above 50$</b>
                     </IonButton>
                   </IonCol>
-                  <IonCol size='4'>
-                    <img
-                      style={{ height: '100%', objectFit: 'cover' }}
-                      src='https://www.pngall.com/wp-content/uploads/12/Delivery-Scooter-PNG-Images-HD.png'
-                      alt='banner'
-                    />
-                  </IonCol>
+
+                  <img
+                    style={{ objectFit: 'cover' }}
+                    src='https://www.pngall.com/wp-content/uploads/12/Delivery-Scooter-PNG-Images-HD.png'
+                    alt='banner'
+                  />
                 </IonRow>
               </div>
             </div>
