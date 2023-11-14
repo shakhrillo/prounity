@@ -43,6 +43,11 @@ import './theme/variables.css';
 import CurrentPlant from './pages/CurrenPlant/CurrentPlant';
 import TipsVideos from './pages/Tips-videos/Tips-videos';
 import TipsVideosDetails from './pages/Tips-videos-details/Tips-videos-details';
+import Signin from './pages/sign-in/Signin';
+import Signup from './pages/signup/Signup';
+import Location from './pages/location/Location';
+import History from './pages/history/History';
+import Care from './pages/care/Care';
 
 setupIonicReact();
 
@@ -74,6 +79,21 @@ const App: React.FC = () => (
           </Route>
           <Route exact path='/'>
             <Redirect to='/tab1' />
+          </Route>
+          <Route path="/sign-in">
+            <Signin />
+          </Route>
+          <Route path="/sign-up">
+            <Signup />
+          </Route>
+          <Route path="/location">
+            <Location />
+          </Route>
+          <Route path="/care">
+            <Care />
+          </Route>
+          <Route path="/history">
+            <History />
           </Route>
         </IonRouterOutlet>
         <IonTabBar slot='bottom'>
