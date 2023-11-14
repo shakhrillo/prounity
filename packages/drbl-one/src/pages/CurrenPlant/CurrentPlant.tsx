@@ -22,7 +22,7 @@ import { useEffect, useState } from 'react';
 
 const CurrentPlant: React.FC = () => {
   const { id } = useParams();
-  const [currentPlant, setCurrentPlant] = useState();
+  const [currentPlant, setCurrentPlant] = useState([]);
   const BASE_URL = 'https://prounity.uz';
 
   useEffect(() => {
@@ -112,7 +112,7 @@ const CurrentPlant: React.FC = () => {
               className='title'
             >
               <IonText style={{ fontSize: 35 }}>
-                <b>{currentPlant.plant_name}</b>
+                {/* <b>{currentPlant.plant_name}</b> */}
               </IonText>
 
               <div className='peace-container'>
@@ -135,7 +135,8 @@ const CurrentPlant: React.FC = () => {
                     <span style={{ fontSize: 14 }}>Category</span>
                     <br />
                     <b style={{ color: 'rgba(36,77,25)' }}>
-                      {currentPlant.plant_categories.name}
+                      {/* {currentPlant.plant_categories.name} */}
+                      Category name
                     </b>
                   </IonText>
                   <IonText color={'medium'} style={{ fontSize: 20 }}>
@@ -148,7 +149,7 @@ const CurrentPlant: React.FC = () => {
                 </div>
 
                 <img
-                  src={`${BASE_URL}${currentPlant.img[0].plant_image}`}
+                  src={`https://i.pinimg.com/originals/58/9d/4a/589d4a02eccbee79513e0d19d36d088c.png`}
                   alt=''
                 />
               </div>
