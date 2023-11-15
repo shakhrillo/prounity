@@ -39,9 +39,9 @@ import {
 import { useEffect, useState } from 'react';
   
   const Care: React.FC = () => {
-    const [activeItem, setActiveItem] = useState(null);
     const [user, setUser] = useState([])
     const [care, setCare] = useState([])
+    const [activeItem, setActiveItem] = useState(null);
     const categories = [
         {icon: `${locationOutline}`, name: "Location", path:'/location'},
         {icon: `${refreshOutline}`, name: "History",path:'/history'},
