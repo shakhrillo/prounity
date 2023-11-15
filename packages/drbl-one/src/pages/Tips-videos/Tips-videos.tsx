@@ -6,10 +6,8 @@ import {
   IonGrid,
   IonHeader,
   IonIcon,
-  IonNavLink,
   IonPage,
   IonRow,
-  IonSearchbar,
   IonText,
   IonToolbar,
 } from "@ionic/react";
@@ -17,7 +15,6 @@ import {
   arrowBackOutline,
   micOutline,
   play,
-  playOutline,
   search,
 } from "ionicons/icons";
 import "./Tips-videos.css";

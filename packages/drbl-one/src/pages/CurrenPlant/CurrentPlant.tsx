@@ -140,7 +140,7 @@ const CurrentPlant: React.FC = () => {
               className='title'
             >
               <IonText style={{ fontSize: 35 }}>
-                <b>{currentPlant.plant_name}</b>
+                <b>{currentPlant?.plant_name}</b>
               </IonText>
 
               <div className='peace-container'>
@@ -156,26 +156,26 @@ const CurrentPlant: React.FC = () => {
                     <span style={{ fontSize: 14 }}>Type</span>
                     <br />
                     <b style={{ color: 'rgba(36,77,25)' }}>
-                      {currentPlant.plant_type}
+                      {currentPlant?.plant_type}
                     </b>
                   </IonText>
                   <IonText color={'medium'} style={{ fontSize: 20 }}>
                     <span style={{ fontSize: 14 }}>Category</span>
                     <br />
                     <b style={{ color: 'rgba(36,77,25)' }}>
-                      {currentPlant.plant_name}
+                      {currentPlant?.plant_name}
                     </b>
                   </IonText>
                   <IonText color={'medium'} style={{ fontSize: 20 }}>
                     <span style={{ fontSize: 14 }}>Price</span>
                     <br />
                     <b style={{ color: 'rgba(36,77,25)' }}>
-                      ${currentPlant.plant_price}
+                      ${currentPlant?.plant_price}
                     </b>
                   </IonText>
                 </div>
 
-                <img
+                {/* <img
                   style={{
                     position: 'absolute',
                     width: 270,
@@ -185,7 +185,7 @@ const CurrentPlant: React.FC = () => {
                   }}
                   src={`https://i.pinimg.com/originals/58/9d/4a/589d4a02eccbee79513e0d19d36d088c.png`}
                   alt=''
-                />
+                /> */}
 
                 {/* {currentPlant?.img?.map((item) => (
                   <div className='product' key={item.id}>

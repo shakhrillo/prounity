@@ -17,13 +17,18 @@ interface PlantCareItem {
   care_plant_desc: string;
   care_plant_content: string;
 }
+interface RecentlyUploadedItem {
+  care_topic_video: string;
+}
 const TipsVideosDetails: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [hidePlayBtn, setHidePlayBtn] = useState<boolean>(false);
   const [data, setData] = useState<PlantCareItem>();
-  const [resentlyUploaded, setResentlyUploaded] = useState([]);
+  const [resentlyUploaded, setResentlyUploaded] = useState<
+    RecentlyUploadedItem[]
+  >([]);
   const [showFullText, setShowFullText] = useState<boolean>(false);
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
 
   const source = (
     <source
@@ -108,18 +113,20 @@ const TipsVideosDetails: React.FC = () => {
             <IonText className="video-desc">
               {showFullText
                 ? data?.care_plant_desc
-                : data?.care_plant_desc.slice(0, 150)}
-              {data?.care_plant_desc?.length > 150 && !showFullText && (
-                <>
-                  ...{" "}
-                  <span
-                    className="read-more"
-                    onClick={() => setShowFullText(true)}
-                  >
-                    Read more
-                  </span>
-                </>
-              )}
+                : data?.care_plant_desc?.slice(0, 150)}
+              {data?.care_plant_desc &&
+                data.care_plant_desc.length > 150 &&
+                !showFullText && (
+                  <>
+                    ...{" "}
+                    <span
+                      className="read-more"
+                      onClick={() => setShowFullText(true)}
+                    >
+                      Read more
+                    </span>
+                  </>
+                )}
             </IonText>
           </div>
           <div className="topics-video">
