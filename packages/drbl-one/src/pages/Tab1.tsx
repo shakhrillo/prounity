@@ -10,6 +10,7 @@ import {
   IonList,
   IonMenu,
   IonMenuButton,
+  IonMenuToggle,
   IonPage,
   IonRow,
   IonSearchbar,
@@ -29,7 +30,8 @@ import {
   tvOutline,
   leafOutline,
   search,
-  micOutline,
+  mic,
+  micOutline
 } from 'ionicons/icons';
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
@@ -39,8 +41,18 @@ const Tab1: React.FC = () => {
   const [recentProducts, setRecentProducts] = useState([]);
   const [popularProducts, setPopularProducts] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [user, setUser] = useState([]);
   const [selectedSegment, setSelectedSegment] = useState<string>('popular');
   const location = useLocation();
+  
+  const [activeItem, setActiveItem] = useState(null);
+  const category = [
+      {icon: `${locationOutline}`, name: "Location", path:'/location'},
+      {icon: `${refreshOutline}`, name: "History",path:'/history'},
+      {icon: `${calendarOutline}`, name: "List of Plants", path:'/tab1'},
+      {icon: `${tvOutline}`, name: "Tips & Videos", path:'/tips-videos'},
+      {icon: `${leafOutline}`, name: "Care of planting trees", path:'/care'},
+  ]
 
   useEffect(() => {
     getRecentProducts();
@@ -130,54 +142,74 @@ const Tab1: React.FC = () => {
     console.log('hello world');
   };
 
+  const getUser = async () => {
+    try {
+      // Get the user token from local storage
+      const token = localStorage.getItem('token');
+      
+      // Set the headers with the token
+      const headers = {
+        'Authorization': `Bearer ${token}`
+      };
+  
+      const response = await fetch('https://prounity.uz/edu-app/api/authen/api/user_profiles_views/', {
+        headers: headers
+      });
+  
+      const data = await response.json();
+      setUser(data); 
+    } catch (error) {
+      console.error('Error fetching location data:', error);
+    }
+  };
+
+  const handleClick = (index) => {
+    setActiveItem(index);
+    localStorage.setItem('activeItem', index.toString());
+  };
+
+  useEffect(() => {
+    const savedActiveItem = localStorage.getItem('activeItem');
+    if (savedActiveItem) {
+      setActiveItem(parseInt(savedActiveItem));
+    }
+    getUser()
+  }, []);
+
   return (
     <>
-      <IonMenu contentId='main-content'>
-        <IonHeader>
-          <IonToolbar>
-            <IonTitle>Mia Mhheb</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <IonContent className='ion-padding'>
-          <IonList>
-            <IonItem>
-              <IonIcon
-                style={{ color: 'rgba(36,77,25)', marginRight: 7 }}
-                icon={locationOutline}
-              ></IonIcon>
-              <IonLabel>Location</IonLabel>
-            </IonItem>
-            <IonItem>
-              <IonIcon
-                style={{ color: 'rgba(36,77,25)', marginRight: 7 }}
-                icon={refreshOutline}
-              ></IonIcon>
-              <IonLabel>History</IonLabel>
-            </IonItem>
-            <IonItem>
-              <IonIcon
-                style={{ color: 'rgba(36,77,25)', marginRight: 7 }}
-                icon={calendarOutline}
-              ></IonIcon>
-              <IonLabel>List of plants</IonLabel>
-            </IonItem>
-            <IonItem>
-              <IonIcon
-                style={{ color: 'rgba(36,77,25)', marginRight: 7 }}
-                icon={tvOutline}
-              ></IonIcon>
-              <IonLabel>Tips & Videos</IonLabel>
-            </IonItem>
-            <IonItem>
-              <IonIcon
-                style={{ color: 'rgba(36,77,25)', marginRight: 7 }}
-                icon={leafOutline}
-              ></IonIcon>
-              <IonLabel>Care of planting trees</IonLabel>
-            </IonItem>
-          </IonList>
-        </IonContent>
-      </IonMenu>
+      <IonMenu style={{padding:"20px"}} contentId='main-content'>
+          <div style={{padding:20, position:"relative"}}>
+            <div style={{display:"flex", justifyContent:"start", gap:"20px", alignItems:"center", marginBottom:30}}>
+                <div style={{width:"60px", height:"60px", borderRadius:"50%", border:"2px solid rgba(36,77,25)", padding:"5px"}}>
+                    <img style={{width:"100%", height:"100%", borderRadius:"50%"}} src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D" alt="" />
+                </div>
+                <div style={{display:"flex", flexDirection:"column", gap:"8px"}}>
+                <p style={{margin:0, fontWeight:"bold", fontSize:"18px"}}>{user.first_name}</p>
+                <p style={{margin:0, fontSize:"14px", color:"grey"}}>{user.username}</p>
+                </div>
+                <IonMenuToggle><IonIcon style={{position:"absolute", right:20, top:20, color:"rgba(36,77,25)"}} icon={close}></IonIcon></IonMenuToggle>
+            </div>
+            <ul style={{padding:0, margin:0, listStyle:"none"}}>
+                {category.map((item,index)=>
+                    <Link to={item.path}>
+                    <IonMenuToggle>
+                    <li
+                     style={{display:"flex", alignItems:"center", padding:"0 15px", borderRadius:10, backgroundColor: activeItem === index ? 'rgba(36,77,25)' : 'transparent', color: activeItem === index ? 'white' : 'black',}}
+                     onClick={() => handleClick(index)}
+                     >
+                    <IonIcon
+                      style={{ color: activeItem === index ? 'white' : 'rgba(36,77,25)', marginRight: 10, fontSize:"26px"}}
+                      icon={`${item.icon}`}
+                    ></IonIcon>
+                    <p style={{fontSize:"18px"}}>{item.name}</p>
+                    </li>
+                    </IonMenuToggle>
+                    </Link>
+                )}
+            </ul>
+            </div>
+        </IonMenu>
       <IonPage id='main-content'>
         <IonContent color={'light'}>
           <IonToolbar
@@ -231,10 +263,10 @@ const Tab1: React.FC = () => {
               </IonButton>
             </IonButtons>
           </IonToolbar>
-          <div style={{ padding: '0 20px' }} className='searchbar'>
-            <div className='body-searchbar' style={{ marginTop: 10 }}>
+          <div style={{ padding: "0 20px" }} className='searchbar'>
+            <div className='body-searchbar'>
               <IonIcon className='icon' icon={search}></IonIcon>
-              <input placeholder='Search' type='text' />
+              <input placeholder='Search' type="text" />
               <IonIcon className='icon' icon={micOutline}></IonIcon>
             </div>
           </div>
