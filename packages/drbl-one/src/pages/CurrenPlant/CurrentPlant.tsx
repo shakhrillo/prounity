@@ -88,7 +88,11 @@ const CurrentPlant: React.FC = () => {
               <IonButtons slot='start'>
                 <IonButton color={'light'}>
                   <Link to='/' onClick={() => history.goBack()}>
-                    <IonIcon color='dark' icon={arrowBack}></IonIcon>
+                    <IonIcon
+                      size='large'
+                      color='dark'
+                      icon={arrowBack}
+                    ></IonIcon>
                   </Link>
                 </IonButton>
               </IonButtons>
@@ -146,7 +150,9 @@ const CurrentPlant: React.FC = () => {
                   <IonText color={'medium'} style={{ fontSize: 20 }}>
                     <span style={{ fontSize: 14 }}>Category</span>
                     <br />
-                    <b style={{ color: 'rgba(36,77,25)' }}>category name</b>
+                    <b style={{ color: 'rgba(36,77,25)' }}>
+                      {currentPlant.plant_name}
+                    </b>
                   </IonText>
                   <IonText color={'medium'} style={{ fontSize: 20 }}>
                     <span style={{ fontSize: 14 }}>Price</span>
@@ -160,14 +166,30 @@ const CurrentPlant: React.FC = () => {
                 <img
                   style={{
                     position: 'absolute',
-                    width: 250,
+                    width: 270,
                     height: 350,
-                    right: 0,
+                    right: 10,
                     bottom: -45,
                   }}
                   src={`https://i.pinimg.com/originals/58/9d/4a/589d4a02eccbee79513e0d19d36d088c.png`}
                   alt=''
                 />
+
+                {/* {currentPlant?.img?.map((item) => (
+                  <div className='product' key={item.id}>
+                    <img
+                      style={{
+                        position: 'absolute',
+                        width: 300,
+                        height: 450,
+                        right: 0,
+                        bottom: -145,
+                      }}
+                      src={`${BASE_URL}${item.plant_image}`}
+                      alt=''
+                    />
+                  </div>
+                ))} */}
               </div>
             </div>
           )}

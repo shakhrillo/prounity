@@ -32,7 +32,7 @@ import {
   micOutline,
 } from 'ionicons/icons';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Tab1: React.FC = () => {
   const BASE_URL = 'https://prounity.uz';
@@ -40,12 +40,13 @@ const Tab1: React.FC = () => {
   const [popularProducts, setPopularProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedSegment, setSelectedSegment] = useState<string>('popular');
+  const location = useLocation();
 
   useEffect(() => {
     getRecentProducts();
     getPopularProducts();
     getCategories();
-  }, []);
+  }, [location]);
 
   const getRecentProducts = async () => {
     const response = await fetch(
@@ -75,7 +76,7 @@ const Tab1: React.FC = () => {
     setCategories(data);
   };
 
-  const getCurrentCategory = async (id) => {
+  const getCurrentCategory = async (id: number) => {
     const response = await fetch(
       `${BASE_URL}/plants/api/app/plant-filter-categories/${id}/`
     );
@@ -109,18 +110,24 @@ const Tab1: React.FC = () => {
     };
   })();
 
-  const recentlyProduct = async (id: number) => {
+  const recentlyProduct = async (id) => {
     const response = await fetch(
-      `${BASE_URL}/plants/api/app/plant-recently-viewed/${id}/`,
+      `${BASE_URL}/plants/api/app/plant-recently-viewed/`,
       {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json',
         },
+        body: JSON.stringify({
+          plant_id: id,
+        }),
       }
     );
     const data = await response.json();
     console.log(data);
+    console.log(id);
+    console.log('hello world');
   };
 
   return (
@@ -174,7 +181,12 @@ const Tab1: React.FC = () => {
       <IonPage id='main-content'>
         <IonContent color={'light'}>
           <IonToolbar
-            style={{ paddingLeft: 18, paddingRight: 18, paddingTop: 20 }}
+            color={'light'}
+            style={{
+              paddingLeft: 18,
+              paddingRight: 18,
+              paddingTop: 20,
+            }}
           >
             <div style={{ display: 'flex', gap: 15 }}>
               <IonButtons slot='start'>
@@ -235,7 +247,13 @@ const Tab1: React.FC = () => {
             {recentProducts.map((product) => (
               <div className='product' key={product.id}>
                 <IonRow
-                  style={{ display: 'flex', gap: 10, alignItems: 'center' }}
+                  style={{
+                    height: '100%',
+                    display: 'flex',
+                    gap: 10,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
                 >
                   <IonCol
                     style={{
@@ -247,7 +265,6 @@ const Tab1: React.FC = () => {
                       background: generateRandomColor(),
                       borderRadius: 15,
                     }}
-                    onClick={() => recentlyProduct(product.plant_id)}
                     size='auto'
                   >
                     <img
@@ -298,6 +315,7 @@ const Tab1: React.FC = () => {
                 <div className='product' key={product.id}>
                   <IonRow style={{ width: 150 }}>
                     <IonCol
+                      onClick={() => recentlyProduct(product.id)}
                       style={{
                         width: '100%',
                         background: generateRandomColor(),
