@@ -65,16 +65,10 @@ const App: React.FC = () => (
           <Route path='/tab3'>
             <Tab3 />
           </Route>
-          <Route path='/current-plant/:id'>
-            <CurrentPlant />
-          </Route>
-          <Route exact path='/'>
-            <Redirect to='/tab1' />
-          </Route>
-          <Route path='/tips-videos'>
+          <Route exact path="/tips-videos">
             <TipsVideos />
           </Route>
-          <Route path='/tips-videos/:id'>
+          <Route exact path="/tips-videos/:id">
             <TipsVideosDetails />
           </Route>
           <Route exact path='/'>

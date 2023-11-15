@@ -27,7 +27,7 @@
   font-size: 1.5rem;
 }
 .video-box .play-btn {
-  margin-top: 6px;
+  margin-top: 8px;
   background: #fff;
   border-radius: 50%;
   color: #224d13;
@@ -35,17 +35,16 @@
 .tips-videos-detail .video {
   width: 100%;
   border-radius: 25px;
-  height: 265px !important;
-  margin-top: 20px;
+  height: 280px;
   object-fit: cover;
 }
-
 .video-text .video-title h2 {
   font-size: 1.3rem;
   font-weight: 500;
+  margin-top: 22px;
 }
 .video-text .video-desc {
-  line-height: 27px;
+  line-height: 28px;
   font-weight: 300;
 }
 .tips-videos-detail .video-text .video-desc span {
@@ -54,14 +53,14 @@
   text-transform: capitalize;
 }
 .tips-videos-detail .topics-video {
-  padding-top: 8px;
+  padding-top: 4px;
 }
 .tips-videos-detail .sub-title h2 {
   font-size: 1.4rem;
   font-weight: 600;
 }
 .tips-videos-detail .topics-video-box {
-  padding-top: 12px;
+  padding-top: 14px;
 }
 .tips-videos-detail .topics-video-box .status-btn {
   margin: 0;
@@ -74,8 +73,8 @@
   --padding-bottom: 0;
   --padding-start: 0;
   --padding-end: 0;
-  width: 37px;
-  min-height: 37px;
+  width: 36px;
+  min-height: 36px;
   margin-inline: 0;
 }
 .topics-video-card.disabled .status-btn {
@@ -85,11 +84,11 @@
 .tips-videos-detail .topics-video-card {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 11px;
 }
 .tips-videos-detail .topics-video-card .card-text {
-  font-weight: 600;
-  letter-spacing: 0.2px;
+  font-weight: 500;
+  letter-spacing: 0.31px;
 }
 .topics-video-card.disabled .card-text {
   color: #9c9c9c;
@@ -109,7 +108,9 @@
   gap: 26px;
   overflow-x: auto;
 }
-.recently-uploadet-cards .card img {
+.recently-uploadet-cards .card video {
   min-width: 242px;
+  height: 170px;
+  object-fit: cover;
   border-radius: 18px;
 }
