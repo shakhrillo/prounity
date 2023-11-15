@@ -24,10 +24,11 @@ import {
   thermometerOutline,
   calculatorOutline,
 } from 'ionicons/icons';
-import { useParams } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 const CurrentPlant: React.FC = () => {
+  const history = useHistory();
   const { id } = useParams();
   const [currentPlant, setCurrentPlant] = useState([]);
   const BASE_URL = 'https://prounity.uz';
@@ -86,7 +87,9 @@ const CurrentPlant: React.FC = () => {
             <div style={{ display: 'flex', gap: 15, height: 60 }}>
               <IonButtons slot='start'>
                 <IonButton color={'light'}>
-                  <IonIcon color='dark' icon={arrowBack}></IonIcon>
+                  <Link to='/' onClick={() => history.goBack()}>
+                    <IonIcon color='dark' icon={arrowBack}></IonIcon>
+                  </Link>
                 </IonButton>
               </IonButtons>
             </div>

@@ -49,7 +49,12 @@ const Tab1: React.FC = () => {
 
   const getRecentProducts = async () => {
     const response = await fetch(
-      `${BASE_URL}/plants/api/app/plant-recently-viewed/`
+      `${BASE_URL}/plants/api/app/plant-recently-viewed/`,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      }
     );
     const data = await response.json();
     setRecentProducts(data);
@@ -80,6 +85,43 @@ const Tab1: React.FC = () => {
 
   const handleSegmentChange = (event: CustomEvent) => {
     setSelectedSegment(event.detail.value);
+  };
+
+  const generateRandomColor = (() => {
+    const colors = [
+      'rgba(255,240,224)',
+      'rgba(223,229,253)',
+      'rgba(237,238,234)',
+      'rgba(255,227,224)',
+    ];
+
+    let callCount = 0;
+
+    return () => {
+      const color = colors[callCount % colors.length];
+      callCount++;
+
+      if (callCount % colors.length === 0) {
+        // Сбросить счетчик после каждых трех вызовов
+        callCount = 0;
+      }
+
+      return color;
+    };
+  })();
+
+  const recentlyProduct = async (id: number) => {
+    const response = await fetch(
+      `${BASE_URL}/plants/api/app/plant-recently-viewed/${id}/`,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      }
+    );
+    const data = await response.json();
+    console.log(data);
   };
 
   return (
@@ -178,40 +220,48 @@ const Tab1: React.FC = () => {
               </IonButton>
             </IonButtons>
           </IonToolbar>
-          {/* <div style={{ padding: 10 }} className='searchbar'>
-            <IonSearchbar
-              className='searchbar'
-              style={{ padding: '10px' }}
-            ></IonSearchbar>
-          </div> */}
           <div style={{ padding: '0 20px' }} className='searchbar'>
-            <div className='body-searchbar'>
+            <div className='body-searchbar' style={{ marginTop: 10 }}>
               <IonIcon className='icon' icon={search}></IonIcon>
               <input placeholder='Search' type='text' />
               <IonIcon className='icon' icon={micOutline}></IonIcon>
             </div>
           </div>
-          <div className='title'>
+          <div className='title' style={{ marginTop: 15 }}>
             <IonText style={{ fontSize: 23 }}>
               <b>Recently Viewed</b>
             </IonText>
           </div>
-          <div className='product-list product-list-horizontal'>
+          <div className='product-list product-list-horizontal recently-list'>
             {recentProducts.map((product) => (
               <div className='product' key={product.id}>
-                <IonRow>
-                  <IonCol size='auto'>
+                <IonRow
+                  style={{ display: 'flex', gap: 10, alignItems: 'center' }}
+                >
+                  <IonCol
+                    style={{
+                      width: '80px',
+                      height: '80px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      background: generateRandomColor(),
+                      borderRadius: 15,
+                    }}
+                    onClick={() => recentlyProduct(product.plant_id)}
+                    size='auto'
+                  >
                     <img
-                      src={`${BASE_URL}${product.img[0].plant_image}`}
+                      src={`${BASE_URL}${product?.plant_id?.img[0].plant_image}`}
                       alt='product'
                     />
                   </IonCol>
                   <IonCol>
                     <IonText className='product-title'>
-                      <h3>{product.plant_name}</h3>
+                      <h3>{product?.plant_id.plant_name}</h3>
                     </IonText>
                     <IonText color={'medium'} className='product-subtitle'>
-                      {product.plant_categories.name}
+                      {product?.plant_id?.plant_categories.name}
                     </IonText>
                   </IonCol>
                 </IonRow>
@@ -225,14 +275,6 @@ const Tab1: React.FC = () => {
               className='segment-active'
             >
               <IonSegmentButton onClick={getPopularProducts} value={'popular'}>
-                <IonLabel>Popular</IonLabel>
-                <div className='segment-indicator'></div>
-              </IonSegmentButton>
-              <IonSegmentButton onClick={getPopularProducts} value={'porno'}>
-                <IonLabel>Popular</IonLabel>
-                <div className='segment-indicator'></div>
-              </IonSegmentButton>
-              <IonSegmentButton onClick={getPopularProducts} value={'sex'}>
                 <IonLabel>Popular</IonLabel>
                 <div className='segment-indicator'></div>
               </IonSegmentButton>
@@ -256,20 +298,29 @@ const Tab1: React.FC = () => {
               >
                 <div className='product' key={product.id}>
                   <IonRow style={{ width: 150 }}>
-                    <IonCol size='12'>
-                      {/* Display the first image for simplicity, you can modify as needed */}
+                    <IonCol
+                      style={{
+                        width: '100%',
+                        background: generateRandomColor(),
+                        borderRadius: 15,
+                      }}
+                      size='12'
+                    >
                       <img
+                        style={{ objectFit: 'cover' }}
                         src={`${BASE_URL}${product.img[0].plant_image}`}
                         alt='product'
                       />
                     </IonCol>
                     <IonCol size='12'>
                       <IonText className='product-title'>
-                        {product.plant_name}
+                        {product.plant_name.length > 18
+                          ? `${product.plant_name.slice(0, 16)}...`
+                          : product.plant_name}
                       </IonText>
                       <br />
                       <IonText color={'medium'} className='product-price'>
-                        {product.plant_price}$
+                        <b>{product.plant_price}$</b>
                       </IonText>
                     </IonCol>
                   </IonRow>
