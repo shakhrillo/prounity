@@ -1,12 +1,12 @@
 import { IonButton, IonContent, IonHeader, IonInput, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useState } from 'react';
-import './signin.css'
+import './signin.css';
 
 const Signin: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
+  const history = useHistory()
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -20,7 +20,12 @@ const Signin: React.FC = () => {
       });
 
       if (response.ok) {
+        const data = await response.json();
+        const token = data.token;
+
+        localStorage.setItem('token', token.access);
         console.log('Sign-in successful');
+        history.push('/tab1')
       } else {
         console.error('Sign-in failed');
       }

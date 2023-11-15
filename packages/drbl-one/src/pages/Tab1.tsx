@@ -29,7 +29,8 @@ import {
   tvOutline,
   leafOutline,
   search,
-  micOutline,
+  mic,
+  micOutline
 } from 'ionicons/icons';
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
@@ -231,10 +232,10 @@ const Tab1: React.FC = () => {
               </IonButton>
             </IonButtons>
           </IonToolbar>
-          <div style={{ padding: '0 20px' }} className='searchbar'>
-            <div className='body-searchbar' style={{ marginTop: 10 }}>
+          <div style={{ padding: "0 20px" }} className='searchbar'>
+            <div className='body-searchbar'>
               <IonIcon className='icon' icon={search}></IonIcon>
-              <input placeholder='Search' type='text' />
+              <input placeholder='Search' type="text" />
               <IonIcon className='icon' icon={micOutline}></IonIcon>
             </div>
           </div>

@@ -10,7 +10,6 @@ const Signup: React.FC = () => {
   const [password, setPassword] = useState('');
   const [repassword, setRepassword] = useState('');
   const [email, setEmail] = useState('');
-  const [groups, setGroups] = useState('');
 
   const handleSignUp = () => {
     const userData = {
@@ -24,7 +23,6 @@ const Signup: React.FC = () => {
     };
     console.log(firstname);
     
-
     fetch('https://prounity.uz/edu-app/api/authen/api/user_register_views/', {
       method: 'POST',
       headers: {
@@ -81,17 +79,17 @@ const Signup: React.FC = () => {
             <IonInput
               onIonInput={(e) => setFirstname(e.target.value)}
               style={{ borderBottom: '1px solid white', color: 'white' }}
-              label="Username"
+              label="firstname"
             ></IonInput>
             <IonInput
               onIonInput={(e) => setLastname(e.target.value)}
               style={{ borderBottom: '1px solid white', color: 'white' }}
-              label="Firstname"
+              label="lastname"
             ></IonInput>
             <IonInput
               onIonInput={(e) => setUsername(e.target.value)}
               style={{ borderBottom: '1px solid white', color: 'white' }}
-              label="Lastname"
+              label="username"
             ></IonInput>
             <IonInput
               onIonInput={(e) => setEmail(e.target.value)}
@@ -105,7 +103,7 @@ const Signup: React.FC = () => {
             ></IonInput>
             <IonInput
               onIonInput={(e) => setRepassword(e.target.value)}
-              style={{ borderBottom: '1px solid white', color: 'white' }}
+              style={{ borderBottom: '1px solid white', color: 'white', marginBottom:"20px" }}
               label="Repassword"
             ></IonInput>
             <IonButton shape='round' color='light' expand='full' size='default' type='submit' onClick={handleSignUp}>
