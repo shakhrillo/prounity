@@ -65,28 +65,31 @@ const App: React.FC = () => (
           <Route path='/tab3'>
             <Tab3 />
           </Route>
-          <Route exact path="/tips-videos">
+          <Route path='/current-plant/:id'>
+            <CurrentPlant />
+          </Route>
+          <Route exact path='/tips-videos'>
             <TipsVideos />
           </Route>
-          <Route exact path="/tips-videos/:id">
+          <Route exact path='/tips-videos/:id'>
             <TipsVideosDetails />
           </Route>
           <Route exact path='/'>
             <Redirect to='/tab1' />
           </Route>
-          <Route path="/sign-in">
+          <Route path='/sign-in'>
             <Signin />
           </Route>
-          <Route path="/sign-up">
+          <Route path='/sign-up'>
             <Signup />
           </Route>
-          <Route path="/location">
+          <Route path='/location'>
             <Location />
           </Route>
-          <Route path="/care">
+          <Route path='/care'>
             <Care />
           </Route>
-          <Route path="/history">
+          <Route path='/history'>
             <History />
           </Route>
         </IonRouterOutlet>
