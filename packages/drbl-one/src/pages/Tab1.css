@@ -1,14 +1,9 @@
-/* .searchbar .searchbar-input-container input {
-  background-color: rgb(237, 237, 237);
-  height: 50px;
-} */
-
 .searchbar {
     height: 50px;
     width: 100%;
-  }
+}
   
-  .body-searchbar{
+.body-searchbar{
     background-color: rgb(235, 235, 235);
     width: 100%;
     height: 100%;
@@ -17,7 +12,7 @@
     align-items: center;
     padding: 0 18px;
     border-radius: 12px;
-  }
+}
   
   .body-searchbar .icon{
     font-size: 24px;
@@ -39,6 +34,12 @@
   padding-left: 20px;
 }
 
+.product{
+    width: 150px;
+    min-height: auto;
+    border-radius: 15px;
+}
+
 .product-list-horizontal {
   display: flex;
   overflow-x: scroll;
@@ -47,7 +48,7 @@
 }
 
 .product-list-horizontal .product {
-  min-width: 285px;
+  min-width: 255px;
 }
 
 .product-list-horizontal img {
@@ -112,14 +113,14 @@
 }
 
 .segment-active ion-segment-button {
-    font-size: 18px;
-    --indicator-box-shadow: transparent !important;
+  --indicator-box-shadow: transparent !important;
   --background:none;
   --color:gray;
   --background-checked: transparent !important;
   --border-style:none;
   --color-checked: rgba(36,77,25);
-    --indicator-color: transparent !important;
+  --indicator-color: transparent !important;
+  font-size: 18px;
   border-radius: .5rem !important;
   padding: 2px;
   height: 55px;
@@ -140,3 +141,4 @@
 .segment-active ion-segment-button.segment-button-checked .segment-indicator {
     background-color: rgba(36,77,25);
   }
+
