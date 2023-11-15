@@ -37,16 +37,35 @@ import {
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
+interface Product {
+  id: number;
+  plant_id: {
+    img: [{ plant_image: string }];
+    plant_name: string;
+    plant_categories: { name: string };
+  };
+  plant_name: string;
+  plant_price: number;
+  img: [{ plant_image: string }];
+}
+
+interface Category {
+  id: number;
+  icon: string;
+  name: string;
+  path: string;
+}
+
 const Tab1: React.FC = () => {
   const BASE_URL = 'https://prounity.uz';
-  const [recentProducts, setRecentProducts] = useState([]);
-  const [popularProducts, setPopularProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [user, setUser] = useState([]);
+  const [recentProducts, setRecentProducts] = useState<Product[]>([]);
+  const [popularProducts, setPopularProducts] = useState<Product[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [user, setUser] = useState<any>([]);
   const [selectedSegment, setSelectedSegment] = useState<string>('popular');
   const location = useLocation();
 
-  const [activeItem, setActiveItem] = useState(null);
+  const [activeItem, setActiveItem] = useState<number | null>(null);
   const category = [
     { icon: `${locationOutline}`, name: 'Location', path: '/location' },
     { icon: `${refreshOutline}`, name: 'History', path: '/history' },
@@ -123,7 +142,7 @@ const Tab1: React.FC = () => {
     };
   })();
 
-  const recentlyProduct = async (id) => {
+  const recentlyProduct = async (id: number) => {
     const response = await fetch(
       `${BASE_URL}/plants/api/app/plant-recently-viewed/`,
       {
@@ -167,7 +186,7 @@ const Tab1: React.FC = () => {
     }
   };
 
-  const handleClick = (index) => {
+  const handleClick = (index: any) => {
     setActiveItem(index);
     localStorage.setItem('activeItem', index.toString());
   };

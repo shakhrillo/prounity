@@ -27,10 +27,23 @@ import {
 import { Link, useParams, useHistory } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
+interface Plant {
+  plant_name: string;
+  plant_type: string;
+  plant_category: string; // Replace with the actual property name if available
+  plant_price: number;
+  // Add other properties based on your actual data structure
+  plant_light: number;
+  plant_water: number;
+  plant_temperature: number;
+  plant_tall: number;
+  // Add any other properties as needed
+}
+
 const CurrentPlant: React.FC = () => {
   const history = useHistory();
-  const { id } = useParams();
-  const [currentPlant, setCurrentPlant] = useState([]);
+  const { id }: { id: any } = useParams();
+  const [currentPlant, setCurrentPlant] = useState<Plant>({} as any);
   const BASE_URL = 'https://prounity.uz';
 
   useEffect(() => {
@@ -43,7 +56,6 @@ const CurrentPlant: React.FC = () => {
     );
     const data = await response.json();
     setCurrentPlant(data);
-    console.log(data);
   };
 
   return (
@@ -222,7 +234,7 @@ const CurrentPlant: React.FC = () => {
                       ></IonIcon>
                       <h6>Light</h6>
                     </div>
-                    <b>{currentPlant.plant_light}%</b>
+                    <b>{currentPlant?.plant_light}%</b>
                   </div>
                 </IonCol>
               </IonRow>

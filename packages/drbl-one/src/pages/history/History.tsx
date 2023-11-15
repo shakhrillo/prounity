@@ -1,145 +1,214 @@
 import {
-    IonBadge,
-    IonButton,
-    IonButtons,
-    IonCol,
-    IonContent,
-    IonHeader,
-    IonIcon,
-    IonItem,
-    IonLabel,
-    IonList,
-    IonMenu,
-    IonMenuButton,
-    IonMenuToggle,
-    IonPage,
-    IonRow,
-    IonSearchbar,
-    IonSegment,
-    IonSegmentButton,
-    IonText,
-    IonTitle,
-    IonToolbar,
+  IonBadge,
+  IonButton,
+  IonButtons,
+  IonCol,
+  IonContent,
+  IonHeader,
+  IonIcon,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonMenu,
+  IonMenuButton,
+  IonMenuToggle,
+  IonPage,
+  IonRow,
+  IonSearchbar,
+  IonSegment,
+  IonSegmentButton,
+  IonText,
+  IonTitle,
+  IonToolbar,
 } from '@ionic/react';
-import './history.css'
+import './history.css';
 import {
-    logoIonic,
-    cartOutline,
-    locationOutline,
-    refreshOutline,
-    calendarOutline,
-    tvOutline,
-    leafOutline,
-    search,
-    mic,
-    micOutline,
-    close
+  logoIonic,
+  cartOutline,
+  locationOutline,
+  refreshOutline,
+  calendarOutline,
+  tvOutline,
+  leafOutline,
+  search,
+  mic,
+  micOutline,
+  close,
 } from 'ionicons/icons';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-  
+
+interface HistoryItem {
+  care_topic_id: {
+    care_topic_name: string;
+  };
+  created_at: string;
+}
+
+interface UserProfile {
+  username: string;
+  first_name: string;
+}
+
 const History: React.FC = () => {
-  const [activeItem, setActiveItem] = useState(null);
-  const [user, setUser] = useState([])
-  const [history, setHistory] = useState([])
+  const [activeItem, setActiveItem] = useState<number | null>(null);
+  const [user, setUser] = useState<UserProfile>({
+    username: '',
+    first_name: '',
+  });
+  const [history, setHistory] = useState<HistoryItem[]>([]);
   const categories = [
-      {icon: `${locationOutline}`, name: "Location", path:'/location'},
-      {icon: `${refreshOutline}`, name: "History",path:'/history'},
-      {icon: `${calendarOutline}`, name: "List of Plants", path:'/tab1'},
-      {icon: `${tvOutline}`, name: "Tips & Videos", path:'/tips-videos'},
-      {icon: `${leafOutline}`, name: "Care of planting trees", path:'/care'},
-  ]
-  const handleClick = (index) => {
-      setActiveItem(index);
-      localStorage.setItem('activeItem', index.toString());
-    };
+    { icon: `${locationOutline}`, name: 'Location', path: '/location' },
+    { icon: `${refreshOutline}`, name: 'History', path: '/history' },
+    { icon: `${calendarOutline}`, name: 'List of Plants', path: '/tab1' },
+    { icon: `${tvOutline}`, name: 'Tips & Videos', path: '/tips-videos' },
+    { icon: `${leafOutline}`, name: 'Care of planting trees', path: '/care' },
+  ];
+  const handleClick = (index: any) => {
+    setActiveItem(index);
+    localStorage.setItem('activeItem', index.toString());
+  };
 
-    const getUser = async () => {
-        try {
-          // Get the user token from local storage
-          const token = localStorage.getItem('token');
-          
-          // Set the headers with the token
-          const headers = {
-            'Authorization': `Bearer ${token}`
-          };
-      
-          const response = await fetch('https://prounity.uz/edu-app/api/authen/api/user_profiles_views/', {
-            headers: headers
-          });
-      
-          const data = await response.json();
-          setUser(data); 
-        } catch (error) {
-          console.error('Error fetching location data:', error);
-        }
+  const getUser = async () => {
+    try {
+      // Get the user token from local storage
+      const token = localStorage.getItem('token');
+
+      // Set the headers with the token
+      const headers = {
+        Authorization: `Bearer ${token}`,
       };
 
-      const getHistory = async () => {
-        try {
-        const token = localStorage.getItem('token');
-          
-          // Set the headers with the token
-          
-          const response = await fetch(' https://prounity.uz/plants/api/app/plant-care-topic-history/', 
-            {headers : {
-                'Authorization': `Bearer ${token}`
-            }}
-          );
-          const data = await response.json();
-          setHistory(data); 
-          console.log(data);
-          
-        } catch (error) {
-          console.error('Error fetching location data:', error);
+      const response = await fetch(
+        'https://prounity.uz/edu-app/api/authen/api/user_profiles_views/',
+        {
+          headers: headers,
         }
-      };
+      );
 
-    useEffect(() => {
-      const savedActiveItem = localStorage.getItem('activeItem');
-      if (savedActiveItem) {
-        setActiveItem(parseInt(savedActiveItem));
-      }
-      getUser()
-      getHistory()
-    }, []);
+      const data = await response.json();
+      setUser(data);
+    } catch (error) {
+      console.error('Error fetching location data:', error);
+    }
+  };
+
+  const getHistory = async () => {
+    try {
+      const token = localStorage.getItem('token');
+
+      // Set the headers with the token
+
+      const response = await fetch(
+        ' https://prounity.uz/plants/api/app/plant-care-topic-history/',
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const data = await response.json();
+      setHistory(data);
+      console.log(data);
+    } catch (error) {
+      console.error('Error fetching location data:', error);
+    }
+  };
+
+  useEffect(() => {
+    const savedActiveItem = localStorage.getItem('activeItem');
+    if (savedActiveItem) {
+      setActiveItem(parseInt(savedActiveItem));
+    }
+    getUser();
+    getHistory();
+  }, []);
   return (
     <>
-      <IonMenu style={{padding:"20px"}} contentId='main-content'>
-        <div style={{padding:20, position:"relative"}}>
-          <div style={{display:"flex", justifyContent:"start", gap:"20px", alignItems:"center", marginBottom:30}}>
-              <div style={{width:"60px", height:"60px", borderRadius:"50%", border:"2px solid rgba(36,77,25)", padding:"5px"}}>
-                  <img style={{width:"100%", height:"100%", borderRadius:"50%"}} src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D" alt="" />
-              </div>
-              <div style={{display:"flex", flexDirection:"column", gap:"8px"}}>
-                <p style={{margin:0, fontWeight:"bold", fontSize:"18px"}}>{user.username}</p>
-                <p style={{margin:0, fontSize:"14px", color:"grey"}}>{user.first_name}</p>
-              </div>
-              <IonMenuToggle><IonIcon style={{position:"absolute", right:20, top:20, color:"rgba(36,77,25)"}} icon={close}></IonIcon></IonMenuToggle>
+      <IonMenu style={{ padding: '20px' }} contentId='main-content'>
+        <div style={{ padding: 20, position: 'relative' }}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'start',
+              gap: '20px',
+              alignItems: 'center',
+              marginBottom: 30,
+            }}
+          >
+            <div
+              style={{
+                width: '60px',
+                height: '60px',
+                borderRadius: '50%',
+                border: '2px solid rgba(36,77,25)',
+                padding: '5px',
+              }}
+            >
+              <img
+                style={{ width: '100%', height: '100%', borderRadius: '50%' }}
+                src='https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D'
+                alt=''
+              />
+            </div>
+            <div
+              style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}
+            >
+              <p style={{ margin: 0, fontWeight: 'bold', fontSize: '18px' }}>
+                {user.username}
+              </p>
+              <p style={{ margin: 0, fontSize: '14px', color: 'grey' }}>
+                {user.first_name}
+              </p>
+            </div>
+            <IonMenuToggle>
+              <IonIcon
+                style={{
+                  position: 'absolute',
+                  right: 20,
+                  top: 20,
+                  color: 'rgba(36,77,25)',
+                }}
+                icon={close}
+              ></IonIcon>
+            </IonMenuToggle>
           </div>
-          <ul style={{padding:0, margin:0, listStyle:"none"}}>
-              {categories.map((item,index)=>
-                  <Link to={item.path}>
-                  <IonMenuToggle>
+          <ul style={{ padding: 0, margin: 0, listStyle: 'none' }}>
+            {categories.map((item, index) => (
+              <Link to={item.path}>
+                <IonMenuToggle>
                   <li
-                   style={{display:"flex", alignItems:"center", padding:"0 15px", borderRadius:10, backgroundColor: activeItem === index ? 'rgba(36,77,25)' : 'transparent', color: activeItem === index ? 'white' : 'black',}}
-                   onClick={() => handleClick(index)}
-                   >
-                  <IonIcon
-                    style={{ color: activeItem === index ? 'white' : 'rgba(36,77,25)', marginRight: 10, fontSize:"26px"}}
-                    icon={`${item.icon}`}
-                  ></IonIcon>
-                  <p style={{fontSize:"18px"}}>{item.name}</p>
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      padding: '0 15px',
+                      borderRadius: 10,
+                      backgroundColor:
+                        activeItem === index ? 'rgba(36,77,25)' : 'transparent',
+                      color: activeItem === index ? 'white' : 'black',
+                    }}
+                    onClick={() => handleClick(index)}
+                  >
+                    <IonIcon
+                      style={{
+                        color:
+                          activeItem === index ? 'white' : 'rgba(36,77,25)',
+                        marginRight: 10,
+                        fontSize: '26px',
+                      }}
+                      icon={`${item.icon}`}
+                    ></IonIcon>
+                    <p style={{ fontSize: '18px' }}>{item.name}</p>
                   </li>
-                  </IonMenuToggle>
-                  </Link>
-              )}
+                </IonMenuToggle>
+              </Link>
+            ))}
           </ul>
-          </div>
+        </div>
       </IonMenu>
       <IonPage id='main-content'>
         <IonContent color={'light'}>
-          <IonToolbar style={{ padding: "30px 18px 0" }}>
+          <IonToolbar style={{ padding: '30px 18px 0' }}>
             <div style={{ display: 'flex', gap: 15 }}>
               <IonButtons slot='start'>
                 <IonMenuButton
@@ -153,9 +222,7 @@ const History: React.FC = () => {
                   autoHide={false}
                 ></IonMenuButton>
               </IonButtons>
-              <p>
-              History
-              </p>
+              <p>History</p>
             </div>
             <IonButtons slot='end'>
               <IonButton>
@@ -175,28 +242,66 @@ const History: React.FC = () => {
               </IonButton>
             </IonButtons>
           </IonToolbar>
-          <div style={{width:"100%", height:"100%", padding:" 24px"}}>
-      <div style={{ padding: "0", marginBottom:"20px" }} className='searchbar'>
-          <div className='body-searchbar'>
-            <IonIcon className='icon' icon={search}></IonIcon>
-            <input placeholder='Search' type="text" />
-            <IonIcon className='icon' icon={micOutline}></IonIcon>
-          </div>
-        </div>
-          <div style={{width:"100%", display:"flex", flexWrap:"wrap", justifyContent:"space-between"}}>
-              {history.map(item=>
-                <div style={{width:"170px", height:"100px", boxShadow:"1px 1px 3px 3px grey", marginBottom:"20px", borderRadius:"14px", padding:"10px", display:"flex", flexDirection:"column", justifyContent:"space-between"}} >
-                <div style={{display:"flex", justifyContent:"space-between", alignItems:"center"}}>
-                    <p style={{color:"grey"}}>{item.care_topic_id.care_topic_name}</p>
-                </div>
-                
-                <div style={{display:"flex", justifyContent:"space-between", alignItems:"center"}}>
-                    <p style={{margin:0, fontSize:"14px"}}>{item.created_at}</p>
-                </div>
+          <div style={{ width: '100%', height: '100%', padding: ' 24px' }}>
+            <div
+              style={{ padding: '0', marginBottom: '20px' }}
+              className='searchbar'
+            >
+              <div className='body-searchbar'>
+                <IonIcon className='icon' icon={search}></IonIcon>
+                <input placeholder='Search' type='text' />
+                <IonIcon className='icon' icon={micOutline}></IonIcon>
+              </div>
             </div>
-                )}
-       </div>
-      </div> 
+            <div
+              style={{
+                width: '100%',
+                display: 'flex',
+                flexWrap: 'wrap',
+                justifyContent: 'space-between',
+              }}
+            >
+              {history.map((item) => (
+                <div
+                  style={{
+                    width: '170px',
+                    height: '100px',
+                    boxShadow: '1px 1px 3px 3px grey',
+                    marginBottom: '20px',
+                    borderRadius: '14px',
+                    padding: '10px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                  }}
+                >
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <p style={{ color: 'grey' }}>
+                      {item.care_topic_id.care_topic_name}
+                    </p>
+                  </div>
+
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <p style={{ margin: 0, fontSize: '14px' }}>
+                      {item.created_at}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </IonContent>
       </IonPage>
     </>
@@ -204,6 +309,3 @@ const History: React.FC = () => {
 };
 
 export default History;
-  
-
-
