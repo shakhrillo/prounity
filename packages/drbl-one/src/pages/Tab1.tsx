@@ -102,7 +102,6 @@ const Tab1: React.FC = () => {
       callCount++;
 
       if (callCount % colors.length === 0) {
-        // Сбросить счетчик после каждых трех вызовов
         callCount = 0;
       }
 
